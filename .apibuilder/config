@@ -1,0 +1,10 @@
+settings:
+  code.create.directories: true
+
+code:
+  iruoy:
+    recipes:
+      version: latest
+      generators:
+        dart_2_15_client:
+          target: ./services/app/lib/src/generated
