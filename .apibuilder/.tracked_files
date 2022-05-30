@@ -3,3 +3,6 @@ iruoy:
   recipes:
     dart_2_15_client:
     - "./services/app/lib/src/generated/IruoyRecipesV0Client.dart"
+  whocooks-recipes:
+    dart_2_15_client:
+    - "./services/app/lib/src/generated/IruoyWhocooksRecipesV0Client.dart"
