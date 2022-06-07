@@ -3,18 +3,10 @@ settings:
 
 code:
   iruoy:
-    whocooks-recipes:
+    whocooks:
       version: latest
       generators:
         dart_2_15_client:
           target: ./services/app/lib/src/generated
-    whocooks-tokens:
-      version: latest
-      generators:
-        dart_2_15_client:
-          target: ./services/app/lib/src/generated
-    whocooks-users:
-      version: latest
-      generators:
-        dart_2_15_client:
-          target: ./services/app/lib/src/generated
+        dart_2_15_json:
+          target: ./services/recipes/lib/src/generated
