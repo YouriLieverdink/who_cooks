@@ -1,7 +1,7 @@
 ---
 iruoy:
-  whocooks:
+  whocooks-recipes:
     dart_2_15_client:
-    - "./services/app/lib/src/generated/IruoyWhocooksV0Client.dart"
+    - "./services/app/lib/src/generated/IruoyWhocooksRecipesV0Client.dart"
     dart_2_15_json:
-    - "./services/recipes/lib/src/generated/IruoyWhocooksV0Json.dart"
+    - "./services/recipes/lib/src/generated/IruoyWhocooksRecipesV0Json.dart"

@@ -4,7 +4,7 @@ import 'package:recipes/recipes.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 import 'package:validation/validation.dart';
 
-import '../generated/IruoyWhocooksV0RecipesJson.dart';
+import '../generated/IruoyWhocooksRecipesV0Json.dart';
 
 class RecipeController {
   ///

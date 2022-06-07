@@ -3,7 +3,7 @@ settings:
 
 code:
   iruoy:
-    whocooks:
+    whocooks-recipes:
       version: latest
       generators:
         dart_2_15_client:

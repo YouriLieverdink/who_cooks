@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:recipes/recipes.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '../generated/IruoyWhocooksV0RecipesJson.dart';
+import '../generated/IruoyWhocooksRecipesV0Json.dart';
 
 class InternalController {
   ///

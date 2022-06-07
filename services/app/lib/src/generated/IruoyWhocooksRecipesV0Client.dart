@@ -3,61 +3,6 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart';
 
-class Error extends Equatable {
-  const Error({required this.code, required this.message});
-
-  factory Error.fromJson(dynamic json) {
-    return Error(
-      code: json['code'] as String,
-      message: json['message'] as String,
-    );
-  }
-
-  final String code;
-
-  final String message;
-
-  dynamic toJson() {
-    return {
-      'code': code,
-      'message': message,
-    };
-  }
-
-  @override
-  List<Object?> get props {
-    return [
-      code,
-      message,
-    ];
-  }
-}
-
-class Healthcheck extends Equatable {
-  const Healthcheck({required this.status});
-
-  factory Healthcheck.fromJson(dynamic json) {
-    return Healthcheck(
-      status: json['status'] as String,
-    );
-  }
-
-  final String status;
-
-  dynamic toJson() {
-    return {
-      'status': status,
-    };
-  }
-
-  @override
-  List<Object?> get props {
-    return [
-      status,
-    ];
-  }
-}
-
 class Recipe extends Equatable {
   const Recipe({required this.id, required this.title});
 
@@ -113,92 +58,57 @@ class RecipeForm extends Equatable {
   }
 }
 
-class Token extends Equatable {
-  const Token({required this.token, required this.refreshToken});
+class Error extends Equatable {
+  const Error({required this.code, required this.message});
 
-  factory Token.fromJson(dynamic json) {
-    return Token(
-      token: json['token'] as String,
-      refreshToken: json['refresh_token'] as String,
+  factory Error.fromJson(dynamic json) {
+    return Error(
+      code: json['code'] as String,
+      message: json['message'] as String,
     );
   }
 
-  final String token;
+  final String code;
 
-  final String refreshToken;
+  final String message;
 
   dynamic toJson() {
     return {
-      'token': token,
-      'refresh_token': refreshToken,
+      'code': code,
+      'message': message,
     };
   }
 
   @override
   List<Object?> get props {
     return [
-      token,
-      refreshToken,
+      code,
+      message,
     ];
   }
 }
 
-class TokenForm extends Equatable {
-  const TokenForm({required this.email, required this.password});
+class Healthcheck extends Equatable {
+  const Healthcheck({required this.status});
 
-  factory TokenForm.fromJson(dynamic json) {
-    return TokenForm(
-      email: json['email'] as String,
-      password: json['password'] as String,
+  factory Healthcheck.fromJson(dynamic json) {
+    return Healthcheck(
+      status: json['status'] as String,
     );
   }
 
-  final String email;
-
-  final String password;
+  final String status;
 
   dynamic toJson() {
     return {
-      'email': email,
-      'password': password,
+      'status': status,
     };
   }
 
   @override
   List<Object?> get props {
     return [
-      email,
-      password,
-    ];
-  }
-}
-
-class User extends Equatable {
-  const User({required this.id, required this.email});
-
-  factory User.fromJson(dynamic json) {
-    return User(
-      id: json['id'] as String,
-      email: json['email'] as String,
-    );
-  }
-
-  final String id;
-
-  final String email;
-
-  dynamic toJson() {
-    return {
-      'id': id,
-      'email': email,
-    };
-  }
-
-  @override
-  List<Object?> get props {
-    return [
-      id,
-      email,
+      status,
     ];
   }
 }
@@ -222,7 +132,7 @@ class HealthchecksResource {
 
     switch (r.statusCode) {
       case 200:
-        return Healthcheck.fromJson(json);
+        return json;
 
       case 500:
         throw Exception([
@@ -246,14 +156,14 @@ class RecipesResource {
 
   final String baseUrl;
 
-  Future<List<Recipe>> get({int? limit, int? offset}) async {
+  Future<List<Recipe>> get({int? skip, int? limit}) async {
     final r = await client.get(
       Uri(
         host: baseUrl,
         path: '/recipes',
         queryParameters: {
+          'skip': skip,
           'limit': limit,
-          'offset': offset,
         },
       ),
     );
@@ -290,7 +200,7 @@ class RecipesResource {
     final json = jsonDecode(r.body);
 
     switch (r.statusCode) {
-      case 201:
+      case 200:
         return Recipe.fromJson(json);
 
       case 400:
@@ -308,7 +218,7 @@ class RecipesResource {
       default:
         throw Exception([
           r.statusCode,
-          'Unsupported status code: ${r.statusCode}, expected: 201, 400, 401.',
+          'Unsupported status code: ${r.statusCode}, expected: 200, 400, 401.',
         ]);
     }
   }
@@ -387,110 +297,9 @@ class RecipesResource {
   }
 }
 
-class TokensResource {
-  const TokensResource({required this.client, required this.baseUrl});
-
-  final Client client;
-
-  final String baseUrl;
-
-  Future<Token> post(TokenForm tokenForm) async {
-    final r = await client.post(
-      Uri(
-        host: baseUrl,
-        path: '/tokens',
-      ),
-      body: jsonEncode(tokenForm),
-    );
-
-    final json = jsonDecode(r.body);
-
-    switch (r.statusCode) {
-      case 200:
-        return Token.fromJson(json);
-
-      case 401:
-        throw Exception([
-          r.statusCode,
-          null,
-        ]);
-
-      default:
-        throw Exception([
-          r.statusCode,
-          'Unsupported status code: ${r.statusCode}, expected: 200, 401.',
-        ]);
-    }
-  }
-
-  Future<Token> put(Token token) async {
-    final r = await client.put(
-      Uri(
-        host: baseUrl,
-        path: '/tokens',
-      ),
-      body: jsonEncode(token),
-    );
-
-    final json = jsonDecode(r.body);
-
-    switch (r.statusCode) {
-      case 200:
-        return Token.fromJson(json);
-
-      case 401:
-        throw Exception([
-          r.statusCode,
-          null,
-        ]);
-
-      default:
-        throw Exception([
-          r.statusCode,
-          'Unsupported status code: ${r.statusCode}, expected: 200, 401.',
-        ]);
-    }
-  }
-}
-
-class UsersResource {
-  const UsersResource({required this.client, required this.baseUrl});
-
-  final Client client;
-
-  final String baseUrl;
-
-  Future<User> get() async {
-    final r = await client.get(
-      Uri(
-        host: baseUrl,
-        path: '/users/me',
-      ),
-    );
-
-    final json = jsonDecode(r.body);
-
-    switch (r.statusCode) {
-      case 200:
-        return User.fromJson(json);
-
-      case 401:
-        throw Exception([
-          r.statusCode,
-          null,
-        ]);
-
-      default:
-        throw Exception([
-          r.statusCode,
-          'Unsupported status code: ${r.statusCode}, expected: 200, 401.',
-        ]);
-    }
-  }
-}
-
-class IruoyWhocooksV0Client {
-  const IruoyWhocooksV0Client({required this.client, required this.baseUrl});
+class IruoyWhocooksRecipesV0Client {
+  const IruoyWhocooksRecipesV0Client(
+      {required this.client, required this.baseUrl});
 
   final Client client;
 
@@ -502,13 +311,5 @@ class IruoyWhocooksV0Client {
 
   RecipesResource get recipes {
     return RecipesResource(baseUrl: baseUrl, client: client);
-  }
-
-  TokensResource get tokens {
-    return TokensResource(baseUrl: baseUrl, client: client);
-  }
-
-  UsersResource get users {
-    return UsersResource(baseUrl: baseUrl, client: client);
   }
 }
