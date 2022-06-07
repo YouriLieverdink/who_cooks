@@ -1,6 +1,6 @@
-import './abstract.dart';
+part of '../rule.dart';
 
-class RequiredRule extends Rule {
+class Required extends Rule {
   @override
   String? validate(
     value, [

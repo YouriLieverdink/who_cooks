@@ -1,4 +1,4 @@
 library validation;
 
-export './src/rules/rules.dart';
-export './src/validate.dart';
+export './src/rule.dart';
+export './src/validator.dart';
