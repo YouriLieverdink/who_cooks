@@ -1,5 +1,6 @@
 name: recipes
 version: 0.0.1
+publish_to: "none"
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -7,6 +8,11 @@ environment:
 dependencies:
   dartz: ^0.10.1
   equatable: ^2.0.3
+  get_it: ^7.2.0
+  mongo_dart: ^0.7.4+1
   shelf: ^1.3.0
+  shelf_plus: ^1.2.2
   shelf_router: ^1.1.2
   test: ^1.21.1
+  validation:
+    path: ../../packages/validation
