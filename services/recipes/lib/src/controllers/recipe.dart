@@ -50,7 +50,7 @@ class RecipeController {
     final dao = RecipeDao();
     final data = await dao.insert(form);
 
-    return Response(201, body: data);
+    return Response(201, body: jsonEncode(data));
   }
 
   static Future<Response> _putById(
