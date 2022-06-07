@@ -5,9 +5,9 @@ import './rule.dart';
 class Validator {
   final Map<String, List<Rule>> rules;
 
-  const Validator({
-    required this.rules,
-  });
+  const Validator(
+    this.rules,
+  );
 
   Map<String, List<String>> validate(
     Map<String, dynamic> value,
