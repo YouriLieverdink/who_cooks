@@ -4,3 +4,4 @@
 **/.packages
 **/app.iml
 **/target
+**/.env

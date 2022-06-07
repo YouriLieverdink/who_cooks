@@ -1,8 +1,9 @@
 import 'package:mongo_dart/mongo_dart.dart';
 
+import '../config.dart';
 import '../generated/IruoyWhocooksV0RecipesDao.dart' as _;
 
-var db = Db('mongodb://127.0.0.1/whocooks');
+var db = Db(uriString);
 
 Future<Db> connect() async {
   //

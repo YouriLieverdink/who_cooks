@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  recipes-service:
+    build:
+      context: ../../
+      dockerfile: ./services/recipes/Dockerfile
+    command: dart run
+    ports:
+      - "5001:8080"
+
+  recipes-db:
+    image: mongo:latest
+    ports:
+      - "27017"
