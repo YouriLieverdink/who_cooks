@@ -42,7 +42,11 @@ class RecipeController {
 
     if (errors.isNotEmpty) {
       //
-      return Response(400, body: jsonEncode(errors));
+      final data = errors.entries //
+          .map((v) => Error(code: v.key, message: v.value.join(', ')))
+          .toList();
+
+      return Response(400, body: jsonEncode(data));
     }
 
     final form = RecipeForm.fromJson(json);
@@ -69,7 +73,11 @@ class RecipeController {
 
     if (errors.isNotEmpty) {
       //
-      return Response(400, body: jsonEncode(errors));
+      final data = errors.entries //
+          .map((v) => Error(code: v.key, message: v.value.join(', ')))
+          .toList();
+
+      return Response(400, body: jsonEncode(data));
     }
 
     final form = RecipeForm.fromJson(json);
