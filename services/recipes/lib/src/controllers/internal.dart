@@ -21,7 +21,10 @@ class InternalController {
     final database = await connect();
 
     if (!database.isConnected) {
-      final data = Healthcheck(status: 'Could not connect to the database.');
+      final data = Error(
+        code: 'database',
+        message: 'The database could not be connected to.',
+      );
 
       return Response(500, body: jsonEncode(data));
     }
