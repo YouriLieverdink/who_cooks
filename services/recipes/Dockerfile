@@ -11,7 +11,7 @@ WORKDIR /usr/app/services/recipes
 
 RUN dart pub get
 
-CMD [ "dart", "./bin/recipes.dart", "--enable-vm-service" ]
+CMD [ "dart", "--enable-vm-service", "./bin/recipes.dart" ]
     
 FROM base as prod
 
