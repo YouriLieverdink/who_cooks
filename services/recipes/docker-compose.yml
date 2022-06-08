@@ -5,11 +5,20 @@ services:
     build:
       context: ../../
       dockerfile: ./services/recipes/Dockerfile
-    command: dart run
+      target: ${TARGET:-base}
+    image: yourilieverdink/whocooks-recipes:${TAG:-latest}
     ports:
       - "5001:8080"
+    volumes:
+      - ./lib:/usr/app/services/recipes/lib
 
   recipes-db:
     image: mongo:latest
+    command: mongod --quiet --logpath /dev/null
     ports:
       - "27017"
+    volumes:
+      - recipes-db-data:/data/db
+
+volumes:
+  recipes-db-data: {}
