@@ -8,16 +8,7 @@ import '../generated/IruoyWhocooksRecipesV0Json.dart';
 
 class RecipeController {
   ///
-  static RouterPlus get router {
-    return RouterPlus() //
-      ..use(setContentType('application/json'))
-      ..get('/', _get)
-      ..post('/', _post)
-      ..put('/<id>', _putById)
-      ..delete('/<id>', _deleteById);
-  }
-
-  static Future<Response> _get(
+  static Future<Response> get(
     Request request,
   ) async {
     //
@@ -27,7 +18,7 @@ class RecipeController {
     return Response(200, body: jsonEncode(data));
   }
 
-  static Future<Response> _post(
+  static Future<Response> post(
     Request request,
   ) async {
     //
@@ -57,7 +48,7 @@ class RecipeController {
     return Response(201, body: jsonEncode(data));
   }
 
-  static Future<Response> _putById(
+  static Future<Response> putById(
     Request request,
     String id,
   ) async {
@@ -88,7 +79,7 @@ class RecipeController {
     return Response(200, body: jsonEncode(data));
   }
 
-  static Future<Response> _deleteById(
+  static Future<Response> deleteById(
     Request request,
     String id,
   ) async {

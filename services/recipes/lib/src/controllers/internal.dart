@@ -7,14 +7,7 @@ import '../generated/IruoyWhocooksRecipesV0Json.dart';
 
 class InternalController {
   ///
-  static RouterPlus get router {
-    //
-    return RouterPlus() //
-      ..use(setContentType('application/json'))
-      ..get('/healthcheck', _get);
-  }
-
-  static Future<Response> _get(
+  static Future<Response> get(
     Request request,
   ) async {
     //
