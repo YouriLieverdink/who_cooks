@@ -113,6 +113,36 @@ class Healthcheck extends Equatable {
   }
 }
 
+class ValidationError extends Equatable {
+  const ValidationError({required this.field, required this.errors});
+
+  factory ValidationError.fromJson(dynamic json) {
+    return ValidationError(
+      field: json['field'] as String,
+      errors: (json['errors'] as List).map((v) => v as String).toList(),
+    );
+  }
+
+  final String field;
+
+  final List<String> errors;
+
+  dynamic toJson() {
+    return {
+      'field': field,
+      'errors': errors.map((v) => v).toList(),
+    };
+  }
+
+  @override
+  List<Object?> get props {
+    return [
+      field,
+      errors,
+    ];
+  }
+}
+
 class HealthchecksResource {
   const HealthchecksResource({required this.client, required this.baseUrl});
 

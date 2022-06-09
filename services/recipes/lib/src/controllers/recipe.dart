@@ -34,7 +34,7 @@ class RecipeController {
     if (errors.isNotEmpty) {
       //
       final data = errors.entries //
-          .map((v) => Error(code: v.key, message: v.value.join(', ')))
+          .map((v) => ValidationError(field: v.key, errors: v.value))
           .toList();
 
       return Response(400, body: jsonEncode(data));
@@ -65,7 +65,7 @@ class RecipeController {
     if (errors.isNotEmpty) {
       //
       final data = errors.entries //
-          .map((v) => Error(code: v.key, message: v.value.join(', ')))
+          .map((v) => ValidationError(field: v.key, errors: v.value))
           .toList();
 
       return Response(400, body: jsonEncode(data));
