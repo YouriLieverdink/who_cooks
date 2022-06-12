@@ -4,4 +4,4 @@ iruoy:
     dart_2_15_client:
     - "./services/app/lib/src/generated/IruoyWhocooksRecipesV0Client.dart"
     dart_2_15_json:
-    - "./services/recipes/lib/src/generated/IruoyWhocooksRecipesV0Json.dart"
+    - "./services/app/lib/src/generated/IruoyWhocooksRecipesV0Json.dart"

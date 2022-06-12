@@ -1,147 +1,8 @@
 import 'dart:convert';
 
-import 'package:equatable/equatable.dart';
 import 'package:http/http.dart';
 
-class Recipe extends Equatable {
-  const Recipe({required this.id, required this.title});
-
-  factory Recipe.fromJson(dynamic json) {
-    return Recipe(
-      id: json['id'] as String,
-      title: json['title'] as String,
-    );
-  }
-
-  final String id;
-
-  final String title;
-
-  dynamic toJson() {
-    return {
-      'id': id,
-      'title': title,
-    };
-  }
-
-  @override
-  List<Object?> get props {
-    return [
-      id,
-      title,
-    ];
-  }
-}
-
-class RecipeForm extends Equatable {
-  const RecipeForm({required this.title});
-
-  factory RecipeForm.fromJson(dynamic json) {
-    return RecipeForm(
-      title: json['title'] as String,
-    );
-  }
-
-  final String title;
-
-  dynamic toJson() {
-    return {
-      'title': title,
-    };
-  }
-
-  @override
-  List<Object?> get props {
-    return [
-      title,
-    ];
-  }
-}
-
-class Error extends Equatable {
-  const Error({required this.code, required this.message});
-
-  factory Error.fromJson(dynamic json) {
-    return Error(
-      code: json['code'] as String,
-      message: json['message'] as String,
-    );
-  }
-
-  final String code;
-
-  final String message;
-
-  dynamic toJson() {
-    return {
-      'code': code,
-      'message': message,
-    };
-  }
-
-  @override
-  List<Object?> get props {
-    return [
-      code,
-      message,
-    ];
-  }
-}
-
-class Healthcheck extends Equatable {
-  const Healthcheck({required this.status});
-
-  factory Healthcheck.fromJson(dynamic json) {
-    return Healthcheck(
-      status: json['status'] as String,
-    );
-  }
-
-  final String status;
-
-  dynamic toJson() {
-    return {
-      'status': status,
-    };
-  }
-
-  @override
-  List<Object?> get props {
-    return [
-      status,
-    ];
-  }
-}
-
-class ValidationError extends Equatable {
-  const ValidationError({required this.field, required this.errors});
-
-  factory ValidationError.fromJson(dynamic json) {
-    return ValidationError(
-      field: json['field'] as String,
-      errors: (json['errors'] as List).map((v) => v as String).toList(),
-    );
-  }
-
-  final String field;
-
-  final List<String> errors;
-
-  dynamic toJson() {
-    return {
-      'field': field,
-      'errors': errors.map((v) => v).toList(),
-    };
-  }
-
-  @override
-  List<Object?> get props {
-    return [
-      field,
-      errors,
-    ];
-  }
-}
+import './IruoyWhocooksRecipesV0Json.dart';
 
 class HealthchecksResource {
   const HealthchecksResource({required this.client, required this.baseUrl});
@@ -152,10 +13,7 @@ class HealthchecksResource {
 
   Future<Healthcheck> get() async {
     final r = await client.get(
-      Uri(
-        host: baseUrl,
-        path: '/_internal_/healthcheck',
-      ),
+      Uri.parse('$baseUrl/_internal_/healthcheck'),
     );
 
     final json = jsonDecode(r.body);
@@ -188,9 +46,7 @@ class RecipesResource {
 
   Future<List<Recipe>> get({int? skip, int? limit}) async {
     final r = await client.get(
-      Uri(
-        host: baseUrl,
-        path: '/recipes',
+      Uri.parse('$baseUrl/recipes').replace(
         queryParameters: {
           'skip': skip,
           'limit': limit,
@@ -220,10 +76,7 @@ class RecipesResource {
 
   Future<Recipe> post(RecipeForm recipeForm) async {
     final r = await client.post(
-      Uri(
-        host: baseUrl,
-        path: '/recipes',
-      ),
+      Uri.parse('$baseUrl/recipes'),
       body: jsonEncode(recipeForm),
     );
 
@@ -255,10 +108,7 @@ class RecipesResource {
 
   Future<Recipe> putById(RecipeForm recipeForm, {required String id}) async {
     final r = await client.put(
-      Uri(
-        host: baseUrl,
-        path: '/recipes/$id',
-      ),
+      Uri.parse('$baseUrl/recipes/$id'),
       body: jsonEncode(recipeForm),
     );
 
@@ -296,10 +146,7 @@ class RecipesResource {
 
   Future<void> deleteById({required String id}) async {
     final r = await client.delete(
-      Uri(
-        host: baseUrl,
-        path: '/recipes/$id',
-      ),
+      Uri.parse('$baseUrl/recipes/$id'),
     );
 
     switch (r.statusCode) {
