@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import './pages/pages.dart';
+import './routes.dart';
 import './state/state.dart';
 
 class App extends StatelessWidget {
@@ -20,9 +20,7 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData.dark(),
-        routes: {
-          '/': (_) => const RecipeIndexPage(),
-        },
+        onGenerateRoute: onGenerateRoute,
       ),
     );
   }

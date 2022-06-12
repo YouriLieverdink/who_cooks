@@ -13,6 +13,12 @@ class RecipeList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (recipes.isEmpty) {
+      return const Center(
+        child: Text('Click + to add a recipe'),
+      );
+    }
+
     return ListView.builder(
       itemCount: recipes.length,
       itemBuilder: (context, index) {

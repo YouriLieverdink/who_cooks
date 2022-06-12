@@ -20,6 +20,9 @@ class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
     );
 
     on<ListRecipes>(_onListRecipes);
+    on<AddRecipe>(_onAddRecipe);
+    on<EditRecipe>(_onEditRecipe);
+    on<RemoveRecipe>(_onRemoveRecipe);
   }
 
   Future<void> _onListRecipes(
@@ -42,5 +45,55 @@ class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
 
       emit(const RecipeNotLoaded(error));
     }
+  }
+
+  void _onAddRecipe(
+    AddRecipe event,
+    Emitter<RecipeState> emit,
+  ) {
+    final _state = state;
+
+    if (_state is RecipeLoaded) {
+      final recipes = [..._state.recipes, event.recipe];
+
+      emit(RecipeLoaded(recipes));
+    }
+  }
+
+  void _onEditRecipe(
+    EditRecipe event,
+    Emitter<RecipeState> emit,
+  ) {
+    final _state = state;
+
+    if (_state is RecipeLoaded) {
+      final recipes = _state.recipes //
+          .map((v) => v.id == event.recipe.id ? event.recipe : v)
+          .toList();
+
+      emit(RecipeLoaded(recipes));
+    }
+  }
+
+  void _onRemoveRecipe(
+    RemoveRecipe event,
+    Emitter<RecipeState> emit,
+  ) {
+    final _state = state;
+
+    if (_state is RecipeLoaded) {
+      final recipes = _state.recipes //
+          .where((v) => v.id != event.recipe.id)
+          .toList();
+
+      emit(RecipeLoaded(recipes));
+    }
+  }
+
+  @override
+  Future<void> close() {
+    client.client.close();
+
+    return super.close();
   }
 }

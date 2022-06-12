@@ -47,6 +47,7 @@ class RecipeTile extends StatelessWidget {
         //
         Navigator.of(context).pushNamed(
           '/recipes/add-edit',
+          arguments: recipe.id,
         );
       },
     );
