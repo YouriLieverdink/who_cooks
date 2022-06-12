@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../generated/IruoyWhocooksRecipesV0Json.dart';
+import '../recipe_index.dart';
 
 class RecipeList extends StatelessWidget {
   const RecipeList({
@@ -16,10 +17,8 @@ class RecipeList extends StatelessWidget {
       itemCount: recipes.length,
       itemBuilder: (context, index) {
         //
-        final recipe = recipes[index];
-
-        return ListTile(
-          title: Text(recipe.title),
+        return RecipeTile(
+          recipe: recipes[index],
         );
       },
     );

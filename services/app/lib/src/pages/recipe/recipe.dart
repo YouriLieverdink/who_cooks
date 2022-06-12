@@ -1,1 +1,1 @@
-export './index/recipes_index.dart';
+export './index/recipe_index.dart';

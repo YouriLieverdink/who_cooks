@@ -5,3 +5,4 @@ iruoy:
     - "./services/app/lib/src/generated/IruoyWhocooksRecipesV0Client.dart"
     dart_2_15_json:
     - "./services/app/lib/src/generated/IruoyWhocooksRecipesV0Json.dart"
+    - "./services/recipes/lib/src/generated/IruoyWhocooksRecipesV0Json.dart"

@@ -19,7 +19,7 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        theme: ThemeData.light(),
+        theme: ThemeData.dark(),
         routes: {
           '/': (_) => const RecipeIndexPage(),
         },

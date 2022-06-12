@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../state/state.dart';
-import '../recipes_index.dart';
+import '../recipe_index.dart';
 
 class RecipeIndexPage extends StatefulWidget {
   const RecipeIndexPage({
@@ -26,35 +26,26 @@ class _RecipeIndexPageState extends State<RecipeIndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Recepten'),
-        centerTitle: false,
+        title: const Text('Recipes'),
       ),
+      // TODO: Implement all the states of this bloc.
       body: BlocBuilder<RecipeBloc, RecipeState>(
         builder: (context, state) {
-          if (state is RecipeLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
           if (state is RecipeLoaded) {
-            if (state.recipes.isEmpty) {
-              return const Center(
-                child: Text('Nog geen recepten'),
-              );
-            }
-
+            //
             return RecipeList(recipes: state.recipes);
           }
 
-          // TODO: Display a better error message to the user.
-          if (state is RecipeNotLoaded) {
-            return Center(
-              child: Text(state.error.message),
-            );
-          }
-
           return const SizedBox();
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          //
+          Navigator.of(context).pushNamed(
+            '/recipes/add-edit',
+          );
         },
       ),
     );
