@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import './pages/pages.dart';
 import './state/state.dart';
 
 class App extends StatelessWidget {
@@ -17,7 +18,12 @@ class App extends StatelessWidget {
           create: (_) => RecipeBloc(),
         ),
       ],
-      child: const MaterialApp(),
+      child: MaterialApp(
+        theme: ThemeData.light(),
+        routes: {
+          '/': (_) => const RecipeIndexPage(),
+        },
+      ),
     );
   }
 }
