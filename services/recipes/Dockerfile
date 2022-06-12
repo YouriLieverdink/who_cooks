@@ -10,19 +10,17 @@ COPY ./services/recipes ./services/recipes
 WORKDIR /usr/app/services/recipes
 
 RUN dart pub get
-
-CMD [ "dart", "--enable-vm-service", "./bin/recipes.dart" ]
     
-FROM base as prod
+FROM base as between
 
 # Build a minimal serving image
 RUN dart compile exe ./bin/recipes.dart -o ./bin/server
 
-FROM scratch
+FROM scratch as prod
 
-COPY --from=base /runtime/ /
-COPY --from=base /usr/app/services/recipes/bin/server /usr/app/bin/
+COPY --from=between /runtime/ /
+COPY --from=between /usr/app/services/recipes/bin/server /usr/app/bin/
 
-RUN ls /usr/app/bin
+ENV SHELF_HOTRELOAD=false
 
 CMD [ "/usr/app/bin/server" ]

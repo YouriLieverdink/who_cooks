@@ -6,6 +6,7 @@ services:
       context: ../../
       dockerfile: ./services/recipes/Dockerfile
       target: ${TARGET:-base}
+    command: dart run --enable-vm-service ./bin/recipes.dart
     image: yourilieverdink/whocooks-recipes:${TAG:-latest}
     ports:
       - "5001:8080"
