@@ -4,8 +4,8 @@ import './src/app.dart';
 import './config/config.dart';
 
 void main() {
-  // Ensures all configurations are loaded.
-  config();
+  // Ensures all services are registered.
+  services();
 
   runApp(const App());
 }

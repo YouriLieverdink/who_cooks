@@ -1,3 +1,4 @@
+import 'package:app/config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,8 +20,8 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        theme: ThemeData.dark(),
         onGenerateRoute: onGenerateRoute,
+        theme: theme,
       ),
     );
   }
