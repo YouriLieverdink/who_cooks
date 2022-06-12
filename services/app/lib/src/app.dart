@@ -1,9 +1,7 @@
 import 'package:app/config/config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './routes.dart';
-import './state/state.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -12,17 +10,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // We provide all blocs above MaterialApp so they are available everywhere.
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => RecipeBloc(),
-        ),
-      ],
-      child: MaterialApp(
-        onGenerateRoute: onGenerateRoute,
-        theme: theme,
-      ),
+    return MaterialApp(
+      onGenerateRoute: onGenerateRoute,
+      theme: theme,
     );
   }
 }
