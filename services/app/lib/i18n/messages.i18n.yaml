@@ -4,3 +4,7 @@ pages:
 
 labels:
   ingredients: Ingredients
+
+hints:
+  thisWeek: This week
+  nextWeek: Next week

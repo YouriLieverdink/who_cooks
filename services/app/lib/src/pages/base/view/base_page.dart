@@ -25,7 +25,7 @@ class _BasePageState extends State<BasePage> {
     TabData(
       icon: Icons.date_range,
       title: translations.messages.pages.schedule,
-      widget: const SizedBox(),
+      widget: const ScheduleIndexPage(),
     ),
   ];
 

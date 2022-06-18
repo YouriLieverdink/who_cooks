@@ -37,6 +37,7 @@ class MessagesNl extends Messages {
   String get languageCode => "nl";
   PagesMessagesNl get pages => PagesMessagesNl(this);
   LabelsMessagesNl get labels => LabelsMessagesNl(this);
+  HintsMessagesNl get hints => HintsMessagesNl(this);
 }
 
 class PagesMessagesNl extends PagesMessages {
@@ -52,8 +53,17 @@ class LabelsMessagesNl extends LabelsMessages {
   String get ingredients => """Ingrediënten""";
 }
 
+class HintsMessagesNl extends HintsMessages {
+  final MessagesNl _parent;
+  const HintsMessagesNl(this._parent) : super(_parent);
+  String get thisWeek => """Deze week""";
+  String get nextWeek => """Volgende week""";
+}
+
 Map<String, String> get messagesNlMap => {
       """pages.recipes""": """Recepten""",
       """pages.schedule""": """Planning""",
       """labels.ingredients""": """Ingrediënten""",
+      """hints.thisWeek""": """Deze week""",
+      """hints.nextWeek""": """Volgende week""",
     };

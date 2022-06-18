@@ -4,3 +4,7 @@ pages:
 
 labels:
   ingredients: Ingrediënten
+
+hints:
+  thisWeek: Deze week
+  nextWeek: Volgende week
