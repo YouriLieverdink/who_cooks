@@ -22,7 +22,7 @@ class HealthcheckController {
 
     final data = NlIruoyCommonV0ModelsHealthcheck(
       status: 'Healthy',
-      version: '0.0.1',
+      version: version,
     );
 
     return Response(200, body: jsonEncode(data));
