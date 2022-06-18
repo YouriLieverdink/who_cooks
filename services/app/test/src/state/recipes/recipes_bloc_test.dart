@@ -1,7 +1,6 @@
-import 'package:app/src/generated/NlIruoyWhocooksV0Client.dart';
-import 'package:app/src/generated/NlIruoyWhocooksV0Json.dart';
-import 'package:app/src/state/recipes/recipes_bloc.dart';
+import 'package:app/src/generated/generated.dart';
 import 'package:app/src/services/services.dart';
+import 'package:app/src/state/recipes/recipes_bloc.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

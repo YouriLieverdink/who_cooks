@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../generated/NlIruoyWhocooksV0Json.dart';
+import '../../generated/generated.dart';
 import '../../services/services.dart';
 
 part 'recipes_event.dart';

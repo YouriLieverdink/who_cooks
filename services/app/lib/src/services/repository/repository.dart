@@ -1,6 +1,6 @@
 import 'package:http/http.dart';
 
-import '../../generated/NlIruoyWhocooksV0Client.dart';
+import '../../generated/generated.dart';
 
 class Repository {
   /// The base url of the backend services.

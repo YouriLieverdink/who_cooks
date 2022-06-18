@@ -1,4 +1,4 @@
-import 'package:app/src/generated/NlIruoyWhocooksV0Json.dart';
+import 'package:app/src/generated/generated.dart';
 import 'package:app/src/state/recipes/recipes_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
