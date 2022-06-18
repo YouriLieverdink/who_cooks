@@ -90,7 +90,7 @@ class MockRecipesResource extends _i1.Mock implements _i2.RecipesResource {
           as String);
   @override
   _i5.Future<List<_i2.NlIruoyWhocooksV0ModelsRecipe>> get(
-          {int? limit = 100, int? skip = 0}) =>
+          {num? limit = 100, num? skip = 0}) =>
       (super.noSuchMethod(
           Invocation.method(#get, [], {#limit: limit, #skip: skip}),
           returnValue: Future<List<_i2.NlIruoyWhocooksV0ModelsRecipe>>.value(

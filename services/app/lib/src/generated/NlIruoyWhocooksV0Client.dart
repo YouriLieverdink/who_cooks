@@ -43,7 +43,7 @@ class RecipesResource {
   final String baseUrl;
 
   Future<List<NlIruoyWhocooksV0ModelsRecipe>> get(
-      {int limit = 100, int skip = 0}) async {
+      {num limit = 100, num skip = 0}) async {
     final r = await client.get(
       Uri.parse('$baseUrl/recipes').replace(
         queryParameters: {
