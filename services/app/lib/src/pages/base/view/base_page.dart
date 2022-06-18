@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../services/services.dart';
 import '../../pages.dart';
-import '../base.dart';
 
 class BasePage extends StatefulWidget {
   const BasePage({
@@ -14,16 +14,18 @@ class BasePage extends StatefulWidget {
 
 class _BasePageState extends State<BasePage> {
   ///
-  static const tabs = [
+  static final translations = $.get<Translations>();
+
+  static final tabs = [
     TabData(
       icon: Icons.list_alt,
-      title: 'Recepten',
-      widget: RecipeIndexPage(),
+      title: translations.messages.pages.recipes,
+      widget: const RecipeIndexPage(),
     ),
     TabData(
       icon: Icons.date_range,
-      title: 'Planning',
-      widget: SizedBox(),
+      title: translations.messages.pages.schedule,
+      widget: const SizedBox(),
     ),
   ];
 

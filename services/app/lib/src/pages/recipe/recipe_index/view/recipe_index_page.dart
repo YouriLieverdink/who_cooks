@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../services/services.dart';
 import '../../../../state/state.dart';
 import '../recipe_index.dart';
 
@@ -14,6 +15,9 @@ class RecipeIndexPage extends StatefulWidget {
 }
 
 class _RecipeIndexPageState extends State<RecipeIndexPage> {
+  ///
+  static final translations = $.get<Translations>();
+
   @override
   void initState() {
     super.initState();
@@ -25,7 +29,9 @@ class _RecipeIndexPageState extends State<RecipeIndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Recepten'),
+        title: Text(
+          translations.messages.pages.recipes,
+        ),
         centerTitle: false,
       ),
       body: BlocBuilder<RecipesBloc, RecipesState>(
