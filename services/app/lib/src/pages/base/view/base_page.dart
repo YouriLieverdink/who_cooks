@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../pages.dart';
 import '../base.dart';
 
 class BasePage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _BasePageState extends State<BasePage> {
     TabData(
       icon: Icons.list_alt,
       title: 'Recepten',
-      widget: SizedBox(),
+      widget: RecipeIndexPage(),
     ),
     TabData(
       icon: Icons.date_range,

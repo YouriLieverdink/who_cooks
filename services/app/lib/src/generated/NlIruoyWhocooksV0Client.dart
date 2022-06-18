@@ -47,8 +47,8 @@ class RecipesResource {
     final r = await client.get(
       Uri.parse('$baseUrl/recipes').replace(
         queryParameters: {
-          'limit': limit,
-          'skip': skip,
+          'limit': jsonEncode(limit),
+          'skip': jsonEncode(skip),
         },
       ),
     );
