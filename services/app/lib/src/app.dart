@@ -18,8 +18,11 @@ class App extends StatelessWidget {
           create: (_) => RecipesBloc(repository: $.get()),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         onGenerateRoute: onGenerateRoute,
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.system,
       ),
     );
   }
