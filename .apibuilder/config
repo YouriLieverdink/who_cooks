@@ -3,7 +3,7 @@ settings:
 
 code:
   iruoy:
-    whocooks-recipes:
+    whocooks:
       version: latest
       generators:
         - generator: dart_2_15_json
@@ -13,3 +13,6 @@ code:
         
         - generator: dart_2_15_client
           target: ./services/app/lib/src/generated
+
+        - generator: dart_2_15_routes
+          target: ./services/recipes/lib/src/generated

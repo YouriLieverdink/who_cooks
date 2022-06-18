@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'package:recipes/recipes.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
-import '../generated/IruoyWhocooksRecipesV0Json.dart';
-
-class InternalController {
+class HealthcheckController {
   ///
   static Future<Response> get(
     Request request,
@@ -14,7 +12,7 @@ class InternalController {
     final database = await connect();
 
     if (!database.isConnected) {
-      final data = Error(
+      final data = NlIruoyCommonV0ModelsError(
         code: 'database',
         message: 'The database could not be connected to.',
       );
@@ -22,7 +20,10 @@ class InternalController {
       return Response(500, body: jsonEncode(data));
     }
 
-    final data = Healthcheck(status: 'Healthy');
+    final data = NlIruoyCommonV0ModelsHealthcheck(
+      status: 'Healthy',
+      version: '0.0.1',
+    );
 
     return Response(200, body: jsonEncode(data));
   }

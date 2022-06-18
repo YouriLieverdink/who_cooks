@@ -1,7 +1,5 @@
 import 'package:mongo_dart/mongo_dart.dart';
-
-import '../config.dart';
-import '../generated/IruoyWhocooksV0RecipesDao.dart' as _;
+import 'package:recipes/recipes.dart';
 
 var db = Db(uriString);
 
@@ -12,6 +10,6 @@ Future<Db> connect() async {
   return db;
 }
 
-class RecipeDao extends _.RecipeDao {
-  RecipeDao() : super(connect: connect);
+class RecipeDaoImp extends RecipeDao {
+  RecipeDaoImp() : super(connect: connect);
 }

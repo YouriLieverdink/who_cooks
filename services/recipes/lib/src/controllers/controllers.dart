@@ -1,2 +1,2 @@
-export './internal.dart';
+export './healthcheck.dart';
 export './recipe.dart';

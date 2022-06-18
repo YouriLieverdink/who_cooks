@@ -1,6 +1,6 @@
 import 'package:mongo_dart/mongo_dart.dart';
 
-import './IruoyWhocooksRecipesV0Json.dart';
+import './NlIruoyWhocooksV0Json.dart';
 
 class RecipeDao {
   final Future<Db> Function() connect;

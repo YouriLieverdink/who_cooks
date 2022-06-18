@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
-
-import './IruoyWhocooksRecipesV0Json.dart';
+import './NlIruoyWhocooksV0Json.dart';
 
 class HealthchecksResource {
   const HealthchecksResource({required this.client, required this.baseUrl});
@@ -11,7 +9,7 @@ class HealthchecksResource {
 
   final String baseUrl;
 
-  Future<Healthcheck> get() async {
+  Future<NlIruoyCommonV0ModelsHealthcheck> get() async {
     final r = await client.get(
       Uri.parse('$baseUrl/_internal_/healthcheck'),
     );
@@ -20,9 +18,9 @@ class HealthchecksResource {
 
     switch (r.statusCode) {
       case 200:
-        return json;
+        return NlIruoyCommonV0ModelsHealthcheck.fromJson(json);
 
-      case 500:
+      case 422:
         throw Exception([
           r.statusCode,
           null,
@@ -31,7 +29,7 @@ class HealthchecksResource {
       default:
         throw Exception([
           r.statusCode,
-          'Unsupported status code: ${r.statusCode}, expected: 200, 500.',
+          'Unsupported status code: ${r.statusCode}, expected: 200, 422.',
         ]);
     }
   }
@@ -44,12 +42,13 @@ class RecipesResource {
 
   final String baseUrl;
 
-  Future<List<Recipe>> get({int? skip, int? limit}) async {
+  Future<List<NlIruoyWhocooksV0ModelsRecipe>> get(
+      {int limit = 100, int skip = 0}) async {
     final r = await client.get(
       Uri.parse('$baseUrl/recipes').replace(
         queryParameters: {
-          'skip': skip,
           'limit': limit,
+          'skip': skip,
         },
       ),
     );
@@ -58,23 +57,20 @@ class RecipesResource {
 
     switch (r.statusCode) {
       case 200:
-        return (json as List).map((v) => Recipe.fromJson(v)).toList();
-
-      case 401:
-        throw Exception([
-          r.statusCode,
-          null,
-        ]);
+        return (json as List)
+            .map((v) => NlIruoyWhocooksV0ModelsRecipe.fromJson(v))
+            .toList();
 
       default:
         throw Exception([
           r.statusCode,
-          'Unsupported status code: ${r.statusCode}, expected: 200, 401.',
+          'Unsupported status code: ${r.statusCode}, expected: 200.',
         ]);
     }
   }
 
-  Future<Recipe> post(RecipeForm recipeForm) async {
+  Future<NlIruoyWhocooksV0ModelsRecipe> post(
+      NlIruoyWhocooksV0ModelsRecipeForm recipeForm) async {
     final r = await client.post(
       Uri.parse('$baseUrl/recipes'),
       body: jsonEncode(recipeForm),
@@ -83,16 +79,10 @@ class RecipesResource {
     final json = jsonDecode(r.body);
 
     switch (r.statusCode) {
-      case 200:
-        return Recipe.fromJson(json);
+      case 201:
+        return NlIruoyWhocooksV0ModelsRecipe.fromJson(json);
 
       case 400:
-        throw Exception([
-          r.statusCode,
-          null,
-        ]);
-
-      case 401:
         throw Exception([
           r.statusCode,
           null,
@@ -101,12 +91,14 @@ class RecipesResource {
       default:
         throw Exception([
           r.statusCode,
-          'Unsupported status code: ${r.statusCode}, expected: 200, 400, 401.',
+          'Unsupported status code: ${r.statusCode}, expected: 201, 400.',
         ]);
     }
   }
 
-  Future<Recipe> putById(RecipeForm recipeForm, {required String id}) async {
+  Future<NlIruoyWhocooksV0ModelsRecipe> putById(
+      NlIruoyWhocooksV0ModelsRecipeForm recipeForm,
+      {required String id}) async {
     final r = await client.put(
       Uri.parse('$baseUrl/recipes/$id'),
       body: jsonEncode(recipeForm),
@@ -116,15 +108,9 @@ class RecipesResource {
 
     switch (r.statusCode) {
       case 200:
-        return Recipe.fromJson(json);
+        return NlIruoyWhocooksV0ModelsRecipe.fromJson(json);
 
       case 400:
-        throw Exception([
-          r.statusCode,
-          null,
-        ]);
-
-      case 401:
         throw Exception([
           r.statusCode,
           null,
@@ -139,7 +125,7 @@ class RecipesResource {
       default:
         throw Exception([
           r.statusCode,
-          'Unsupported status code: ${r.statusCode}, expected: 200, 400, 401, 404.',
+          'Unsupported status code: ${r.statusCode}, expected: 200, 400, 404.',
         ]);
     }
   }
@@ -153,12 +139,6 @@ class RecipesResource {
       case 204:
         return;
 
-      case 401:
-        throw Exception([
-          r.statusCode,
-          null,
-        ]);
-
       case 404:
         throw Exception([
           r.statusCode,
@@ -168,15 +148,14 @@ class RecipesResource {
       default:
         throw Exception([
           r.statusCode,
-          'Unsupported status code: ${r.statusCode}, expected: 204, 401, 404.',
+          'Unsupported status code: ${r.statusCode}, expected: 204, 404.',
         ]);
     }
   }
 }
 
-class IruoyWhocooksRecipesV0Client {
-  const IruoyWhocooksRecipesV0Client(
-      {required this.client, required this.baseUrl});
+class NlIruoyWhocooksV0Client {
+  const NlIruoyWhocooksV0Client({required this.client, required this.baseUrl});
 
   final Client client;
 

@@ -4,15 +4,13 @@ import 'package:recipes/recipes.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 import 'package:validation/validation.dart';
 
-import '../generated/IruoyWhocooksRecipesV0Json.dart';
-
 class RecipeController {
   ///
   static Future<Response> get(
     Request request,
   ) async {
     //
-    final dao = RecipeDao();
+    final dao = RecipeDaoImp();
     final data = await dao.find();
 
     return Response(200, body: jsonEncode(data));
@@ -33,16 +31,17 @@ class RecipeController {
 
     if (errors.isNotEmpty) {
       //
-      final data = errors.entries //
-          .map((v) => ValidationError(field: v.key, errors: v.value))
-          .toList();
+      final error = NlIruoyCommonV0ModelsError(
+        code: 'validation-error',
+        message: errors.values.join(', '),
+      );
 
-      return Response(400, body: jsonEncode(data));
+      return Response(400, body: jsonEncode(error));
     }
 
     final form = RecipeForm.fromJson(json);
 
-    final dao = RecipeDao();
+    final dao = RecipeDaoImp();
     final data = await dao.insert(form);
 
     return Response(201, body: jsonEncode(data));
@@ -64,16 +63,17 @@ class RecipeController {
 
     if (errors.isNotEmpty) {
       //
-      final data = errors.entries //
-          .map((v) => ValidationError(field: v.key, errors: v.value))
-          .toList();
+      final error = NlIruoyCommonV0ModelsError(
+        code: 'validation-error',
+        message: errors.values.join(', '),
+      );
 
-      return Response(400, body: jsonEncode(data));
+      return Response(400, body: jsonEncode(error));
     }
 
     final form = RecipeForm.fromJson(json);
 
-    final dao = RecipeDao();
+    final dao = RecipeDaoImp();
     final data = await dao.updateById(form, id: id);
 
     return Response(200, body: jsonEncode(data));
@@ -84,7 +84,7 @@ class RecipeController {
     String id,
   ) async {
     //
-    final dao = RecipeDao();
+    final dao = RecipeDaoImp();
     await dao.deleteById(id: id);
 
     return Response(204);
