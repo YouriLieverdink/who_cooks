@@ -2,29 +2,36 @@ import 'package:equatable/equatable.dart';
 
 class NlIruoyWhocooksV0ModelsIngredient extends Equatable {
   const NlIruoyWhocooksV0ModelsIngredient(
-      {required this.title, required this.amount});
+      {required this.title, required this.amount, this.unit});
 
   factory NlIruoyWhocooksV0ModelsIngredient.fromJson(dynamic json) {
     return NlIruoyWhocooksV0ModelsIngredient(
-        title: (json['title'] as String), amount: json['amount']);
+        title: (json['title'] as String),
+        amount: json['amount'],
+        unit: (json['unit'] as String?));
   }
 
   final String title;
 
   final num amount;
 
+  final String? unit;
+
   dynamic toJson() {
-    return {'title': title, 'amount': amount};
+    return {'title': title, 'amount': amount, 'unit': unit};
   }
 
-  NlIruoyWhocooksV0ModelsIngredient copyWith({String? title, num? amount}) {
+  NlIruoyWhocooksV0ModelsIngredient copyWith(
+      {String? title, num? amount, String? unit}) {
     return NlIruoyWhocooksV0ModelsIngredient(
-        title: title ?? this.title, amount: amount ?? this.amount);
+        title: title ?? this.title,
+        amount: amount ?? this.amount,
+        unit: unit ?? this.unit);
   }
 
   @override
   List<Object?> get props {
-    return [title, amount];
+    return [title, amount, unit];
   }
 }
 

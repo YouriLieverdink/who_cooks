@@ -14,7 +14,7 @@ class IngredientTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(ingredient.title),
-      subtitle: Text('${ingredient.amount}'),
+      subtitle: Text('${ingredient.amount} ${ingredient.unit}'),
     );
   }
 }
