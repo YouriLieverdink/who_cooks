@@ -1,3 +1,6 @@
 pages:
   recipes: Recipes
   schedule: Schedule
+
+labels:
+  ingredients: Ingredients

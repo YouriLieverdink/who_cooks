@@ -16,6 +16,7 @@ dependencies:
   formz: ^0.4.1
   google_fonts: ^3.0.1
   i18n: ^3.4.1
+  animations: ^2.0.2
 
 dev_dependencies:
   flutter_test:

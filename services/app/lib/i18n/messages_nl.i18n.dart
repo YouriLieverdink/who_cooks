@@ -36,6 +36,7 @@ class MessagesNl extends Messages {
   String get locale => "nl";
   String get languageCode => "nl";
   PagesMessagesNl get pages => PagesMessagesNl(this);
+  LabelsMessagesNl get labels => LabelsMessagesNl(this);
 }
 
 class PagesMessagesNl extends PagesMessages {
@@ -45,7 +46,14 @@ class PagesMessagesNl extends PagesMessages {
   String get schedule => """Planning""";
 }
 
+class LabelsMessagesNl extends LabelsMessages {
+  final MessagesNl _parent;
+  const LabelsMessagesNl(this._parent) : super(_parent);
+  String get ingredients => """Ingrediënten""";
+}
+
 Map<String, String> get messagesNlMap => {
       """pages.recipes""": """Recepten""",
       """pages.schedule""": """Planning""",
+      """labels.ingredients""": """Ingrediënten""",
     };

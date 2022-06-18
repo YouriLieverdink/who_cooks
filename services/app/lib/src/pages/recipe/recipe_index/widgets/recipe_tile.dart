@@ -6,13 +6,17 @@ class RecipeTile extends StatelessWidget {
   const RecipeTile({
     Key? key,
     required this.recipe,
+    required this.onTap,
   }) : super(key: key);
 
   final Recipe recipe;
 
+  final void Function() onTap;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: SizedBox.square(
         dimension: 48.0,
         child: recipe.photoUrl != null
@@ -22,12 +26,20 @@ class RecipeTile extends StatelessWidget {
                 child: Image(
                   image: NetworkImage(recipe.photoUrl!),
                   fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => const Icon(Icons.image),
                 ),
               )
             : const Icon(Icons.image),
       ),
+      isThreeLine: true,
       title: Text(recipe.title),
-      subtitle: const Text('...'),
+      subtitle: recipe.description != null
+          ? Text(
+              recipe.description!,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            )
+          : null,
     );
   }
 }

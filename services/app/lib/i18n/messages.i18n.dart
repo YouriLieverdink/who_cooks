@@ -35,6 +35,7 @@ class Messages {
   String get locale => "en";
   String get languageCode => "en";
   PagesMessages get pages => PagesMessages(this);
+  LabelsMessages get labels => LabelsMessages(this);
 }
 
 class PagesMessages {
@@ -44,7 +45,14 @@ class PagesMessages {
   String get schedule => """Schedule""";
 }
 
+class LabelsMessages {
+  final Messages _parent;
+  const LabelsMessages(this._parent);
+  String get ingredients => """Ingredients""";
+}
+
 Map<String, String> get messagesMap => {
       """pages.recipes""": """Recipes""",
       """pages.schedule""": """Schedule""",
+      """labels.ingredients""": """Ingredients""",
     };

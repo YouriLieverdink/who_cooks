@@ -1,3 +1,6 @@
 pages:
   recipes: Recepten
   schedule: Planning
+
+labels:
+  ingredients: Ingrediënten
