@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  schedules-service:
+    build:
+      context: ../../
+      dockerfile: ./services/schedules/Dockerfile
+      target: ${TARGET:-base}
+    command: dart run --enable-vm-service ./bin/schedules.dart
+    image: yourilieverdink/whocooks-schedules:${TAG:-latest}
+    environment:
+      - VERSION=${TAG:-latest}
+    ports:
+      - "5001:8080"
+    volumes:
+      - ./lib:/usr/app/services/schedules/lib
+
+  schedules-db:
+    image: mongo:latest
+    command: mongod --quiet --logpath /dev/null
+    ports:
+      - "27017"
+    volumes:
+      - schedules-db-data:/data/db
+
+volumes:
+  schedules-db-data: {}

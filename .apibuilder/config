@@ -10,9 +10,13 @@ code:
           target: ./services/app/lib/src/generated
         - generator: dart_2_15_json
           target: ./services/recipes/lib/src/generated
+        - generator: dart_2_15_json
+          target: ./services/schedules/lib/src/generated
         
         - generator: dart_2_15_client
           target: ./services/app/lib/src/generated
 
         - generator: dart_2_15_routes
           target: ./services/recipes/lib/src/generated
+        - generator: dart_2_15_routes
+          target: ./services/schedules/lib/src/generated
