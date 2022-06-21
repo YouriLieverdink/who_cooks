@@ -1,0 +1,69 @@
+version: "3"
+
+services:
+  traefik:
+    labels:
+      - "traefik.enable=false"
+    image: traefik:v2.8
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "8000:80"
+      - "8001:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  recipes-service:
+    labels:
+      - "traefik.http.routers.recipes.rule=PathPrefix(`/api/recipes`)"
+    build:
+      context: .
+      dockerfile: ./services/recipes/Dockerfile
+      target: ${TARGET:-base}
+    command: dart run --enable-vm-service ./bin/recipes.dart
+    environment:
+      - BASE_URL=/api/recipes
+      - VERSION=${TAG:-latest}
+    ports:
+      - "8080"
+    volumes:
+      - ./services/recipes/lib:/usr/app/services/recipes/lib
+
+  recipes-db:
+    labels:
+      - "traefik.enable=false"
+    image: mongo
+    command: mongod --quiet --logpath /dev/null
+    ports:
+      - "27017"
+    volumes:
+      - recipes-db-data:/data/db
+
+  schedules-service:
+    labels:
+      - "traefik.http.routers.schedules.rule=PathPrefix(`/api/schedules`)"
+    build:
+      context: .
+      dockerfile: ./services/schedules/Dockerfile
+      target: ${TARGET:-base}
+    command: dart run --enable-vm-service ./bin/schedules.dart
+    environment:
+      - BASE_URL=/api/schedules
+      - VERSION=${TAG:-latest}
+    ports:
+      - "8080"
+    volumes:
+      - ./services/schedules/lib:/usr/app/services/schedules/lib
+
+  schedules-db:
+    labels:
+      - "traefik.enable=false"
+    image: mongo
+    command: mongod --quiet --logpath /dev/null
+    ports:
+      - "27017"
+    volumes:
+      - schedules-db-data:/data/db
+
+volumes:
+  recipes-db-data: {}
+  schedules-db-data: {}

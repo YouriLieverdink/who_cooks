@@ -6,3 +6,5 @@ final _env = DotEnv(includePlatformEnvironment: true) //
 String get uriString => _env['MONGODB_URI'] ?? '';
 
 String get version => _env['VERSION'] ?? '';
+
+String get baseUrl => _env['BASE_URL'] ?? '';
