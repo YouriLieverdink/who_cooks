@@ -7,13 +7,13 @@ class Repository {
   static const baseUrl = 'http://localhost:5001';
 
   /// The http client.
-  final NlIruoyWhocooksV0Client client;
+  final NlIruoyWhocooksRecipesClient client;
 
   const Repository(this.client);
 
   /// Initialises and returns an instance of `this`.
   static Repository get instance {
-    final client = NlIruoyWhocooksV0Client(
+    final client = NlIruoyWhocooksRecipesClient(
       client: Client(),
       baseUrl: baseUrl,
     );

@@ -2,10 +2,12 @@
 // in app/test/src/state/recipes/recipes_bloc_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i5;
+import 'dart:async' as _i7;
 
 import 'package:app/src/generated/generated.dart' as _i2;
-import 'package:app/src/services/repository/repository.dart' as _i4;
+import 'package:app/src/generated/nl_iruoy_whocooks_recipes_client.dart' as _i4;
+import 'package:app/src/generated/nl_iruoy_whocooks_recipes_json.dart' as _i5;
+import 'package:app/src/services/repository/repository.dart' as _i6;
 import 'package:http/http.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -19,40 +21,41 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
-class _FakeNlIruoyWhocooksV0Client_0 extends _i1.Fake
-    implements _i2.NlIruoyWhocooksV0Client {}
+class _FakeNlIruoyWhocooksRecipesClient_0 extends _i1.Fake
+    implements _i2.NlIruoyWhocooksRecipesClient {}
 
 class _FakeClient_1 extends _i1.Fake implements _i3.Client {}
 
-class _FakeHealthchecksResource_2 extends _i1.Fake
-    implements _i2.HealthchecksResource {}
+class _FakeNlIruoyCommonModelsHealthcheckResource_2 extends _i1.Fake
+    implements _i4.NlIruoyCommonModelsHealthcheckResource {}
 
-class _FakeRecipesResource_3 extends _i1.Fake implements _i2.RecipesResource {}
+class _FakeNlIruoyWhocooksRecipesModelsRecipeResource_3 extends _i1.Fake
+    implements _i2.NlIruoyWhocooksRecipesModelsRecipeResource {}
 
-class _FakeNlIruoyWhocooksV0ModelsRecipe_4 extends _i1.Fake
-    implements _i2.NlIruoyWhocooksV0ModelsRecipe {}
+class _FakeNlIruoyWhocooksRecipesModelsRecipe_4 extends _i1.Fake
+    implements _i5.NlIruoyWhocooksRecipesModelsRecipe {}
 
 /// A class which mocks [Repository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRepository extends _i1.Mock implements _i4.Repository {
+class MockRepository extends _i1.Mock implements _i6.Repository {
   MockRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.NlIruoyWhocooksV0Client get client =>
+  _i2.NlIruoyWhocooksRecipesClient get client =>
       (super.noSuchMethod(Invocation.getter(#client),
-              returnValue: _FakeNlIruoyWhocooksV0Client_0())
-          as _i2.NlIruoyWhocooksV0Client);
+              returnValue: _FakeNlIruoyWhocooksRecipesClient_0())
+          as _i2.NlIruoyWhocooksRecipesClient);
 }
 
-/// A class which mocks [NlIruoyWhocooksV0Client].
+/// A class which mocks [NlIruoyWhocooksRecipesClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNlIruoyWhocooksV0Client extends _i1.Mock
-    implements _i2.NlIruoyWhocooksV0Client {
-  MockNlIruoyWhocooksV0Client() {
+class MockNlIruoyWhocooksRecipesClient extends _i1.Mock
+    implements _i2.NlIruoyWhocooksRecipesClient {
+  MockNlIruoyWhocooksRecipesClient() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -64,20 +67,23 @@ class MockNlIruoyWhocooksV0Client extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#baseUrl), returnValue: '')
           as String);
   @override
-  _i2.HealthchecksResource get healthchecks => (super.noSuchMethod(
-      Invocation.getter(#healthchecks),
-      returnValue: _FakeHealthchecksResource_2()) as _i2.HealthchecksResource);
+  _i4.NlIruoyCommonModelsHealthcheckResource get healthchecks =>
+      (super.noSuchMethod(Invocation.getter(#healthchecks),
+              returnValue: _FakeNlIruoyCommonModelsHealthcheckResource_2())
+          as _i4.NlIruoyCommonModelsHealthcheckResource);
   @override
-  _i2.RecipesResource get recipes =>
+  _i2.NlIruoyWhocooksRecipesModelsRecipeResource get recipes =>
       (super.noSuchMethod(Invocation.getter(#recipes),
-          returnValue: _FakeRecipesResource_3()) as _i2.RecipesResource);
+              returnValue: _FakeNlIruoyWhocooksRecipesModelsRecipeResource_3())
+          as _i2.NlIruoyWhocooksRecipesModelsRecipeResource);
 }
 
-/// A class which mocks [RecipesResource].
+/// A class which mocks [NlIruoyWhocooksRecipesModelsRecipeResource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRecipesResource extends _i1.Mock implements _i2.RecipesResource {
-  MockRecipesResource() {
+class MockNlIruoyWhocooksRecipesModelsRecipeResource extends _i1.Mock
+    implements _i2.NlIruoyWhocooksRecipesModelsRecipeResource {
+  MockNlIruoyWhocooksRecipesModelsRecipeResource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -89,31 +95,32 @@ class MockRecipesResource extends _i1.Mock implements _i2.RecipesResource {
       (super.noSuchMethod(Invocation.getter(#baseUrl), returnValue: '')
           as String);
   @override
-  _i5.Future<List<_i2.NlIruoyWhocooksV0ModelsRecipe>> get(
+  _i7.Future<List<_i5.NlIruoyWhocooksRecipesModelsRecipe>> get(
           {num? limit = 100, num? skip = 0}) =>
       (super.noSuchMethod(
-          Invocation.method(#get, [], {#limit: limit, #skip: skip}),
-          returnValue: Future<List<_i2.NlIruoyWhocooksV0ModelsRecipe>>.value(
-              <_i2.NlIruoyWhocooksV0ModelsRecipe>[])) as _i5
-          .Future<List<_i2.NlIruoyWhocooksV0ModelsRecipe>>);
+              Invocation.method(#get, [], {#limit: limit, #skip: skip}),
+              returnValue:
+                  Future<List<_i5.NlIruoyWhocooksRecipesModelsRecipe>>.value(
+                      <_i5.NlIruoyWhocooksRecipesModelsRecipe>[]))
+          as _i7.Future<List<_i5.NlIruoyWhocooksRecipesModelsRecipe>>);
   @override
-  _i5.Future<_i2.NlIruoyWhocooksV0ModelsRecipe> post(
-          _i2.NlIruoyWhocooksV0ModelsRecipeForm? recipeForm) =>
+  _i7.Future<_i5.NlIruoyWhocooksRecipesModelsRecipe> post(
+          _i5.NlIruoyWhocooksRecipesModelsRecipeForm? recipeForm) =>
       (super.noSuchMethod(Invocation.method(#post, [recipeForm]),
-              returnValue: Future<_i2.NlIruoyWhocooksV0ModelsRecipe>.value(
-                  _FakeNlIruoyWhocooksV0ModelsRecipe_4()))
-          as _i5.Future<_i2.NlIruoyWhocooksV0ModelsRecipe>);
+              returnValue: Future<_i5.NlIruoyWhocooksRecipesModelsRecipe>.value(
+                  _FakeNlIruoyWhocooksRecipesModelsRecipe_4()))
+          as _i7.Future<_i5.NlIruoyWhocooksRecipesModelsRecipe>);
   @override
-  _i5.Future<_i2.NlIruoyWhocooksV0ModelsRecipe> putById(
-          _i2.NlIruoyWhocooksV0ModelsRecipeForm? recipeForm,
+  _i7.Future<_i5.NlIruoyWhocooksRecipesModelsRecipe> putById(
+          _i5.NlIruoyWhocooksRecipesModelsRecipeForm? recipeForm,
           {String? id}) =>
       (super.noSuchMethod(Invocation.method(#putById, [recipeForm], {#id: id}),
-              returnValue: Future<_i2.NlIruoyWhocooksV0ModelsRecipe>.value(
-                  _FakeNlIruoyWhocooksV0ModelsRecipe_4()))
-          as _i5.Future<_i2.NlIruoyWhocooksV0ModelsRecipe>);
+              returnValue: Future<_i5.NlIruoyWhocooksRecipesModelsRecipe>.value(
+                  _FakeNlIruoyWhocooksRecipesModelsRecipe_4()))
+          as _i7.Future<_i5.NlIruoyWhocooksRecipesModelsRecipe>);
   @override
-  _i5.Future<void> deleteById({String? id}) =>
+  _i7.Future<void> deleteById({String? id}) =>
       (super.noSuchMethod(Invocation.method(#deleteById, [], {#id: id}),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
 }

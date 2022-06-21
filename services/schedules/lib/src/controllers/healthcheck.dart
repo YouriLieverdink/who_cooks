@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:recipes/recipes.dart';
+import 'package:schedules/schedules.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 class HealthcheckController {

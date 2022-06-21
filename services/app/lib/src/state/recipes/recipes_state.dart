@@ -31,7 +31,7 @@ class RecipesNotLoaded extends RecipesState {
     required this.error,
   });
 
-  final NlIruoyCommonV0ModelsError error;
+  final NlIruoyCommonModelsError error;
 
   @override
   List<Object?> get props => [error];

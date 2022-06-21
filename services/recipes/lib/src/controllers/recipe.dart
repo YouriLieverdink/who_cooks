@@ -31,7 +31,7 @@ class RecipeController {
 
     if (errors.isNotEmpty) {
       //
-      final error = NlIruoyCommonV0ModelsError(
+      final error = NlIruoyCommonModelsError(
         code: 'validation-error',
         message: errors.values.join(', '),
       );
@@ -63,7 +63,7 @@ class RecipeController {
 
     if (errors.isNotEmpty) {
       //
-      final error = NlIruoyCommonV0ModelsError(
+      final error = NlIruoyCommonModelsError(
         code: 'validation-error',
         message: errors.values.join(', '),
       );
