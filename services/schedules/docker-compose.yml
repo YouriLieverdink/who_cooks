@@ -11,7 +11,7 @@ services:
     environment:
       - VERSION=${TAG:-latest}
     ports:
-      - "5001:8080"
+      - "5002:8080"
     volumes:
       - ./lib:/usr/app/services/schedules/lib
 
