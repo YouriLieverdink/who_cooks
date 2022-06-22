@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:recipes/recipes.dart';
 import 'package:shelf_plus/shelf_plus.dart';
-import 'package:validation/validation.dart';
 
 class RecipeController {
   ///
@@ -10,8 +9,13 @@ class RecipeController {
     Request request,
   ) async {
     //
-    final dao = RecipeDaoImp();
-    final data = await dao.find();
+    final query = request.url.queryParameters;
+
+    final limit = int.tryParse(query['limit'] ?? '');
+    final skip = int.tryParse(query['skip'] ?? '');
+
+    final dao = RecipeDao();
+    final data = await dao.get(limit: limit, skip: skip);
 
     return Response(200, body: jsonEncode(data));
   }
@@ -20,31 +24,24 @@ class RecipeController {
     Request request,
   ) async {
     //
-    final json = await request.body.asJson;
+    try {
+      final json = await request.body.asJson;
 
-    // We validate the incoming body to make sure it can be parsed.
-    final validator = Validator({
-      'title': [Required(), IsA<String>()],
-    });
+      final form = RecipeForm.fromJson(json);
 
-    final errors = validator.validate(json);
+      final dao = RecipeDao();
+      final data = await dao.post(form);
 
-    if (errors.isNotEmpty) {
-      //
+      return Response(201, body: jsonEncode(data));
+    } //
+    on TypeError catch (e) {
       final error = NlIruoyCommonModelsError(
-        code: 'validation-error',
-        message: errors.values.join(', '),
+        code: 'invalid-json',
+        message: e.toString(),
       );
 
       return Response(400, body: jsonEncode(error));
     }
-
-    final form = RecipeForm.fromJson(json);
-
-    final dao = RecipeDaoImp();
-    final data = await dao.insert(form);
-
-    return Response(201, body: jsonEncode(data));
   }
 
   static Future<Response> putById(
@@ -52,31 +49,24 @@ class RecipeController {
     String id,
   ) async {
     //
-    final json = await request.body.asJson;
+    try {
+      final json = await request.body.asJson;
 
-    // We validate the incoming body to make sure it can be parsed.
-    final validator = Validator({
-      'title': [Required(), IsA<String>()],
-    });
+      final form = RecipeForm.fromJson(json);
 
-    final errors = validator.validate(json);
+      final dao = RecipeDao();
+      final data = await dao.putById(form, id: id);
 
-    if (errors.isNotEmpty) {
-      //
+      return Response(200, body: jsonEncode(data));
+    } //
+    on TypeError catch (e) {
       final error = NlIruoyCommonModelsError(
-        code: 'validation-error',
-        message: errors.values.join(', '),
+        code: 'invalid-json',
+        message: e.toString(),
       );
 
       return Response(400, body: jsonEncode(error));
     }
-
-    final form = RecipeForm.fromJson(json);
-
-    final dao = RecipeDaoImp();
-    final data = await dao.updateById(form, id: id);
-
-    return Response(200, body: jsonEncode(data));
   }
 
   static Future<Response> deleteById(
@@ -84,7 +74,7 @@ class RecipeController {
     String id,
   ) async {
     //
-    final dao = RecipeDaoImp();
+    final dao = RecipeDao();
     await dao.deleteById(id: id);
 
     return Response(204);

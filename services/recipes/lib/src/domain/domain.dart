@@ -10,6 +10,6 @@ Future<Db> connect() async {
   return db;
 }
 
-class RecipeDaoImp extends RecipeDao {
-  RecipeDaoImp() : super(connect: connect);
+class RecipeDao extends NlIruoyWhocooksRecipeDao {
+  RecipeDao() : super(connect: connect);
 }

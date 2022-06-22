@@ -1,15 +1,15 @@
 import 'package:mongo_dart/mongo_dart.dart';
 
-import './nl_iruoy_whocooks_recipes_json.dart';
+import './nl_iruoy_whocooks_schedules_json.dart';
 
-class NlIruoyWhocooksRecipeDao {
+class NlIruoyWhocooksScheduleDao {
   final Future<Db> Function() connect;
 
-  const NlIruoyWhocooksRecipeDao({
+  NlIruoyWhocooksScheduleDao({
     required this.connect,
   });
 
-  Future<List<NlIruoyWhocooksRecipesModelsRecipe>> get({
+  Future<List<NlIruoyWhocooksSchedulesModelsSchedule>> get({
     int? limit,
     int? skip,
   }) async {
@@ -22,38 +22,41 @@ class NlIruoyWhocooksRecipeDao {
         r'$addFields': {
           'id': {r'$toString': r'$_id'}
         }
+      },
+      {
+        r'$sort': {'date': -1}
       }
     ];
 
     final data = await c //
-        .collection('recipes')
+        .collection('schedules')
         .modernAggregate(aggregate)
         .toList();
 
     return data //
-        .map(NlIruoyWhocooksRecipesModelsRecipe.fromJson)
+        .map(NlIruoyWhocooksSchedulesModelsSchedule.fromJson)
         .toList();
   }
 
-  Future<NlIruoyWhocooksRecipesModelsRecipe> post(
-    NlIruoyWhocooksRecipesModelsRecipeForm recipeForm,
+  Future<NlIruoyWhocooksSchedulesModelsSchedule> post(
+    NlIruoyWhocooksSchedulesModelsScheduleForm scheduleForm,
   ) async {
     final c = await connect();
 
     final _id = ObjectId();
 
     await c //
-        .collection('recipes')
-        .insertOne({'_id': _id, ...recipeForm.toJson()});
+        .collection('schedules')
+        .insertOne({'_id': _id, ...scheduleForm.toJson()});
 
-    return NlIruoyWhocooksRecipesModelsRecipe.fromJson({
+    return NlIruoyWhocooksSchedulesModelsSchedule.fromJson({
       'id': _id.$oid,
-      ...recipeForm.toJson(),
+      ...scheduleForm.toJson(),
     });
   }
 
-  Future<NlIruoyWhocooksRecipesModelsRecipe> putById(
-    NlIruoyWhocooksRecipesModelsRecipeForm recipeForm, {
+  Future<NlIruoyWhocooksSchedulesModelsSchedule> putById(
+    NlIruoyWhocooksSchedulesModelsScheduleForm scheduleForm, {
     required String id,
   }) async {
     final c = await connect();
@@ -61,12 +64,12 @@ class NlIruoyWhocooksRecipeDao {
     final _id = ObjectId.parse(id);
 
     await c //
-        .collection('recipes')
-        .replaceOne(where.id(_id), recipeForm.toJson());
+        .collection('schedules')
+        .replaceOne(where.id(_id), scheduleForm.toJson());
 
-    return NlIruoyWhocooksRecipesModelsRecipe.fromJson({
+    return NlIruoyWhocooksSchedulesModelsSchedule.fromJson({
       'id': _id.$oid,
-      ...recipeForm.toJson(),
+      ...scheduleForm.toJson(),
     });
   }
 
@@ -78,7 +81,7 @@ class NlIruoyWhocooksRecipeDao {
     final _id = ObjectId.parse(id);
 
     await c //
-        .collection('recipes')
+        .collection('schedules')
         .deleteOne(where.id(_id));
   }
 }
