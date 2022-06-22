@@ -2,9 +2,6 @@ FROM dart:stable as base
 
 WORKDIR /usr/app
 
-# Resolve the local packages
-COPY ./packages/validation ./packages/validation
-
 COPY ./services/recipes ./services/recipes
 
 WORKDIR /usr/app/services/recipes
