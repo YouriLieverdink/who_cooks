@@ -1,19 +1,22 @@
 version: "3"
 
 services:
-  schedules-service:
+  recipes:
     build:
       context: ../../
       dockerfile: ./services/schedules/Dockerfile
       target: ${TARGET:-base}
+    image: yourilieverdink/whocooks-schedules:${TAG-latest}
     command: dart run --enable-vm-service ./bin/schedules.dart
-    image: yourilieverdink/whocooks-schedules:${TAG:-latest}
     environment:
+      - MONGODB_URI=mongodb://schedules-db/whocooks
       - VERSION=${TAG:-latest}
     ports:
-      - "5002:8080"
+      - "8000:8080"
     volumes:
       - ./lib:/usr/app/services/schedules/lib
+    depends_on:
+      - schedules-db
 
   schedules-db:
     image: mongo:latest

@@ -5,60 +5,57 @@ services:
     labels:
       - "traefik.enable=false"
     image: traefik:v2.8
-    command: --api.insecure=true --providers.docker
+    command: --providers.docker
     ports:
       - "8000:80"
-      - "8001:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  recipes-service:
+  recipes:
     labels:
       - "traefik.http.routers.recipes.rule=PathPrefix(`/api/recipes`)"
     build:
       context: .
       dockerfile: ./services/recipes/Dockerfile
-      target: ${TARGET:-base}
-    command: dart run --enable-vm-service ./bin/recipes.dart
+    image: yourilieverdink/whocooks-recipes:${TAG-latest}
     environment:
-      - BASE_URL=/api/recipes
+      - PREFIX=api/recipes
+      - MONGODB_URI=mongodb://recipes-db/whocooks
       - VERSION=${TAG:-latest}
     ports:
       - "8080"
-    volumes:
-      - ./services/recipes/lib:/usr/app/services/recipes/lib
+    depends_on:
+      - recipes-db
 
   recipes-db:
     labels:
       - "traefik.enable=false"
     image: mongo
-    command: mongod --quiet --logpath /dev/null
     ports:
       - "27017"
     volumes:
       - recipes-db-data:/data/db
 
-  schedules-service:
+  schedules:
     labels:
       - "traefik.http.routers.schedules.rule=PathPrefix(`/api/schedules`)"
     build:
       context: .
       dockerfile: ./services/schedules/Dockerfile
-      target: ${TARGET:-base}
-    command: dart run --enable-vm-service ./bin/schedules.dart
+    image: yourilieverdink/whocooks-schedules:${TAG-latest}
     environment:
-      - BASE_URL=/api/schedules
+      - PREFIX=api/schedules
+      - MONGODB_URI=mongodb://schedules-db/whocooks
       - VERSION=${TAG:-latest}
     ports:
       - "8080"
-    volumes:
-      - ./services/schedules/lib:/usr/app/services/schedules/lib
+    depends_on:
+      - schedules-db
 
   schedules-db:
     labels:
       - "traefik.enable=false"
     image: mongo
-    command: mongod --quiet --logpath /dev/null
     ports:
       - "27017"
     volumes:

@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  traefik:
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "8000:80"
+      - "8001:8080"
+
+  recipes:
+    build:
+      target: base
+    command: dart run --enable-vm-service ./bin/recipes.dart
+    volumes:
+      - ./services/recipes/lib:/usr/app/services/recipes/lib
+
+  recipes-db:
+    command: mongod --quiet --logpath /dev/null
+
+  schedules:
+    build:
+      target: base
+    command: dart run --enable-vm-service ./bin/schedules.dart
+    volumes:
+      - ./services/schedules/lib:/usr/app/services/schedules/lib
+
+  schedules-db:
+    command: mongod --quiet --logpath /dev/null
+
+volumes:
+  recipes-db-data: {}
+  schedules-db-data: {}
