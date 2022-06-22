@@ -1,0 +1,10 @@
+name: events
+version: 0.0.1
+publish_to: "none"
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+
+dependencies:
+  dart_amqp: ^0.2.1
+  test: ^1.21.1
