@@ -41,7 +41,7 @@ class RecipeController {
       ).toJson(),
     };
 
-    final queue = await getQueue();
+    final queue = await $.getAsync<Queue>();
     await queue.add(RecipeEvent.fromJson(event));
 
     return Response(201, body: jsonEncode(data));
@@ -75,7 +75,7 @@ class RecipeController {
       ).toJson(),
     };
 
-    final queue = await getQueue();
+    final queue = await $.getAsync<Queue>();
     await queue.add(RecipeEvent.fromJson(event));
 
     return Response(200, body: jsonEncode(data));
@@ -106,7 +106,7 @@ class RecipeController {
       ).toJson(),
     };
 
-    final queue = await getQueue();
+    final queue = await $.getAsync<Queue>();
     await queue.add(RecipeEvent.fromJson(event));
 
     return Response(204);

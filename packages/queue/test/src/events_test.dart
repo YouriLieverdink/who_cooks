@@ -36,7 +36,7 @@ void main() {
     late Queue events;
 
     setUp(() {
-      events = Queue();
+      events = Queue('0.0.0.0');
     });
 
     tearDown(() async {
@@ -46,7 +46,7 @@ void main() {
 
     test('creates an instance internally when not provided', () {
       expect(
-        () => Queue(),
+        () => Queue('0.0.0.0'),
         isNot(throwsException),
       );
     });

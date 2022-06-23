@@ -11,8 +11,7 @@ void main() async {
   // Ensures a gracefull shutdown.
   ProcessSignal.sigint.watch().listen((_) async {
     await context.close();
-    await getDatabase().then((v) => v.close());
-    await getQueue().then((v) => v.close());
+    await $.reset();
 
     exit(0);
   });

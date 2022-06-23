@@ -5,9 +5,9 @@ import 'package:queue/queue.dart';
 
 class Queue {
   ///
-  Queue({
-    String host = '0.0.0.0',
-  }) : _client = Client(settings: ConnectionSettings(host: host));
+  Queue(
+    String host,
+  ) : _client = Client(settings: ConnectionSettings(host: host));
 
   /// The [Client] used to the Rabbit messaging queue.
   final Client _client;

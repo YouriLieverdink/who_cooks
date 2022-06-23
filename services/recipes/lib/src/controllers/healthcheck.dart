@@ -10,7 +10,7 @@ class HealthcheckController {
   ) async {
     //
     try {
-      await getDatabase();
+      await $.getAsync<Db>();
     } //
     catch (_) {
       final error = NlIruoyCommonModelsError(
@@ -22,7 +22,7 @@ class HealthcheckController {
     }
 
     try {
-      await getQueue();
+      await $.getAsync<Queue>();
     } //
     catch (_) {
       final error = NlIruoyCommonModelsError(
