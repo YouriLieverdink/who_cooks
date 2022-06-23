@@ -20,7 +20,7 @@ services:
     image: yourilieverdink/whocooks-recipes:${TAG-latest}
     environment:
       - PREFIX=api/recipes
-      - MONGODB_URI=mongodb://recipes-db/whocooks
+      - MONGO_URI=mongodb://recipes-db/whocooks
       - VERSION=${TAG:-latest}
     ports:
       - "8080"
@@ -45,7 +45,7 @@ services:
     image: yourilieverdink/whocooks-schedules:${TAG-latest}
     environment:
       - PREFIX=api/schedules
-      - MONGODB_URI=mongodb://schedules-db/whocooks
+      - MONGO_URI=mongodb://schedules-db/whocooks
       - VERSION=${TAG:-latest}
     ports:
       - "8080"

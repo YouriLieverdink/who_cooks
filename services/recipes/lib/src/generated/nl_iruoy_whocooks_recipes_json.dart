@@ -299,11 +299,13 @@ class NlIruoyWhocooksRecipesUnionsRecipeEvent extends Union2Impl<
 
     switch (discriminator) {
       case 'recipe_upserted':
-        return NlIruoyWhocooksRecipesUnionsRecipeEvent._(
-            factory.first(json['recipe_upserted']));
+        return NlIruoyWhocooksRecipesUnionsRecipeEvent._(factory.first(
+            NlIruoyWhocooksRecipesModelsRecipeUpserted.fromJson(
+                json['recipe_upserted'])));
       case 'recipe_deleted':
-        return NlIruoyWhocooksRecipesUnionsRecipeEvent._(
-            factory.second(json['recipe_deleted']));
+        return NlIruoyWhocooksRecipesUnionsRecipeEvent._(factory.second(
+            NlIruoyWhocooksRecipesModelsRecipeDeleted.fromJson(
+                json['recipe_deleted'])));
       default:
         throw Exception([
           discriminator,
@@ -319,9 +321,9 @@ class NlIruoyWhocooksRecipesUnionsRecipeEvent extends Union2Impl<
 
   dynamic toJson() {
     return join((first) {
-      return {'recipe_upserted': first};
+      return {'recipe_upserted': first.toJson()};
     }, (second) {
-      return {'recipe_deleted': second};
+      return {'recipe_deleted': second.toJson()};
     });
   }
 }

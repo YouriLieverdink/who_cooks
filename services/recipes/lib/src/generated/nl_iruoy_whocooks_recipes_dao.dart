@@ -35,6 +35,25 @@ class NlIruoyWhocooksRecipeDao {
         .toList();
   }
 
+  Future<NlIruoyWhocooksRecipesModelsRecipe?> getById({
+    required String id,
+  }) async {
+    final c = await connect();
+
+    final _id = ObjectId.parse(id);
+
+    final data = await c //
+        .collection('recipes')
+        .findOne(where.id(_id));
+
+    return data != null //
+        ? NlIruoyWhocooksRecipesModelsRecipe.fromJson({
+            'id': _id.$oid,
+            ...data,
+          })
+        : null;
+  }
+
   Future<NlIruoyWhocooksRecipesModelsRecipe> post(
     NlIruoyWhocooksRecipesModelsRecipeForm recipeForm,
   ) async {

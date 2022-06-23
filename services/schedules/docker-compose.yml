@@ -9,7 +9,7 @@ services:
     image: yourilieverdink/whocooks-schedules:${TAG-latest}
     command: dart run --enable-vm-service ./bin/schedules.dart
     environment:
-      - MONGODB_URI=mongodb://schedules-db/whocooks
+      - MONGO_URI=mongodb://schedules-db/whocooks
       - VERSION=${TAG:-latest}
     ports:
       - "8000:8080"

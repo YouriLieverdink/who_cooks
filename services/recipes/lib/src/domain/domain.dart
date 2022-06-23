@@ -1,15 +1,17 @@
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:recipes/recipes.dart';
 
-var db = Db(uriString);
+final _database = Db(mongoUri);
 
-Future<Db> connect() async {
-  //
-  if (!db.isConnected) await db.open();
+Future<Db> getDatabase() async {
+  // We only want to open a single connection.
+  if (!_database.isConnected) {
+    await _database.open();
+  }
 
-  return db;
+  return _database;
 }
 
 class RecipeDao extends NlIruoyWhocooksRecipeDao {
-  RecipeDao() : super(connect: connect);
+  RecipeDao() : super(connect: () => getDatabase());
 }
