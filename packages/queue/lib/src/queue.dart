@@ -1,25 +1,45 @@
 import 'dart:async';
 
 import 'package:dart_amqp/dart_amqp.dart';
-import 'package:events/events.dart';
+import 'package:queue/queue.dart';
 
-class Events {
+class Queue {
   ///
-  Events({
-    Client? client,
-  })  : _client = client ?? Client(),
-        _subscriptions = [];
+  Queue({
+    String host = '0.0.0.0',
+  }) : _client = Client(settings: ConnectionSettings(host: host));
 
+  /// The [Client] used to the Rabbit messaging queue.
   final Client _client;
 
-  final List<StreamSubscription> _subscriptions;
+  /// Opens a connection to the queue when it does not exists already.
+  ///
+  /// Throws an [Exception] when the connection fails.
+  Future<void> open() async {
+    try {
+      await _client.connect();
+    } //
+    on ConnectionFailedException {
+      final uri = '${_client.settings.host}:${_client.settings.port}';
+
+      throw Exception(
+        'No connection could be established to the instance on $uri. Please '
+        'make sure that the uri is correct and that the service is runining.',
+      );
+    }
+  }
+
+  /// Closes all connections to the queue.
+  Future<void> close() async {
+    await _client.close();
+  }
 
   ///
   Future<void> on<T>(void Function(T event) listener) async {
     // We need a factory constructor to create [T] from a JSON map.
     if (!hasFromJson<T>()) {
       throw Exception(
-        'The provided type [T] does not provide a $T.fromJson(dynamic value) '
+        'The provided type does not provide a $T.fromJson(dynamic value) '
         'constructor. This constructor is required to be able to parse '
         'incoming messages. Please define it.',
       );
@@ -30,13 +50,10 @@ class Events {
 
     final consumer = await exchange.bindPrivateQueueConsumer(['$T']);
 
-    final subscription = consumer.listen((message) {
-      //
+    consumer.listen((message) {
       final data = fromJson<T>(message.payloadAsJson);
       if (data != null) listener(data);
     });
-
-    _subscriptions.add(subscription);
   }
 
   ///
@@ -44,7 +61,7 @@ class Events {
     // We need a method to create a JSON map from [T].
     if (!hasToJson<T>()) {
       throw Exception(
-        'The provided type [T] does not have a toJson() method. This method is '
+        'The provided type $T does not have a toJson() method. This method is '
         'required to be able to encode the messages. Please define it.',
       );
     }
@@ -54,19 +71,5 @@ class Events {
 
     final data = toJson<T>(event);
     if (data != null) exchange.publish(data, '$T');
-  }
-
-  ///
-  Future<void> close() async {
-    // Ensures all subscriptions and the client are closed.
-    final futures = <Future>[];
-
-    futures.add(_client.close());
-
-    _subscriptions //
-        .map((s) => s.cancel())
-        .forEach(futures.add);
-
-    await Future.wait(futures);
   }
 }

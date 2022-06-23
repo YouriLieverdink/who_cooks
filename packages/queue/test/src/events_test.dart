@@ -1,5 +1,4 @@
-import 'package:dart_amqp/dart_amqp.dart';
-import 'package:events/events.dart';
+import 'package:queue/queue.dart';
 import 'package:test/test.dart';
 
 class One {
@@ -33,13 +32,11 @@ void main() {
   const two = Two();
   const user = User('Youri');
 
-  group('Events', () {
-    late Client client;
-    late Events events;
+  group('Queue', () {
+    late Queue events;
 
     setUp(() {
-      client = Client();
-      events = Events(client: client);
+      events = Queue();
     });
 
     tearDown(() async {
@@ -49,7 +46,7 @@ void main() {
 
     test('creates an instance internally when not provided', () {
       expect(
-        () => Events(),
+        () => Queue(),
         isNot(throwsException),
       );
     });

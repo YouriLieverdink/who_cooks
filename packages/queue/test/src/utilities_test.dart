@@ -1,4 +1,4 @@
-import 'package:events/events.dart';
+import 'package:queue/queue.dart';
 import 'package:test/test.dart';
 
 class One {
