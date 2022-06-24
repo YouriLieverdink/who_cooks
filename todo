@@ -4,4 +4,4 @@
 [ ] Create a better way of publishing events.
 [ ] Updated the Dart-Generator for (un)parsing union types.
 [ ] Extract the core functionality into operations.
-[ ] Add the RabbitMQ image to the root docker-compose file.
+[x] Add the RabbitMQ image to the root docker-compose file.

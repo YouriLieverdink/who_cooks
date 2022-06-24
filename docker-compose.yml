@@ -21,11 +21,13 @@ services:
     environment:
       - PREFIX=api/recipes
       - MONGO_URI=mongodb://recipes-db/whocooks
+      - RABBIT_URI=rabbitmq
       - VERSION=${TAG:-latest}
     ports:
       - "8080"
     depends_on:
       - recipes-db
+      - rabbitmq
 
   recipes-db:
     labels:
@@ -46,11 +48,13 @@ services:
     environment:
       - PREFIX=api/schedules
       - MONGO_URI=mongodb://schedules-db/whocooks
+      - RABBIT_URI=rabbitmq
       - VERSION=${TAG:-latest}
     ports:
       - "8080"
     depends_on:
       - schedules-db
+      - rabbitmq
 
   schedules-db:
     labels:
@@ -60,6 +64,12 @@ services:
       - "27017"
     volumes:
       - schedules-db-data:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3
+    hostname: rabbitmq
+    ports:
+      - "5672"
 
 volumes:
   recipes-db-data: {}
