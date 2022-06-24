@@ -10,34 +10,13 @@ class HealthcheckController {
   ) async {
     //
     try {
-      await $.getAsync<Db>();
+      final data = await showHealthcheck();
+
+      return Response(200, body: jsonEncode(data));
     } //
-    catch (_) {
-      final error = NlIruoyCommonModelsError(
-        code: 'database',
-        message: 'No connection could be established to the database.',
-      );
-
-      return Response(500, body: jsonEncode(error));
+    catch (e) {
+      //
+      return Response(500, body: jsonEncode(e));
     }
-
-    try {
-      await $.getAsync<Queue>();
-    } //
-    catch (_) {
-      final error = NlIruoyCommonModelsError(
-        code: 'queue',
-        message: 'No connection could be established to the queue.',
-      );
-
-      return Response(500, body: jsonEncode(error));
-    }
-
-    final data = NlIruoyCommonModelsHealthcheck(
-      status: 'healthy',
-      version: version,
-    );
-
-    return Response(200, body: jsonEncode(data));
   }
 }
