@@ -7,7 +7,12 @@ class NlIruoyWhocooksScheduleDao {
 
   NlIruoyWhocooksScheduleDao({
     required this.connect,
-  });
+  }) {
+    //
+    connect().then((c) => c
+      ..ensureIndex('schedules', key: 'date')
+      ..ensureIndex('schedules', key: 'recipes'));
+  }
 
   Future<List<NlIruoyWhocooksSchedulesV0ModelsSchedule>> get({
     int? limit,
