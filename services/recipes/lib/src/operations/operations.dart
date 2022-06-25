@@ -10,10 +10,10 @@ import './recipe/show_recipe.dart';
 // Dependencies.
 final recipeDao = NlIruoyWhocooksRecipeDao(connect: connect);
 
-final showHealthcheck = CreateShowHealthcheck(connect: connect);
+final showHealthcheck = CreateShowHealthcheck();
 
 final showRecipe = CreateShowRecipe(dao: recipeDao);
-final addRecipe = CreateAddRecipe(dao: recipeDao, connect: connect);
+final addRecipe = CreateAddRecipe(dao: recipeDao);
 final editRecipe = CreateEditRecipe(dao: recipeDao, showRecipe: showRecipe);
 final removeRecipe = CreateRemoveRecipe(dao: recipeDao, showRecipe: showRecipe);
 final listRecipes = CreateListRecipes(dao: recipeDao);

@@ -4,12 +4,9 @@ class CreateAddRecipe {
   //
   const CreateAddRecipe({
     required this.dao,
-    required this.connect,
   });
 
   final NlIruoyWhocooksRecipeDao dao;
-
-  final Future<T> Function<T>() connect;
 
   Future<Recipe> call(
     RecipeForm recipeForm,

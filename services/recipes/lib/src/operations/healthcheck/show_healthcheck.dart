@@ -2,11 +2,7 @@ import 'package:recipes/recipes.dart';
 
 class CreateShowHealthcheck {
   //
-  const CreateShowHealthcheck({
-    required this.connect,
-  });
-
-  final Future<T> Function<T>() connect;
+  const CreateShowHealthcheck();
 
   Future<NlIruoyCommonModelsHealthcheck> call() async {
     try {
