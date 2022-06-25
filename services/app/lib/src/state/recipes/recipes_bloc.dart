@@ -43,7 +43,7 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     emit(const RecipesLoading());
 
     try {
-      final recipes = await repository.client.recipes.get(
+      final recipes = await repository.recipes.recipes.get(
         skip: event.skip,
         limit: event.limit,
       );
