@@ -29,13 +29,13 @@ class CreateEditRecipe {
     Recipe recipe,
   ) async {
     //
-    // final event = RecipeUpserted(
-    //   id: ObjectId().$oid,
-    //   timestamp: DateTime.now(),
-    //   recipe: recipe,
-    // );
+    final event = RecipeUpserted(
+      id: ObjectId().$oid,
+      timestamp: DateTime.now(),
+      recipe: recipe,
+    );
 
-    // final queue = await connect<Queue>();
-    // await queue.add(RecipeEvent.fromFirst(event));
+    final queue = await connect<Queue>();
+    await queue.add(RecipeEvent.fromFirst(event));
   }
 }

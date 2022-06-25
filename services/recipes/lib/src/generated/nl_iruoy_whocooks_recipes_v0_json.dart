@@ -314,6 +314,18 @@ class NlIruoyWhocooksRecipesV0UnionsRecipeEvent extends Union2Impl<
     }
   }
 
+  factory NlIruoyWhocooksRecipesV0UnionsRecipeEvent.fromFirst(
+      NlIruoyWhocooksRecipesV0ModelsRecipeUpserted recipeUpserted) {
+    return NlIruoyWhocooksRecipesV0UnionsRecipeEvent._(
+        factory.first(recipeUpserted));
+  }
+
+  factory NlIruoyWhocooksRecipesV0UnionsRecipeEvent.fromSecond(
+      NlIruoyWhocooksRecipesV0ModelsRecipeDeleted recipeDeleted) {
+    return NlIruoyWhocooksRecipesV0UnionsRecipeEvent._(
+        factory.second(recipeDeleted));
+  }
+
   static final Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
           NlIruoyWhocooksRecipesV0ModelsRecipeDeleted> factory =
       const Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,

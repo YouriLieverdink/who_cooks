@@ -26,13 +26,13 @@ class CreateRemoveRecipe {
     Recipe recipe,
   ) async {
     //
-    // final event = RecipeDeleted(
-    //   id: ObjectId().$oid,
-    //   timestamp: DateTime.now(),
-    //   recipe: recipe,
-    // );
+    final event = RecipeDeleted(
+      id: ObjectId().$oid,
+      timestamp: DateTime.now(),
+      recipe: recipe,
+    );
 
-    // final queue = await connect<Queue>();
-    // await queue.add(RecipeEvent.fromSecond(event));
+    final queue = await connect<Queue>();
+    await queue.add(RecipeEvent.fromSecond(event));
   }
 }
