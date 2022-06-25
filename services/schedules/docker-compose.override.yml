@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  schedules:
+    build:
+      target: base
+    command: dart run --enable-vm-service ./bin/schedules.dart
+    volumes:
+      - ./lib:/usr/app/services/schedules/lib
+
+  schedules_db:
+    command: mongod --quiet --logpath /dev/null
+
+  rabbit_mq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"

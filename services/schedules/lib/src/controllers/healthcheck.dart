@@ -9,7 +9,7 @@ class HealthcheckController {
     Request request,
   ) async {
     //
-    final database = await connect();
+    final database = await $.getAsync<Db>();
 
     if (!database.isConnected) {
       final data = NlIruoyCommonV0ModelsError(

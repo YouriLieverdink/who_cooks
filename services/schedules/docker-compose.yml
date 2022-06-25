@@ -5,26 +5,29 @@ services:
     build:
       context: ../../
       dockerfile: ./services/schedules/Dockerfile
-      target: ${TARGET:-base}
-    image: yourilieverdink/whocooks-schedules:${TAG-latest}
-    command: dart run --enable-vm-service ./bin/schedules.dart
+      target: prod
+    image: yourilieverdink/whocooks-schedules:${TAG:-latest}
     environment:
-      - MONGO_URI=mongodb://schedules-db/whocooks
+      - DB_HOST=schedules_db
+      - QUEUE_HOST=rabbit_mq
       - VERSION=${TAG:-latest}
     ports:
       - "8000:8080"
-    volumes:
-      - ./lib:/usr/app/services/schedules/lib
     depends_on:
-      - schedules-db
+      - schedules_db
+      - rabbit_mq
 
-  schedules-db:
+  schedules_db:
     image: mongo:latest
-    command: mongod --quiet --logpath /dev/null
     ports:
       - "27017"
     volumes:
-      - schedules-db-data:/data/db
+      - schedules_db_data:/data/db
+
+  rabbit_mq:
+    image: rabbitmq:3
+    ports:
+      - "5672"
 
 volumes:
-  schedules-db-data: {}
+  schedules_db_data: {}

@@ -2,6 +2,9 @@ FROM dart:stable as base
 
 WORKDIR /usr/app
 
+# Resolve local dependencies
+COPY ./packages/queue ./packages/queue
+
 COPY ./services/schedules ./services/schedules
 
 WORKDIR /usr/app/services/schedules

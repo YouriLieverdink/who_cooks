@@ -11,7 +11,7 @@ void main() async {
   // Ensures a gracefull shutdown.
   ProcessSignal.sigint.watch().listen((_) async {
     await context.close();
-    await db.close();
+    await $.reset();
 
     exit(0);
   });
