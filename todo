@@ -1,7 +1,0 @@
-[ ] Listen for RecipeEvent's within the scheduels service.
-[ ] Transform the recipes in the schedule into a map.
-[ ] Start with writing tests for the individual services.
-[ ] Create a better way of publishing events.
-[ ] Updated the Dart-Generator for (un)parsing union types.
-[ ] Extract the core functionality into operations.
-[x] Add the RabbitMQ image to the root docker-compose file.
