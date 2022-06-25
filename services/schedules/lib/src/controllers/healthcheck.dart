@@ -9,22 +9,14 @@ class HealthcheckController {
     Request request,
   ) async {
     //
-    final database = await $.getAsync<Db>();
+    try {
+      final data = await showHealthcheck();
 
-    if (!database.isConnected) {
-      final data = NlIruoyCommonV0ModelsError(
-        code: 'database',
-        message: 'The database could not be connected to.',
-      );
-
-      return Response(500, body: jsonEncode(data));
+      return Response(200, body: jsonEncode(data));
+    } //
+    catch (e) {
+      //
+      return Response(500, body: jsonEncode(e));
     }
-
-    final data = NlIruoyCommonV0ModelsHealthcheck(
-      status: 'Healthy',
-      version: version,
-    );
-
-    return Response(200, body: jsonEncode(data));
   }
 }

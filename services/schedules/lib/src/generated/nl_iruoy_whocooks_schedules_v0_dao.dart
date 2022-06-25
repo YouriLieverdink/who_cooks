@@ -38,6 +38,25 @@ class NlIruoyWhocooksScheduleDao {
         .toList();
   }
 
+  Future<NlIruoyWhocooksSchedulesV0ModelsSchedule?> getById({
+    required String id,
+  }) async {
+    final c = await connect();
+
+    final _id = ObjectId.parse(id);
+
+    final data = await c //
+        .collection('schedules')
+        .findOne(where.id(_id));
+
+    return data != null //
+        ? NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson({
+            'id': _id.$oid,
+            ...data,
+          })
+        : null;
+  }
+
   Future<NlIruoyWhocooksSchedulesV0ModelsSchedule> post(
     NlIruoyWhocooksSchedulesV0ModelsScheduleForm scheduleForm,
   ) async {

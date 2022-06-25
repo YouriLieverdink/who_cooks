@@ -14,8 +14,7 @@ class ScheduleController {
     final limit = int.tryParse(query['limit'] ?? '');
     final skip = int.tryParse(query['skip'] ?? '');
 
-    final dao = ScheduleDao();
-    final data = await dao.get(limit: limit, skip: skip);
+    final data = await listSchedules(limit: limit, skip: skip);
 
     return Response(200, body: jsonEncode(data));
   }
@@ -24,23 +23,27 @@ class ScheduleController {
     Request request,
   ) async {
     //
+    final json = await request.body.asJson;
+    final form = ScheduleForm.fromJson(json);
+
+    final data = await addSchedule(form);
+
+    return Response(201, body: jsonEncode(data));
+  }
+
+  static Future<Response> getById(
+    Request request,
+    String id,
+  ) async {
+    //
     try {
-      final json = await request.body.asJson;
+      final data = await showSchedule(id: id);
 
-      final form = ScheduleForm.fromJson(json);
-
-      final dao = ScheduleDao();
-      final data = await dao.post(form);
-
-      return Response(201, body: jsonEncode(data));
+      return Response(200, body: jsonEncode(data));
     } //
-    on TypeError catch (e) {
-      final error = NlIruoyCommonV0ModelsError(
-        code: 'invalid-json',
-        message: e.toString(),
-      );
-
-      return Response(400, body: jsonEncode(error));
+    on NlIruoyCommonV0ModelsError {
+      //
+      return Response(404);
     }
   }
 
@@ -49,23 +52,17 @@ class ScheduleController {
     String id,
   ) async {
     //
+    final json = await request.body.asJson;
+    final form = ScheduleForm.fromJson(json);
+
     try {
-      final json = await request.body.asJson;
-
-      final form = ScheduleForm.fromJson(json);
-
-      final dao = ScheduleDao();
-      final data = await dao.putById(form, id: id);
+      final data = await editSchedule(form, id: id);
 
       return Response(200, body: jsonEncode(data));
     } //
-    on TypeError catch (e) {
-      final error = NlIruoyCommonV0ModelsError(
-        code: 'invalid-json',
-        message: e.toString(),
-      );
-
-      return Response(400, body: jsonEncode(error));
+    on NlIruoyCommonV0ModelsError {
+      //
+      return Response(404);
     }
   }
 
@@ -74,9 +71,14 @@ class ScheduleController {
     String id,
   ) async {
     //
-    final dao = ScheduleDao();
-    await dao.deleteById(id: id);
+    try {
+      await removeSchedule(id: id);
 
-    return Response(204);
+      return Response(204);
+    } //
+    on NlIruoyCommonV0ModelsError {
+      //
+      return Response(404);
+    }
   }
 }
