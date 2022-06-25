@@ -1,8 +1,8 @@
 import 'package:app/config/constants.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../di.dart';
 import '../../../../generated/generated.dart';
-import '../../../../services/services.dart';
 import '../recipe_show.dart';
 
 class RecipeShowPageBody extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../services/services.dart';
+import '../../../../di.dart';
 import '../../../../state/state.dart';
 import '../recipe_index.dart';
 

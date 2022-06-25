@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../services/services.dart';
+import '../../../di.dart';
 import '../../pages.dart';
 
 class BasePage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../services/services.dart';
+import '../../../../di.dart';
 
 class ScheduleIndexPage extends StatefulWidget {
   const ScheduleIndexPage({
