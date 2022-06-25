@@ -14,24 +14,24 @@ const mockRecipes = [
   Recipe(id: '3', title: 'Turkey', ingredients: []),
 ];
 
-const mockError = NlIruoyCommonModelsError(
+const mockError = NlIruoyCommonV0ModelsError(
   code: 'unknown',
   message: 'Something unexpected happened...',
 );
 
 @GenerateMocks([
   Repository,
-  NlIruoyWhocooksRecipesClient,
-  NlIruoyWhocooksRecipesModelsRecipeResource,
+  NlIruoyWhocooksRecipesV0Client,
+  NlIruoyWhocooksRecipesV0ModelsRecipeResource,
 ])
 void main() {
-  late MockNlIruoyWhocooksRecipesModelsRecipeResource resource;
-  late MockNlIruoyWhocooksRecipesClient client;
+  late MockNlIruoyWhocooksRecipesV0ModelsRecipeResource resource;
+  late MockNlIruoyWhocooksRecipesV0Client client;
   late MockRepository repository;
 
   setUp(() {
-    resource = MockNlIruoyWhocooksRecipesModelsRecipeResource();
-    client = MockNlIruoyWhocooksRecipesClient();
+    resource = MockNlIruoyWhocooksRecipesV0ModelsRecipeResource();
+    client = MockNlIruoyWhocooksRecipesV0Client();
     repository = MockRepository();
 
     when(repository.client).thenReturn(client);

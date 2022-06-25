@@ -1,6 +1,6 @@
 import 'package:mongo_dart/mongo_dart.dart';
 
-import './nl_iruoy_whocooks_recipes_json.dart';
+import './nl_iruoy_whocooks_recipes_v0_json.dart';
 
 class NlIruoyWhocooksRecipeDao {
   final Future<Db> Function() connect;
@@ -9,7 +9,7 @@ class NlIruoyWhocooksRecipeDao {
     required this.connect,
   });
 
-  Future<List<NlIruoyWhocooksRecipesModelsRecipe>> get({
+  Future<List<NlIruoyWhocooksRecipesV0ModelsRecipe>> get({
     int? limit,
     int? skip,
   }) async {
@@ -31,11 +31,11 @@ class NlIruoyWhocooksRecipeDao {
         .toList();
 
     return data //
-        .map(NlIruoyWhocooksRecipesModelsRecipe.fromJson)
+        .map(NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson)
         .toList();
   }
 
-  Future<NlIruoyWhocooksRecipesModelsRecipe?> getById({
+  Future<NlIruoyWhocooksRecipesV0ModelsRecipe?> getById({
     required String id,
   }) async {
     final c = await connect();
@@ -47,15 +47,15 @@ class NlIruoyWhocooksRecipeDao {
         .findOne(where.id(_id));
 
     return data != null //
-        ? NlIruoyWhocooksRecipesModelsRecipe.fromJson({
+        ? NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson({
             'id': _id.$oid,
             ...data,
           })
         : null;
   }
 
-  Future<NlIruoyWhocooksRecipesModelsRecipe> post(
-    NlIruoyWhocooksRecipesModelsRecipeForm recipeForm,
+  Future<NlIruoyWhocooksRecipesV0ModelsRecipe> post(
+    NlIruoyWhocooksRecipesV0ModelsRecipeForm recipeForm,
   ) async {
     final c = await connect();
 
@@ -65,14 +65,14 @@ class NlIruoyWhocooksRecipeDao {
         .collection('recipes')
         .insertOne({'_id': _id, ...recipeForm.toJson()});
 
-    return NlIruoyWhocooksRecipesModelsRecipe.fromJson({
+    return NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson({
       'id': _id.$oid,
       ...recipeForm.toJson(),
     });
   }
 
-  Future<NlIruoyWhocooksRecipesModelsRecipe> putById(
-    NlIruoyWhocooksRecipesModelsRecipeForm recipeForm, {
+  Future<NlIruoyWhocooksRecipesV0ModelsRecipe> putById(
+    NlIruoyWhocooksRecipesV0ModelsRecipeForm recipeForm, {
     required String id,
   }) async {
     final c = await connect();
@@ -83,7 +83,7 @@ class NlIruoyWhocooksRecipeDao {
         .collection('recipes')
         .replaceOne(where.id(_id), recipeForm.toJson());
 
-    return NlIruoyWhocooksRecipesModelsRecipe.fromJson({
+    return NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson({
       'id': _id.$oid,
       ...recipeForm.toJson(),
     });

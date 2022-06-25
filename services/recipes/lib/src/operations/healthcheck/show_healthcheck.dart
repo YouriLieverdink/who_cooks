@@ -4,12 +4,12 @@ class CreateShowHealthcheck {
   //
   const CreateShowHealthcheck();
 
-  Future<NlIruoyCommonModelsHealthcheck> call() async {
+  Future<NlIruoyCommonV0ModelsHealthcheck> call() async {
     try {
       await connect<Db>();
     } //
     catch (_) {
-      throw NlIruoyCommonModelsError(
+      throw NlIruoyCommonV0ModelsError(
         code: 'database',
         message: 'No connection could be established to the database.',
       );
@@ -19,13 +19,13 @@ class CreateShowHealthcheck {
       await connect<Queue>();
     } //
     catch (_) {
-      throw NlIruoyCommonModelsError(
+      throw NlIruoyCommonV0ModelsError(
         code: 'queue',
         message: 'No connection could be established to the queue.',
       );
     }
 
-    return NlIruoyCommonModelsHealthcheck(
+    return NlIruoyCommonV0ModelsHealthcheck(
       status: 'healthy',
       version: version,
     );

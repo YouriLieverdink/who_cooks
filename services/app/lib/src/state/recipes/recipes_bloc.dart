@@ -24,11 +24,11 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   ) {
     var error = event.error;
 
-    if (error is NlIruoyCommonModelsError) {
+    if (error is NlIruoyCommonV0ModelsError) {
       return emit(RecipesNotLoaded(error: error));
     }
 
-    error = const NlIruoyCommonModelsError(
+    error = const NlIruoyCommonV0ModelsError(
       code: 'unknown',
       message: 'An unknown error occured.',
     );

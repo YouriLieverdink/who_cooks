@@ -1,9 +1,7 @@
 import 'package:shelf_plus/shelf_plus.dart';
 import '../controllers/controllers.dart';
 
-Handler init(
-  String prefix,
-) {
+Handler init(String prefix) {
   //
   final router = RouterPlus();
 
@@ -11,10 +9,11 @@ Handler init(
   router.use((h) => (r) => h(r.change(path: prefix)));
 
   router.get('/_internal_/healthcheck', HealthcheckController.get);
-  router.get('/schedules', ScheduleController.get);
-  router.post('/schedules', ScheduleController.post);
-  router.put('/schedules/<id>', ScheduleController.putById);
-  router.delete('/schedules/<id>', ScheduleController.deleteById);
+  router.get('/recipes', RecipeController.get);
+  router.post('/recipes', RecipeController.post);
+  router.get('/recipes/<id>', RecipeController.getById);
+  router.put('/recipes/<id>', RecipeController.putById);
+  router.delete('/recipes/<id>', RecipeController.deleteById);
 
   return router;
 }

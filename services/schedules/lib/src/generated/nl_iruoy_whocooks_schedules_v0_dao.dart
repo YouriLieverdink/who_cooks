@@ -1,6 +1,6 @@
 import 'package:mongo_dart/mongo_dart.dart';
 
-import './nl_iruoy_whocooks_schedules_json.dart';
+import './nl_iruoy_whocooks_schedules_v0_json.dart';
 
 class NlIruoyWhocooksScheduleDao {
   final Future<Db> Function() connect;
@@ -9,7 +9,7 @@ class NlIruoyWhocooksScheduleDao {
     required this.connect,
   });
 
-  Future<List<NlIruoyWhocooksSchedulesModelsSchedule>> get({
+  Future<List<NlIruoyWhocooksSchedulesV0ModelsSchedule>> get({
     int? limit,
     int? skip,
   }) async {
@@ -34,12 +34,12 @@ class NlIruoyWhocooksScheduleDao {
         .toList();
 
     return data //
-        .map(NlIruoyWhocooksSchedulesModelsSchedule.fromJson)
+        .map(NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson)
         .toList();
   }
 
-  Future<NlIruoyWhocooksSchedulesModelsSchedule> post(
-    NlIruoyWhocooksSchedulesModelsScheduleForm scheduleForm,
+  Future<NlIruoyWhocooksSchedulesV0ModelsSchedule> post(
+    NlIruoyWhocooksSchedulesV0ModelsScheduleForm scheduleForm,
   ) async {
     final c = await connect();
 
@@ -49,14 +49,14 @@ class NlIruoyWhocooksScheduleDao {
         .collection('schedules')
         .insertOne({'_id': _id, ...scheduleForm.toJson()});
 
-    return NlIruoyWhocooksSchedulesModelsSchedule.fromJson({
+    return NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson({
       'id': _id.$oid,
       ...scheduleForm.toJson(),
     });
   }
 
-  Future<NlIruoyWhocooksSchedulesModelsSchedule> putById(
-    NlIruoyWhocooksSchedulesModelsScheduleForm scheduleForm, {
+  Future<NlIruoyWhocooksSchedulesV0ModelsSchedule> putById(
+    NlIruoyWhocooksSchedulesV0ModelsScheduleForm scheduleForm, {
     required String id,
   }) async {
     final c = await connect();
@@ -67,7 +67,7 @@ class NlIruoyWhocooksScheduleDao {
         .collection('schedules')
         .replaceOne(where.id(_id), scheduleForm.toJson());
 
-    return NlIruoyWhocooksSchedulesModelsSchedule.fromJson({
+    return NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson({
       'id': _id.$oid,
       ...scheduleForm.toJson(),
     });

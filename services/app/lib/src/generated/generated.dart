@@ -1,19 +1,19 @@
-export './nl_iruoy_whocooks_recipes_client.dart' //
+export './nl_iruoy_whocooks_recipes_v0_client.dart' //
     show
-        NlIruoyWhocooksRecipesModelsRecipeResource,
-        NlIruoyWhocooksRecipesClient;
-export './nl_iruoy_whocooks_recipes_json.dart' //
+        NlIruoyWhocooksRecipesV0ModelsRecipeResource,
+        NlIruoyWhocooksRecipesV0Client;
+export './nl_iruoy_whocooks_recipes_v0_json.dart' //
     show
         Ingredient,
         Recipe,
         RecipeForm,
-        NlIruoyCommonModelsError,
-        NlIruoyCommonModelsHealthcheck;
-export './nl_iruoy_whocooks_schedules_client.dart' //
+        NlIruoyCommonV0ModelsError,
+        NlIruoyCommonV0ModelsHealthcheck;
+export './nl_iruoy_whocooks_schedules_v0_client.dart' //
     show
-        NlIruoyWhocooksSchedulesModelsScheduleResource,
-        NlIruoyWhocooksSchedulesClient;
-export './nl_iruoy_whocooks_schedules_json.dart' //
+        NlIruoyWhocooksSchedulesV0ModelsScheduleResource,
+        NlIruoyWhocooksSchedulesV0Client;
+export './nl_iruoy_whocooks_schedules_v0_json.dart' //
     show
         Schedule,
         ScheduleForm;

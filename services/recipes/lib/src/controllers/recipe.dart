@@ -31,6 +31,22 @@ class RecipeController {
     return Response(201, body: jsonEncode(data));
   }
 
+  static Future<Response> getById(
+    Request request,
+    String id,
+  ) async {
+    //
+    try {
+      final data = await showRecipe(id: id);
+
+      return Response(200, body: jsonEncode(data));
+    } //
+    on NotFoundException {
+      //
+      return Response(404);
+    }
+  }
+
   static Future<Response> putById(
     Request request,
     String id,

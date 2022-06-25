@@ -35,7 +35,7 @@ class ScheduleController {
       return Response(201, body: jsonEncode(data));
     } //
     on TypeError catch (e) {
-      final error = NlIruoyCommonModelsError(
+      final error = NlIruoyCommonV0ModelsError(
         code: 'invalid-json',
         message: e.toString(),
       );
@@ -60,7 +60,7 @@ class ScheduleController {
       return Response(200, body: jsonEncode(data));
     } //
     on TypeError catch (e) {
-      final error = NlIruoyCommonModelsError(
+      final error = NlIruoyCommonV0ModelsError(
         code: 'invalid-json',
         message: e.toString(),
       );

@@ -3,7 +3,7 @@ import 'package:app/src/state/recipes/recipes_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  const error = NlIruoyCommonModelsError(code: '', message: '');
+  const error = NlIruoyCommonV0ModelsError(code: '', message: '');
 
   group('RecipesState', () {
     group('RecipesInitial', () {

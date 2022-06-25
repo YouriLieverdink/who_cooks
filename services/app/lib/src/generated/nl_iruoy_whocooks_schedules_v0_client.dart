@@ -1,23 +1,23 @@
 import 'package:http/http.dart';
 import 'dart:convert';
-import './nl_iruoy_whocooks_recipes_json.dart';
+import './nl_iruoy_whocooks_schedules_v0_json.dart';
 
-class NlIruoyCommonModelsHealthcheckResource {
-  const NlIruoyCommonModelsHealthcheckResource(
+class NlIruoyCommonV0ModelsHealthcheckResource {
+  const NlIruoyCommonV0ModelsHealthcheckResource(
       {required this.client, required this.baseUrl});
 
   final Client client;
 
   final String baseUrl;
 
-  Future<NlIruoyCommonModelsHealthcheck> get() async {
+  Future<NlIruoyCommonV0ModelsHealthcheck> get() async {
     final r = await client.get(Uri.parse('$baseUrl/_internal_/healthcheck'));
     final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 200:
-        return NlIruoyCommonModelsHealthcheck.fromJson(json);
+        return NlIruoyCommonV0ModelsHealthcheck.fromJson(json);
       case 422:
-        throw NlIruoyCommonModelsError.fromJson(json);
+        throw NlIruoyCommonV0ModelsError.fromJson(json);
       default:
         throw Exception([
           r.statusCode,
@@ -27,17 +27,17 @@ class NlIruoyCommonModelsHealthcheckResource {
   }
 }
 
-class NlIruoyWhocooksRecipesModelsRecipeResource {
-  const NlIruoyWhocooksRecipesModelsRecipeResource(
+class NlIruoyWhocooksSchedulesV0ModelsScheduleResource {
+  const NlIruoyWhocooksSchedulesV0ModelsScheduleResource(
       {required this.client, required this.baseUrl});
 
   final Client client;
 
   final String baseUrl;
 
-  Future<List<NlIruoyWhocooksRecipesModelsRecipe>> get(
-      {num limit = 100, num skip = 0}) async {
-    final r = await client.get(Uri.parse('$baseUrl/recipes').replace(
+  Future<List<NlIruoyWhocooksSchedulesV0ModelsSchedule>> get(
+      {int limit = 100, int skip = 0}) async {
+    final r = await client.get(Uri.parse('$baseUrl/schedules').replace(
         queryParameters: {
           'limit': jsonEncode(limit),
           'skip': jsonEncode(skip)
@@ -46,7 +46,7 @@ class NlIruoyWhocooksRecipesModelsRecipeResource {
     switch (r.statusCode) {
       case 200:
         return (json as List)
-            .map((v) => NlIruoyWhocooksRecipesModelsRecipe.fromJson(v))
+            .map((v) => NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson(v))
             .toList();
       default:
         throw Exception([
@@ -56,16 +56,16 @@ class NlIruoyWhocooksRecipesModelsRecipeResource {
     }
   }
 
-  Future<NlIruoyWhocooksRecipesModelsRecipe> post(
-      NlIruoyWhocooksRecipesModelsRecipeForm recipeForm) async {
-    final r = await client.post(Uri.parse('$baseUrl/recipes'),
-        body: jsonEncode(recipeForm));
+  Future<NlIruoyWhocooksSchedulesV0ModelsSchedule> post(
+      NlIruoyWhocooksSchedulesV0ModelsScheduleForm scheduleForm) async {
+    final r = await client.post(Uri.parse('$baseUrl/schedules'),
+        body: jsonEncode(scheduleForm));
     final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 201:
-        return NlIruoyWhocooksRecipesModelsRecipe.fromJson(json);
+        return NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson(json);
       case 400:
-        throw NlIruoyCommonModelsError.fromJson(json);
+        throw NlIruoyCommonV0ModelsError.fromJson(json);
       default:
         throw Exception([
           r.statusCode,
@@ -74,17 +74,17 @@ class NlIruoyWhocooksRecipesModelsRecipeResource {
     }
   }
 
-  Future<NlIruoyWhocooksRecipesModelsRecipe> putById(
-      NlIruoyWhocooksRecipesModelsRecipeForm recipeForm,
+  Future<NlIruoyWhocooksSchedulesV0ModelsSchedule> putById(
+      NlIruoyWhocooksSchedulesV0ModelsScheduleForm scheduleForm,
       {required String id}) async {
-    final r = await client.put(Uri.parse('$baseUrl/recipes/$id'),
-        body: jsonEncode(recipeForm));
+    final r = await client.put(Uri.parse('$baseUrl/schedules/$id'),
+        body: jsonEncode(scheduleForm));
     final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 200:
-        return NlIruoyWhocooksRecipesModelsRecipe.fromJson(json);
+        return NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson(json);
       case 400:
-        throw NlIruoyCommonModelsError.fromJson(json);
+        throw NlIruoyCommonV0ModelsError.fromJson(json);
       case 404:
         throw json;
       default:
@@ -96,7 +96,7 @@ class NlIruoyWhocooksRecipesModelsRecipeResource {
   }
 
   Future<void> deleteById({required String id}) async {
-    final r = await client.delete(Uri.parse('$baseUrl/recipes/$id'));
+    final r = await client.delete(Uri.parse('$baseUrl/schedules/$id'));
     final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 204:
@@ -112,21 +112,21 @@ class NlIruoyWhocooksRecipesModelsRecipeResource {
   }
 }
 
-class NlIruoyWhocooksRecipesClient {
-  const NlIruoyWhocooksRecipesClient(
+class NlIruoyWhocooksSchedulesV0Client {
+  const NlIruoyWhocooksSchedulesV0Client(
       {required this.client, required this.baseUrl});
 
   final Client client;
 
   final String baseUrl;
 
-  NlIruoyCommonModelsHealthcheckResource get healthchecks {
-    return NlIruoyCommonModelsHealthcheckResource(
+  NlIruoyCommonV0ModelsHealthcheckResource get healthchecks {
+    return NlIruoyCommonV0ModelsHealthcheckResource(
         baseUrl: baseUrl, client: client);
   }
 
-  NlIruoyWhocooksRecipesModelsRecipeResource get recipes {
-    return NlIruoyWhocooksRecipesModelsRecipeResource(
+  NlIruoyWhocooksSchedulesV0ModelsScheduleResource get schedules {
+    return NlIruoyWhocooksSchedulesV0ModelsScheduleResource(
         baseUrl: baseUrl, client: client);
   }
 }
