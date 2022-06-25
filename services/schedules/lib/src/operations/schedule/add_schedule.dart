@@ -2,16 +2,16 @@ import 'package:schedules/schedules.dart';
 
 class CreateAddSchedule {
   //
-  const CreateAddSchedule({
-    required this.dao,
-  });
+  const CreateAddSchedule(
+    this.dao,
+  );
 
   final NlIruoyWhocooksScheduleDao dao;
 
   Future<Schedule> call(
-    ScheduleForm recipeForm,
+    ScheduleForm scheduleForm,
   ) async {
     //
-    return dao.post(recipeForm);
+    return dao.post(scheduleForm);
   }
 }

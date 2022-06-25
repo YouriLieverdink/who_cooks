@@ -2,9 +2,9 @@ import 'package:schedules/schedules.dart';
 
 class CreateShowSchedule {
   //
-  const CreateShowSchedule({
-    required this.dao,
-  });
+  const CreateShowSchedule(
+    this.dao,
+  );
 
   final NlIruoyWhocooksScheduleDao dao;
 

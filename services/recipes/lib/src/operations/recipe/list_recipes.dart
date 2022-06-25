@@ -2,9 +2,9 @@ import 'package:recipes/recipes.dart';
 
 class CreateListRecipes {
   //
-  const CreateListRecipes({
-    required this.dao,
-  });
+  const CreateListRecipes(
+    this.dao,
+  );
 
   final NlIruoyWhocooksRecipeDao dao;
 

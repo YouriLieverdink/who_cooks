@@ -2,10 +2,10 @@ import 'package:schedules/schedules.dart';
 
 class CreateRemoveSchedule {
   //
-  const CreateRemoveSchedule({
-    required this.dao,
-    required this.showSchedule,
-  });
+  const CreateRemoveSchedule(
+    this.dao,
+    this.showSchedule,
+  );
 
   final NlIruoyWhocooksScheduleDao dao;
 

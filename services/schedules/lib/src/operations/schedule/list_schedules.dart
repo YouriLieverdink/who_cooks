@@ -2,9 +2,9 @@ import 'package:schedules/schedules.dart';
 
 class CreateListSchedules {
   //
-  const CreateListSchedules({
-    required this.dao,
-  });
+  const CreateListSchedules(
+    this.dao,
+  );
 
   final NlIruoyWhocooksScheduleDao dao;
 

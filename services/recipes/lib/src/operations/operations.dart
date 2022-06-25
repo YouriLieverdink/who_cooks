@@ -7,13 +7,12 @@ import './recipe/list_recipes.dart';
 import './recipe/remove_recipe.dart';
 import './recipe/show_recipe.dart';
 
-// Dependencies.
-final recipeDao = NlIruoyWhocooksRecipeDao(connect: $.getAsync);
+final dao = NlIruoyWhocooksRecipeDao(connect: $.getAsync);
 
 final showHealthcheck = CreateShowHealthcheck();
 
-final showRecipe = CreateShowRecipe(dao: recipeDao);
-final addRecipe = CreateAddRecipe(dao: recipeDao);
-final editRecipe = CreateEditRecipe(dao: recipeDao, showRecipe: showRecipe);
-final removeRecipe = CreateRemoveRecipe(dao: recipeDao, showRecipe: showRecipe);
-final listRecipes = CreateListRecipes(dao: recipeDao);
+final showRecipe = CreateShowRecipe(dao);
+final addRecipe = CreateAddRecipe(dao);
+final editRecipe = CreateEditRecipe(dao, showRecipe);
+final removeRecipe = CreateRemoveRecipe(dao, showRecipe);
+final listRecipes = CreateListRecipes(dao);
