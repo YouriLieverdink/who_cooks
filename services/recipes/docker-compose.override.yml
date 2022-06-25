@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  recipes:
+    build:
+      target: base
+    command: dart run --enable-vm-service ./bin/recipes.dart
+    volumes:
+      - ./lib:/usr/app/services/recipes/lib
+
+  recipes_db:
+    command: mongod --quiet --logpath /dev/null
+
+  rabbit_mq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"

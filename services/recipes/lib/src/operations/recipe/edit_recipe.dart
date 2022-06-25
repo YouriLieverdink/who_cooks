@@ -35,7 +35,7 @@ class CreateEditRecipe {
       recipe: recipe,
     );
 
-    final queue = await connect<Queue>();
+    final queue = await $.getAsync<Queue>();
     await queue.add(RecipeEvent.fromFirst(event));
   }
 }

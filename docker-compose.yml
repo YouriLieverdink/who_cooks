@@ -20,23 +20,23 @@ services:
     image: yourilieverdink/whocooks-recipes:${TAG-latest}
     environment:
       - PREFIX=api/recipes
-      - MONGO_URI=mongodb://recipes-db/whocooks
-      - RABBIT_URI=rabbitmq
+      - DB_HOST=recipes_db
+      - QUEUE_HOST=rabbit_mq
       - VERSION=${TAG:-latest}
     ports:
       - "8080"
     depends_on:
-      - recipes-db
-      - rabbitmq
+      - recipes_db
+      - rabbit_mq
 
-  recipes-db:
+  recipes_db:
     labels:
       - "traefik.enable=false"
     image: mongo
     ports:
       - "27017"
     volumes:
-      - recipes-db-data:/data/db
+      - recipes_db_data:/data/db
 
   schedules:
     labels:
@@ -47,30 +47,29 @@ services:
     image: yourilieverdink/whocooks-schedules:${TAG-latest}
     environment:
       - PREFIX=api/schedules
-      - MONGO_URI=mongodb://schedules-db/whocooks
-      - RABBIT_URI=rabbitmq
+      - DB_HOST=schedules_db
+      - QUEUE_HOST=rabbit_mq
       - VERSION=${TAG:-latest}
     ports:
       - "8080"
     depends_on:
-      - schedules-db
-      - rabbitmq
+      - schedules_db
+      - rabbit_mq
 
-  schedules-db:
+  schedules_db:
     labels:
       - "traefik.enable=false"
     image: mongo
     ports:
       - "27017"
     volumes:
-      - schedules-db-data:/data/db
+      - schedules_db_data:/data/db
 
-  rabbitmq:
+  rabbit_mq:
     image: rabbitmq:3
-    hostname: rabbitmq
     ports:
       - "5672"
 
 volumes:
-  recipes-db-data: {}
-  schedules-db-data: {}
+  recipes_db_data: {}
+  schedules_db_data: {}

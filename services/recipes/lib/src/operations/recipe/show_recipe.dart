@@ -15,7 +15,10 @@ class CreateShowRecipe {
     final data = await dao.getById(id: id);
 
     if (data == null) {
-      throw NotFoundException();
+      throw NlIruoyCommonV0ModelsError(
+        code: 'not-found',
+        message: 'The recipe with id: $id has not been found.',
+      );
     }
 
     return data;

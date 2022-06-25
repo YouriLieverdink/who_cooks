@@ -41,7 +41,7 @@ class RecipeController {
 
       return Response(200, body: jsonEncode(data));
     } //
-    on NotFoundException {
+    on NlIruoyCommonV0ModelsError {
       //
       return Response(404);
     }
@@ -60,7 +60,7 @@ class RecipeController {
 
       return Response(200, body: jsonEncode(data));
     } //
-    on NotFoundException {
+    on NlIruoyCommonV0ModelsError {
       //
       return Response(404);
     }
@@ -76,7 +76,7 @@ class RecipeController {
 
       return Response(204);
     } //
-    on NotFoundException {
+    on NlIruoyCommonV0ModelsError {
       //
       return Response(404);
     }

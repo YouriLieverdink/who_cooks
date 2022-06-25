@@ -6,7 +6,7 @@ class CreateShowHealthcheck {
 
   Future<NlIruoyCommonV0ModelsHealthcheck> call() async {
     try {
-      await connect<Db>();
+      await $.getAsync<Db>();
     } //
     catch (_) {
       throw NlIruoyCommonV0ModelsError(
@@ -16,7 +16,7 @@ class CreateShowHealthcheck {
     }
 
     try {
-      await connect<Queue>();
+      await $.getAsync<Queue>();
     } //
     catch (_) {
       throw NlIruoyCommonV0ModelsError(

@@ -2,6 +2,7 @@ FROM dart:stable as base
 
 WORKDIR /usr/app
 
+# Resolve local dependencies
 COPY ./packages/queue ./packages/queue
 
 COPY ./services/recipes ./services/recipes

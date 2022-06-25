@@ -8,7 +8,7 @@ import './recipe/remove_recipe.dart';
 import './recipe/show_recipe.dart';
 
 // Dependencies.
-final recipeDao = NlIruoyWhocooksRecipeDao(connect: connect);
+final recipeDao = NlIruoyWhocooksRecipeDao(connect: $.getAsync);
 
 final showHealthcheck = CreateShowHealthcheck();
 

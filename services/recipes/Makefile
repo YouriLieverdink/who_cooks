@@ -8,7 +8,3 @@ build-release:
 
 push-release:
 	@TARGET=prod TAG=$(current) docker-compose -f docker-compose.yml push
-
-# Development
-dev:
-	@docker-compose up --build

@@ -14,7 +14,7 @@ services:
     volumes:
       - ./services/recipes/lib:/usr/app/services/recipes/lib
 
-  recipes-db:
+  recipes_db:
     command: mongod --quiet --logpath /dev/null
 
   schedules:
@@ -24,9 +24,9 @@ services:
     volumes:
       - ./services/schedules/lib:/usr/app/services/schedules/lib
 
-  schedules-db:
+  schedules_db:
     command: mongod --quiet --logpath /dev/null
 
 volumes:
-  recipes-db-data: {}
-  schedules-db-data: {}
+  recipes_db_data: {}
+  schedules_db_data: {}
