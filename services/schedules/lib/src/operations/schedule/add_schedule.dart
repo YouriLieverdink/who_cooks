@@ -12,6 +12,6 @@ class CreateAddSchedule {
     ScheduleForm scheduleForm,
   ) async {
     //
-    return dao.post(scheduleForm);
+    return dao.insert(scheduleForm);
   }
 }

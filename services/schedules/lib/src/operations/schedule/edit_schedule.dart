@@ -18,6 +18,6 @@ class CreateEditSchedule {
     //
     await showSchedule(id: id);
 
-    return dao.putById(scheduleForm, id: id);
+    return dao.updateById(scheduleForm, id: id);
   }
 }
