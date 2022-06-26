@@ -8,7 +8,11 @@ class Queue {
   Queue(
     String host,
   ) : _client = Client(
-          settings: ConnectionSettings(host: host, maxConnectionAttempts: 3),
+          settings: ConnectionSettings(
+            host: host,
+            maxConnectionAttempts: 3,
+            reconnectWaitTime: const Duration(seconds: 4),
+          ),
         );
 
   /// The [Client] used to the Rabbit messaging queue.
