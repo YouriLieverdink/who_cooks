@@ -6,3 +6,4 @@ export './src/di.dart';
 export './src/domain/domain.dart';
 export './src/generated/generated.dart';
 export './src/operations/operations.dart';
+export './src/routes.dart';

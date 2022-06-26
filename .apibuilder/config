@@ -13,9 +13,6 @@ code:
           
          - generator: dart_2_15_client
            target: ./services/app/lib/src/generated
-          
-         - generator: dart_2_15_routes
-           target: ./services/recipes/lib/src/generated
     
     schedules:
       version: latest
@@ -27,6 +24,3 @@ code:
           
          - generator: dart_2_15_client
            target: ./services/app/lib/src/generated
-          
-         - generator: dart_2_15_routes
-           target: ./services/schedules/lib/src/generated
