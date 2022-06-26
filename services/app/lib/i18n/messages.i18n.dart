@@ -35,8 +35,8 @@ class Messages {
   String get locale => "en";
   String get languageCode => "en";
   PagesMessages get pages => PagesMessages(this);
-  LabelsMessages get labels => LabelsMessages(this);
   HintsMessages get hints => HintsMessages(this);
+  ResourcesMessages get resources => ResourcesMessages(this);
 }
 
 class PagesMessages {
@@ -46,12 +46,6 @@ class PagesMessages {
   String get schedule => """Schedule""";
 }
 
-class LabelsMessages {
-  final Messages _parent;
-  const LabelsMessages(this._parent);
-  String get ingredients => """Ingredients""";
-}
-
 class HintsMessages {
   final Messages _parent;
   const HintsMessages(this._parent);
@@ -59,10 +53,20 @@ class HintsMessages {
   String get nextWeek => """Next week""";
 }
 
+class ResourcesMessages {
+  final Messages _parent;
+  const ResourcesMessages(this._parent);
+  String ingredient(int count) =>
+      """${_plural(count, one: 'ingredient', many: 'ingredients')}""";
+  String recipe(int count) =>
+      """${_plural(count, one: 'recipe', many: 'recipes')}""";
+  String schedule(int count) =>
+      """${_plural(count, one: 'schedule', many: 'schedules')}""";
+}
+
 Map<String, String> get messagesMap => {
       """pages.recipes""": """Recipes""",
       """pages.schedule""": """Schedule""",
-      """labels.ingredients""": """Ingredients""",
       """hints.thisWeek""": """This week""",
       """hints.nextWeek""": """Next week""",
     };

@@ -26,15 +26,18 @@ import 'package:mockito/mockito.dart' as _i1;
 class _FakeNlIruoyWhocooksRecipesV0Client_0 extends _i1.Fake
     implements _i2.NlIruoyWhocooksRecipesV0Client {}
 
-class _FakeClient_1 extends _i1.Fake implements _i3.Client {}
+class _FakeNlIruoyWhocooksSchedulesV0Client_1 extends _i1.Fake
+    implements _i2.NlIruoyWhocooksSchedulesV0Client {}
 
-class _FakeNlIruoyCommonV0ModelsHealthcheckResource_2 extends _i1.Fake
+class _FakeClient_2 extends _i1.Fake implements _i3.Client {}
+
+class _FakeNlIruoyCommonV0ModelsHealthcheckResource_3 extends _i1.Fake
     implements _i4.NlIruoyCommonV0ModelsHealthcheckResource {}
 
-class _FakeNlIruoyWhocooksRecipesV0ModelsRecipeResource_3 extends _i1.Fake
+class _FakeNlIruoyWhocooksRecipesV0ModelsRecipeResource_4 extends _i1.Fake
     implements _i2.NlIruoyWhocooksRecipesV0ModelsRecipeResource {}
 
-class _FakeNlIruoyWhocooksRecipesV0ModelsRecipe_4 extends _i1.Fake
+class _FakeNlIruoyWhocooksRecipesV0ModelsRecipe_5 extends _i1.Fake
     implements _i5.NlIruoyWhocooksRecipesV0ModelsRecipe {}
 
 /// A class which mocks [Repository].
@@ -46,10 +49,15 @@ class MockRepository extends _i1.Mock implements _i6.Repository {
   }
 
   @override
-  _i2.NlIruoyWhocooksRecipesV0Client get client =>
-      (super.noSuchMethod(Invocation.getter(#client),
+  _i2.NlIruoyWhocooksRecipesV0Client get recipes =>
+      (super.noSuchMethod(Invocation.getter(#recipes),
               returnValue: _FakeNlIruoyWhocooksRecipesV0Client_0())
           as _i2.NlIruoyWhocooksRecipesV0Client);
+  @override
+  _i2.NlIruoyWhocooksSchedulesV0Client get schedules =>
+      (super.noSuchMethod(Invocation.getter(#schedules),
+              returnValue: _FakeNlIruoyWhocooksSchedulesV0Client_1())
+          as _i2.NlIruoyWhocooksSchedulesV0Client);
 }
 
 /// A class which mocks [NlIruoyWhocooksRecipesV0Client].
@@ -63,7 +71,7 @@ class MockNlIruoyWhocooksRecipesV0Client extends _i1.Mock
 
   @override
   _i3.Client get client => (super.noSuchMethod(Invocation.getter(#client),
-      returnValue: _FakeClient_1()) as _i3.Client);
+      returnValue: _FakeClient_2()) as _i3.Client);
   @override
   String get baseUrl =>
       (super.noSuchMethod(Invocation.getter(#baseUrl), returnValue: '')
@@ -71,13 +79,13 @@ class MockNlIruoyWhocooksRecipesV0Client extends _i1.Mock
   @override
   _i4.NlIruoyCommonV0ModelsHealthcheckResource get healthchecks =>
       (super.noSuchMethod(Invocation.getter(#healthchecks),
-              returnValue: _FakeNlIruoyCommonV0ModelsHealthcheckResource_2())
+              returnValue: _FakeNlIruoyCommonV0ModelsHealthcheckResource_3())
           as _i4.NlIruoyCommonV0ModelsHealthcheckResource);
   @override
   _i2.NlIruoyWhocooksRecipesV0ModelsRecipeResource get recipes =>
       (super.noSuchMethod(Invocation.getter(#recipes),
               returnValue:
-                  _FakeNlIruoyWhocooksRecipesV0ModelsRecipeResource_3())
+                  _FakeNlIruoyWhocooksRecipesV0ModelsRecipeResource_4())
           as _i2.NlIruoyWhocooksRecipesV0ModelsRecipeResource);
 }
 
@@ -92,7 +100,7 @@ class MockNlIruoyWhocooksRecipesV0ModelsRecipeResource extends _i1.Mock
 
   @override
   _i3.Client get client => (super.noSuchMethod(Invocation.getter(#client),
-      returnValue: _FakeClient_1()) as _i3.Client);
+      returnValue: _FakeClient_2()) as _i3.Client);
   @override
   String get baseUrl =>
       (super.noSuchMethod(Invocation.getter(#baseUrl), returnValue: '')
@@ -111,13 +119,13 @@ class MockNlIruoyWhocooksRecipesV0ModelsRecipeResource extends _i1.Mock
           _i5.NlIruoyWhocooksRecipesV0ModelsRecipeForm? recipeForm) =>
       (super.noSuchMethod(Invocation.method(#post, [recipeForm]),
           returnValue: Future<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>.value(
-              _FakeNlIruoyWhocooksRecipesV0ModelsRecipe_4())) as _i7
+              _FakeNlIruoyWhocooksRecipesV0ModelsRecipe_5())) as _i7
           .Future<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>);
   @override
   _i7.Future<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe> getById({String? id}) =>
       (super.noSuchMethod(Invocation.method(#getById, [], {#id: id}),
           returnValue: Future<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>.value(
-              _FakeNlIruoyWhocooksRecipesV0ModelsRecipe_4())) as _i7
+              _FakeNlIruoyWhocooksRecipesV0ModelsRecipe_5())) as _i7
           .Future<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>);
   @override
   _i7.Future<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe> putById(
@@ -125,7 +133,7 @@ class MockNlIruoyWhocooksRecipesV0ModelsRecipeResource extends _i1.Mock
           {String? id}) =>
       (super.noSuchMethod(Invocation.method(#putById, [recipeForm], {#id: id}),
           returnValue: Future<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>.value(
-              _FakeNlIruoyWhocooksRecipesV0ModelsRecipe_4())) as _i7
+              _FakeNlIruoyWhocooksRecipesV0ModelsRecipe_5())) as _i7
           .Future<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>);
   @override
   _i7.Future<void> deleteById({String? id}) =>

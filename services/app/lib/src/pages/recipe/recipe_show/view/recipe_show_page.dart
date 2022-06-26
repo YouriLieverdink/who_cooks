@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../state/state.dart';
-import '../recipe_show.dart';
+import '../../recipe.dart';
 
 class RecipeShowPage extends StatelessWidget {
   const RecipeShowPage({
@@ -43,10 +43,7 @@ class RecipeShowPage extends StatelessWidget {
             ],
           ),
           body: RecipeShowPageBody(recipe: recipe),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(Icons.edit),
-          ),
+          floatingActionButton: RecipeAddEditButton(id: recipe.id),
         );
       },
     );

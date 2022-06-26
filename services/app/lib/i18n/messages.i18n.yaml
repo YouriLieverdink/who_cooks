@@ -2,9 +2,11 @@ pages:
   recipes: Recipes
   schedule: Schedule
 
-labels:
-  ingredients: Ingredients
-
 hints:
   thisWeek: This week
   nextWeek: Next week
+
+resources:
+  ingredient(int count): "${_plural(count, one: 'ingredient', many: 'ingredients')}"
+  recipe(int count): "${_plural(count, one: 'recipe', many: 'recipes')}"
+  schedule(int count): "${_plural(count, one: 'schedule', many: 'schedules')}"

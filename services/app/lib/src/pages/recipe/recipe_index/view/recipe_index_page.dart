@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../di.dart';
 import '../../../../state/state.dart';
-import '../recipe_index.dart';
+import '../../recipe.dart';
 
 class RecipeIndexPage extends StatefulWidget {
   const RecipeIndexPage({
@@ -55,10 +55,7 @@ class _RecipeIndexPageState extends State<RecipeIndexPage> {
           return const SizedBox();
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: const RecipeAddEditButton(),
     );
   }
 }

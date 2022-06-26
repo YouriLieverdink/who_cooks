@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../di.dart';
 import '../../../../generated/generated.dart';
+import '../../../../utilities/utilities.dart';
 import '../recipe_show.dart';
 
 class RecipeShowPageBody extends StatelessWidget {
@@ -53,7 +54,9 @@ class RecipeShowPageBody extends StatelessWidget {
           if (recipe.ingredients.isNotEmpty) ...[
             const SizedBox(height: kPadding),
             Text(
-              translations.messages.labels.ingredients,
+              capitalize(
+                translations.messages.resources.ingredient(3),
+              ),
               style: theme.textTheme.bodyLarge,
             ),
             const Divider(height: kPadding),

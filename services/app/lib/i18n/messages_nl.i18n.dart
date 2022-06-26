@@ -36,8 +36,8 @@ class MessagesNl extends Messages {
   String get locale => "nl";
   String get languageCode => "nl";
   PagesMessagesNl get pages => PagesMessagesNl(this);
-  LabelsMessagesNl get labels => LabelsMessagesNl(this);
   HintsMessagesNl get hints => HintsMessagesNl(this);
+  ResourcesMessagesNl get resources => ResourcesMessagesNl(this);
 }
 
 class PagesMessagesNl extends PagesMessages {
@@ -47,12 +47,6 @@ class PagesMessagesNl extends PagesMessages {
   String get schedule => """Planning""";
 }
 
-class LabelsMessagesNl extends LabelsMessages {
-  final MessagesNl _parent;
-  const LabelsMessagesNl(this._parent) : super(_parent);
-  String get ingredients => """Ingrediënten""";
-}
-
 class HintsMessagesNl extends HintsMessages {
   final MessagesNl _parent;
   const HintsMessagesNl(this._parent) : super(_parent);
@@ -60,10 +54,20 @@ class HintsMessagesNl extends HintsMessages {
   String get nextWeek => """Volgende week""";
 }
 
+class ResourcesMessagesNl extends ResourcesMessages {
+  final MessagesNl _parent;
+  const ResourcesMessagesNl(this._parent) : super(_parent);
+  String ingredient(int count) =>
+      """${_plural(count, one: 'ingrediënt', many: 'ingrediënten')}""";
+  String recipe(int count) =>
+      """${_plural(count, one: 'recept', many: 'recepten')}""";
+  String schedule(int count) =>
+      """${_plural(count, one: 'planning', many: 'planningen')}""";
+}
+
 Map<String, String> get messagesNlMap => {
       """pages.recipes""": """Recepten""",
       """pages.schedule""": """Planning""",
-      """labels.ingredients""": """Ingrediënten""",
       """hints.thisWeek""": """Deze week""",
       """hints.nextWeek""": """Volgende week""",
     };

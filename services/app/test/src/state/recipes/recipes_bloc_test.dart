@@ -34,7 +34,7 @@ void main() {
     client = MockNlIruoyWhocooksRecipesV0Client();
     repository = MockRepository();
 
-    when(repository.client).thenReturn(client);
+    when(repository.recipes).thenReturn(client);
     when(client.recipes).thenReturn(resource);
     when(resource.get(skip: anyNamed('skip'), limit: anyNamed('limit')))
         .thenAnswer((_) async => mockRecipes);
