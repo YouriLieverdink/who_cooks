@@ -6,13 +6,9 @@ whocooks:
     dart_2_15_json:
     - "./services/app/lib/src/generated/nl_iruoy_whocooks_recipes_v0_json.dart"
     - "./services/recipes/lib/src/generated/nl_iruoy_whocooks_recipes_v0_json.dart"
-    dart_2_15_routes:
-    - "./services/recipes/lib/src/generated/nl_iruoy_whocooks_recipes_v0_routes.dart"
   schedules:
     dart_2_15_client:
     - "./services/app/lib/src/generated/nl_iruoy_whocooks_schedules_v0_client.dart"
     dart_2_15_json:
     - "./services/app/lib/src/generated/nl_iruoy_whocooks_schedules_v0_json.dart"
     - "./services/schedules/lib/src/generated/nl_iruoy_whocooks_schedules_v0_json.dart"
-    dart_2_15_routes:
-    - "./services/schedules/lib/src/generated/nl_iruoy_whocooks_schedules_v0_routes.dart"

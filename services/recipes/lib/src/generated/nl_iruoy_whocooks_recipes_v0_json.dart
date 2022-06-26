@@ -190,42 +190,54 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeForm extends Equatable {
 
 class NlIruoyWhocooksRecipesV0ModelsRecipeUpserted extends Equatable {
   const NlIruoyWhocooksRecipesV0ModelsRecipeUpserted(
-      {required this.id, required this.timestamp, required this.recipe});
+      {required this.id,
+      required this.timestamp,
+      this.previous,
+      required this.current});
 
   factory NlIruoyWhocooksRecipesV0ModelsRecipeUpserted.fromJson(dynamic json) {
     return NlIruoyWhocooksRecipesV0ModelsRecipeUpserted(
         id: (json['id'] as String),
         timestamp: DateTime.parse(json['timestamp']),
-        recipe: NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json['recipe']));
+        previous: json['previous'] == null
+            ? null
+            : NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json['previous']),
+        current:
+            NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json['current']));
   }
 
   final String id;
 
   final DateTime timestamp;
 
-  final NlIruoyWhocooksRecipesV0ModelsRecipe recipe;
+  final NlIruoyWhocooksRecipesV0ModelsRecipe? previous;
+
+  final NlIruoyWhocooksRecipesV0ModelsRecipe current;
 
   dynamic toJson() {
     return {
       'id': id,
       'timestamp': timestamp.toIso8601String(),
-      'recipe': recipe.toJson()
+      'previous': previous?.toJson(),
+      'current': current.toJson()
     };
   }
 
   @override
   List<Object?> get props {
-    return [id, timestamp, recipe];
+    return [id, timestamp, previous, current];
   }
 
   NlIruoyWhocooksRecipesV0ModelsRecipeUpserted copyWith(
       {String? id,
       DateTime? timestamp,
-      NlIruoyWhocooksRecipesV0ModelsRecipe? recipe}) {
+      NlIruoyWhocooksRecipesV0ModelsRecipe? previous,
+      NlIruoyWhocooksRecipesV0ModelsRecipe? current}) {
     return NlIruoyWhocooksRecipesV0ModelsRecipeUpserted(
         id: id ?? this.id,
         timestamp: timestamp ?? this.timestamp,
-        recipe: recipe ?? this.recipe);
+        previous: previous ?? this.previous,
+        current: current ?? this.current);
   }
 }
 
