@@ -45,7 +45,7 @@ class NlIruoyWhocooksScheduleDao {
         .collection('schedules')
         .modernFind(
           limit: limit,
-          skip: skip,
+          skip: skip == 0 ? null : skip,
           selector: where
               .when(
                 ids != null,

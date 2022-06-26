@@ -39,7 +39,7 @@ class NlIruoyWhocooksRecipeDao {
         .collection('recipes')
         .modernFind(
           limit: limit,
-          skip: skip,
+          skip: skip == 0 ? null : skip,
           selector: where.when(
             ids != null,
             (s) => s.oneFrom('_id', _ids!),
