@@ -12,7 +12,7 @@ class CreateAddRecipe {
     RecipeForm recipeForm,
   ) async {
     //
-    final data = await dao.post(recipeForm);
+    final data = await dao.insert(recipeForm);
 
     await _publish(data);
 

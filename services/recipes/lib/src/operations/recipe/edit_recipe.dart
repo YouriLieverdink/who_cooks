@@ -18,7 +18,7 @@ class CreateEditRecipe {
     //
     final existing = await showRecipe(id: id);
 
-    final data = await dao.putById(recipeForm, id: id);
+    final data = await dao.updateById(recipeForm, id: id);
 
     await _publish(existing, data);
 
