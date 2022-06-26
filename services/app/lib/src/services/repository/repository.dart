@@ -4,7 +4,7 @@ import '../../generated/generated.dart';
 
 class Repository {
   /// The base url of the backend services.
-  static const baseUrl = 'http://localhost:5001';
+  static const baseUrl = 'http://localhost:8000/api';
 
   const Repository({
     required this.recipes,
@@ -24,11 +24,11 @@ class Repository {
     return Repository(
       recipes: NlIruoyWhocooksRecipesV0Client(
         client: client,
-        baseUrl: baseUrl,
+        baseUrl: '$baseUrl/recipes',
       ),
       schedules: NlIruoyWhocooksSchedulesV0Client(
         client: client,
-        baseUrl: baseUrl,
+        baseUrl: '$baseUrl/schedules',
       ),
     );
   }

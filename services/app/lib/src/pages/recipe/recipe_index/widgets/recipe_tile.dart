@@ -33,13 +33,11 @@ class RecipeTile extends StatelessWidget {
       ),
       isThreeLine: true,
       title: Text(recipe.title),
-      subtitle: recipe.description != null
-          ? Text(
-              recipe.description!,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            )
-          : null,
+      subtitle: Text(
+        recipe.description ?? '...',
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 }

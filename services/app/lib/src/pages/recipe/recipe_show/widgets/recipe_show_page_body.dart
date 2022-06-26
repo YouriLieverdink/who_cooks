@@ -34,7 +34,7 @@ class RecipeShowPageBody extends StatelessWidget {
               child: Image(
                 fit: BoxFit.cover,
                 image: NetworkImage(
-                  recipe.photoUrl!,
+                  recipe.photoUrl ?? '',
                 ),
                 errorBuilder: (_, __, ___) => const Icon(Icons.image),
               ),
@@ -45,13 +45,11 @@ class RecipeShowPageBody extends StatelessWidget {
             recipe.title,
             style: theme.textTheme.headlineSmall,
           ),
-          if (recipe.description != null) ...[
-            const SizedBox(height: kPadding / 4),
-            Text(
-              recipe.description!,
-              style: theme.textTheme.bodyMedium,
-            ),
-          ],
+          const SizedBox(height: kPadding / 4),
+          Text(
+            recipe.description ?? '...',
+            style: theme.textTheme.bodyMedium,
+          ),
           if (recipe.ingredients.isNotEmpty) ...[
             const SizedBox(height: kPadding),
             Text(
