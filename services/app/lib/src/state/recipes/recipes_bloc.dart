@@ -18,6 +18,7 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     on<LoadRecipes>(_onLoadRecipes);
     on<AddRecipe>(_onAddRecipe);
     on<EditRecipe>(_onEditRecipe);
+    on<RemoveRecipe>(_onRemoveRecipe);
   }
 
   void _onFailure(
@@ -79,6 +80,21 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     if (_state is RecipesLoaded) {
       final recipes = _state.recipes //
           .map((v) => v.id == event.recipe.id ? event.recipe : v)
+          .toList();
+
+      emit(RecipesLoaded(recipes: recipes));
+    }
+  }
+
+  void _onRemoveRecipe(
+    RemoveRecipe event,
+    Emitter<RecipesState> emit,
+  ) {
+    final _state = state;
+
+    if (_state is RecipesLoaded) {
+      final recipes = _state.recipes //
+          .where((v) => v.id != event.recipe.id)
           .toList();
 
       emit(RecipesLoaded(recipes: recipes));

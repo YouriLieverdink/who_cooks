@@ -53,3 +53,14 @@ class EditRecipe extends RecipesEvent {
   @override
   List<Object> get props => [recipe];
 }
+
+class RemoveRecipe extends RecipesEvent {
+  const RemoveRecipe({
+    required this.recipe,
+  });
+
+  final Recipe recipe;
+
+  @override
+  List<Object> get props => [recipe];
+}

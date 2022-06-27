@@ -1,6 +1,10 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 
+import '../../../../di.dart';
+import '../../../../generated/generated.dart';
 import '../../../../state/state.dart';
 import '../../recipe.dart';
 
@@ -29,23 +33,53 @@ class RecipeShowPage extends StatelessWidget {
 
         final recipe = state.recipes //
             .where((v) => v.id == id)
-            .first;
+            .firstOrNull;
 
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(recipe.title),
-            centerTitle: false,
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.delete),
-              ),
-            ],
+        if (recipe == null) {
+          return const SizedBox();
+        }
+
+        return BlocProvider(
+          create: (context) => RecipeRemoveCubit(
+            recipe: recipe,
+            repository: $.get(),
+            recipesBloc: context.read<RecipesBloc>(),
           ),
-          body: RecipeShowPageBody(recipe: recipe),
-          floatingActionButton: RecipeAddEditButton(id: recipe.id),
+          child: _RecipeShowView(recipe: recipe),
         );
       },
+    );
+  }
+}
+
+class _RecipeShowView extends StatelessWidget {
+  const _RecipeShowView({
+    Key? key,
+    required this.recipe,
+  }) : super(key: key);
+
+  final Recipe recipe;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<RecipeRemoveCubit, RecipeRemoveState>(
+      listener: (context, state) {
+        if (state.submission == FormzStatus.submissionSuccess) {
+          // The operation was successful.
+          Navigator.pop(context);
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(recipe.title),
+          centerTitle: false,
+          actions: const [
+            RecipeRemoveButton(),
+          ],
+        ),
+        body: RecipeShowPageBody(recipe: recipe),
+        floatingActionButton: RecipeAddEditButton(id: recipe.id),
+      ),
     );
   }
 }
