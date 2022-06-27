@@ -19,10 +19,9 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        title: 'Who cooks?',
         onGenerateRoute: onGenerateRoute,
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
-        themeMode: ThemeMode.system,
+        theme: ThemeData.dark(),
       ),
     );
   }
