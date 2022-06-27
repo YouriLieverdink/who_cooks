@@ -31,3 +31,25 @@ class LoadRecipes extends RecipesEvent {
   @override
   List<Object?> get props => [skip, limit];
 }
+
+class AddRecipe extends RecipesEvent {
+  const AddRecipe({
+    required this.recipe,
+  });
+
+  final Recipe recipe;
+
+  @override
+  List<Object> get props => [recipe];
+}
+
+class EditRecipe extends RecipesEvent {
+  const EditRecipe({
+    required this.recipe,
+  });
+
+  final Recipe recipe;
+
+  @override
+  List<Object> get props => [recipe];
+}

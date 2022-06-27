@@ -1,3 +1,8 @@
+buttons:
+  add: Add
+  edit: Edit
+  save: Save
+
 pages:
   recipes: Recipes
   schedule: Schedule
@@ -5,8 +10,18 @@ pages:
 hints:
   thisWeek: This week
   nextWeek: Next week
+  add: Add
+  edit: Edit
 
 resources:
   ingredient(int count): "${_plural(count, one: 'ingredient', many: 'ingredients')}"
   recipe(int count): "${_plural(count, one: 'recipe', many: 'recipes')}"
   schedule(int count): "${_plural(count, one: 'schedule', many: 'schedules')}"
+
+labels:
+  title: Title
+  description: Description
+  photoUrl: Photo url
+
+validation:
+  empty(String field): The $field is required

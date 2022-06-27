@@ -1,3 +1,8 @@
+buttons:
+  add: Toevoegen
+  edit: Wijzigen
+  save: Opslaan
+
 pages:
   recipes: Recepten
   schedule: Planning
@@ -5,8 +10,18 @@ pages:
 hints:
   thisWeek: Deze week
   nextWeek: Volgende week
+  add: Toevoegen
+  edit: Wijzigen
 
 resources:
   ingredient(int count): "${_plural(count, one: 'ingrediënt', many: 'ingrediënten')}"
   recipe(int count): "${_plural(count, one: 'recept', many: 'recepten')}"
   schedule(int count): "${_plural(count, one: 'planning', many: 'planningen')}"
+
+labels:
+  title: Titel
+  description: Beschrijving
+  photoUrl: Foto url
+
+validation:
+  empty(String field): De $field is verplicht

@@ -16,6 +16,8 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   }) : super(const RecipesInitial()) {
     on<_Failure>(_onFailure);
     on<LoadRecipes>(_onLoadRecipes);
+    on<AddRecipe>(_onAddRecipe);
+    on<EditRecipe>(_onEditRecipe);
   }
 
   void _onFailure(
@@ -52,6 +54,34 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     } //
     catch (e) {
       add(_Failure(error: e));
+    }
+  }
+
+  void _onAddRecipe(
+    AddRecipe event,
+    Emitter<RecipesState> emit,
+  ) {
+    final _state = state;
+
+    if (_state is RecipesLoaded) {
+      final recipes = [..._state.recipes, event.recipe];
+
+      emit(RecipesLoaded(recipes: recipes));
+    }
+  }
+
+  void _onEditRecipe(
+    EditRecipe event,
+    Emitter<RecipesState> emit,
+  ) {
+    final _state = state;
+
+    if (_state is RecipesLoaded) {
+      final recipes = _state.recipes //
+          .map((v) => v.id == event.recipe.id ? event.recipe : v)
+          .toList();
+
+      emit(RecipesLoaded(recipes: recipes));
     }
   }
 }

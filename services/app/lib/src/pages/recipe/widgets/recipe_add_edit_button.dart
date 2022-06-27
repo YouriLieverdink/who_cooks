@@ -2,9 +2,13 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../config/constants.dart';
+import '../../../di.dart';
 import '../../pages.dart';
 
 class RecipeAddEditButton extends StatelessWidget {
+  ///
+  static final translations = $.get<Translations>();
+
   const RecipeAddEditButton({
     Key? key,
     this.id,
@@ -26,16 +30,23 @@ class RecipeAddEditButton extends StatelessWidget {
       closedShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(kButtonSize / 3),
       ),
-      closedElevation: 6.0,
       closedColor: theme.colorScheme.secondary,
       closedBuilder: (context, onPressed) {
-        return SizedBox.square(
-          dimension: kButtonSize,
-          child: Center(
-            child: Icon(
-              Icons.add,
-              color: theme.colorScheme.onSecondary,
-            ),
+        return FloatingActionButton.extended(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(kButtonSize / 3),
+          ),
+          onPressed: onPressed,
+          icon: Icon(
+            id != null //
+                ? Icons.edit
+                : Icons.add,
+            color: theme.colorScheme.onSecondary,
+          ),
+          label: Text(
+            id != null //
+                ? translations.messages.buttons.edit
+                : translations.messages.buttons.add,
           ),
         );
       },

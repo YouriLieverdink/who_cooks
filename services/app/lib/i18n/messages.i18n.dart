@@ -34,9 +34,20 @@ class Messages {
   const Messages();
   String get locale => "en";
   String get languageCode => "en";
+  ButtonsMessages get buttons => ButtonsMessages(this);
   PagesMessages get pages => PagesMessages(this);
   HintsMessages get hints => HintsMessages(this);
   ResourcesMessages get resources => ResourcesMessages(this);
+  LabelsMessages get labels => LabelsMessages(this);
+  ValidationMessages get validation => ValidationMessages(this);
+}
+
+class ButtonsMessages {
+  final Messages _parent;
+  const ButtonsMessages(this._parent);
+  String get add => """Add""";
+  String get edit => """Edit""";
+  String get save => """Save""";
 }
 
 class PagesMessages {
@@ -51,6 +62,8 @@ class HintsMessages {
   const HintsMessages(this._parent);
   String get thisWeek => """This week""";
   String get nextWeek => """Next week""";
+  String get add => """Add""";
+  String get edit => """Edit""";
 }
 
 class ResourcesMessages {
@@ -64,9 +77,31 @@ class ResourcesMessages {
       """${_plural(count, one: 'schedule', many: 'schedules')}""";
 }
 
+class LabelsMessages {
+  final Messages _parent;
+  const LabelsMessages(this._parent);
+  String get title => """Title""";
+  String get description => """Description""";
+  String get photoUrl => """Photo url""";
+}
+
+class ValidationMessages {
+  final Messages _parent;
+  const ValidationMessages(this._parent);
+  String empty(String field) => """The $field is required""";
+}
+
 Map<String, String> get messagesMap => {
+      """buttons.add""": """Add""",
+      """buttons.edit""": """Edit""",
+      """buttons.save""": """Save""",
       """pages.recipes""": """Recipes""",
       """pages.schedule""": """Schedule""",
       """hints.thisWeek""": """This week""",
       """hints.nextWeek""": """Next week""",
+      """hints.add""": """Add""",
+      """hints.edit""": """Edit""",
+      """labels.title""": """Title""",
+      """labels.description""": """Description""",
+      """labels.photoUrl""": """Photo url""",
     };

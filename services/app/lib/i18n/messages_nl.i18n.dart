@@ -35,9 +35,20 @@ class MessagesNl extends Messages {
   const MessagesNl();
   String get locale => "nl";
   String get languageCode => "nl";
+  ButtonsMessagesNl get buttons => ButtonsMessagesNl(this);
   PagesMessagesNl get pages => PagesMessagesNl(this);
   HintsMessagesNl get hints => HintsMessagesNl(this);
   ResourcesMessagesNl get resources => ResourcesMessagesNl(this);
+  LabelsMessagesNl get labels => LabelsMessagesNl(this);
+  ValidationMessagesNl get validation => ValidationMessagesNl(this);
+}
+
+class ButtonsMessagesNl extends ButtonsMessages {
+  final MessagesNl _parent;
+  const ButtonsMessagesNl(this._parent) : super(_parent);
+  String get add => """Toevoegen""";
+  String get edit => """Wijzigen""";
+  String get save => """Opslaan""";
 }
 
 class PagesMessagesNl extends PagesMessages {
@@ -52,6 +63,8 @@ class HintsMessagesNl extends HintsMessages {
   const HintsMessagesNl(this._parent) : super(_parent);
   String get thisWeek => """Deze week""";
   String get nextWeek => """Volgende week""";
+  String get add => """Toevoegen""";
+  String get edit => """Wijzigen""";
 }
 
 class ResourcesMessagesNl extends ResourcesMessages {
@@ -65,9 +78,31 @@ class ResourcesMessagesNl extends ResourcesMessages {
       """${_plural(count, one: 'planning', many: 'planningen')}""";
 }
 
+class LabelsMessagesNl extends LabelsMessages {
+  final MessagesNl _parent;
+  const LabelsMessagesNl(this._parent) : super(_parent);
+  String get title => """Titel""";
+  String get description => """Beschrijving""";
+  String get photoUrl => """Foto url""";
+}
+
+class ValidationMessagesNl extends ValidationMessages {
+  final MessagesNl _parent;
+  const ValidationMessagesNl(this._parent) : super(_parent);
+  String empty(String field) => """De $field is verplicht""";
+}
+
 Map<String, String> get messagesNlMap => {
+      """buttons.add""": """Toevoegen""",
+      """buttons.edit""": """Wijzigen""",
+      """buttons.save""": """Opslaan""",
       """pages.recipes""": """Recepten""",
       """pages.schedule""": """Planning""",
       """hints.thisWeek""": """Deze week""",
       """hints.nextWeek""": """Volgende week""",
+      """hints.add""": """Toevoegen""",
+      """hints.edit""": """Wijzigen""",
+      """labels.title""": """Titel""",
+      """labels.description""": """Beschrijving""",
+      """labels.photoUrl""": """Foto url""",
     };

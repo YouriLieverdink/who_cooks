@@ -83,7 +83,10 @@ class NlIruoyWhocooksRecipeDao {
         .modernFindOne(selector: where.id(_id));
 
     return data != null //
-        ? NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(data)
+        ? NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson({
+            'id': _id.$oid,
+            ...data,
+          })
         : null;
   }
 
