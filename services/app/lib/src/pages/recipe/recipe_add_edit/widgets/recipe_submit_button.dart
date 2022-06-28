@@ -27,10 +27,12 @@ class RecipeSubmitButton extends StatelessWidget {
           duration: kDuration,
           opacity: state.status.isValid ? 1 : .5,
           child: FloatingActionButton.extended(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(kButtonSize / 3),
+            label: Text(
+              translations.messages.buttons.save,
+              style: theme.textTheme.button?.apply(
+                color: theme.colorScheme.onSecondary,
+              ),
             ),
-            label: Text(translations.messages.buttons.save),
             icon: AnimatedSwitcher(
               duration: kDuration,
               child: state.submission == FormzStatus.submissionInProgress //
@@ -41,7 +43,10 @@ class RecipeSubmitButton extends StatelessWidget {
                         strokeWidth: 2.0,
                       ),
                     )
-                  : const Icon(Icons.save),
+                  : Icon(
+                      Icons.save,
+                      color: theme.colorScheme.onSecondary,
+                    ),
             ),
             onPressed: state.status.isValid //
                 ? () => context.read<RecipeAddEditCubit>().submit()

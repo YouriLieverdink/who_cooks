@@ -30,7 +30,7 @@ class RecipeRemoveButton extends StatelessWidget {
                   onPressed: context.read<RecipeRemoveCubit>().submit,
                   icon: Icon(
                     Icons.delete,
-                    color: theme.iconTheme.color,
+                    color: theme.colorScheme.onPrimary,
                   ),
                 ),
         );

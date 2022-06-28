@@ -53,6 +53,9 @@ class RecipeShowPage extends StatelessWidget {
 }
 
 class _RecipeShowView extends StatelessWidget {
+  ///
+  static final translations = $.get<Translations>();
+
   const _RecipeShowView({
     Key? key,
     required this.recipe,
@@ -62,6 +65,8 @@ class _RecipeShowView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return BlocListener<RecipeRemoveCubit, RecipeRemoveState>(
       listener: (context, state) {
         if (state.submission == FormzStatus.submissionSuccess) {
@@ -78,7 +83,24 @@ class _RecipeShowView extends StatelessWidget {
           ],
         ),
         body: RecipeShowPageBody(recipe: recipe),
-        floatingActionButton: RecipeAddEditButton(id: recipe.id),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.of(context).pushNamed(
+              '/recipes/add-edit',
+              arguments: recipe.id,
+            );
+          },
+          icon: Icon(
+            Icons.edit,
+            color: theme.colorScheme.onSecondary,
+          ),
+          label: Text(
+            translations.messages.buttons.edit,
+            style: theme.textTheme.button?.apply(
+              color: theme.colorScheme.onSecondary,
+            ),
+          ),
+        ),
       ),
     );
   }

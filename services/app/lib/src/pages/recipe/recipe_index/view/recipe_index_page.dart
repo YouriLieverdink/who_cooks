@@ -27,6 +27,8 @@ class _RecipeIndexPageState extends State<RecipeIndexPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -55,7 +57,23 @@ class _RecipeIndexPageState extends State<RecipeIndexPage> {
           return const SizedBox();
         },
       ),
-      floatingActionButton: const RecipeAddEditButton(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.of(context).pushNamed(
+            '/recipes/add-edit',
+          );
+        },
+        icon: Icon(
+          Icons.edit,
+          color: theme.colorScheme.onSecondary,
+        ),
+        label: Text(
+          translations.messages.buttons.add,
+          style: theme.textTheme.button?.apply(
+            color: theme.colorScheme.onSecondary,
+          ),
+        ),
+      ),
     );
   }
 }
