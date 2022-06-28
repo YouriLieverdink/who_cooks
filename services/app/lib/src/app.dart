@@ -17,6 +17,9 @@ class App extends StatelessWidget {
         BlocProvider(
           create: (_) => RecipesBloc(repository: $.get()),
         ),
+        BlocProvider(
+          create: (_) => SchedulesBloc(repository: $.get()),
+        ),
       ],
       child: MaterialApp(
         title: 'Who cooks?',
