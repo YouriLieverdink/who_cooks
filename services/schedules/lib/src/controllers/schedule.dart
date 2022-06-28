@@ -11,7 +11,7 @@ class ScheduleController {
     //
     final query = request.url.queryParameters;
 
-    final ids = (query['ids'] ?? '').split(',');
+    final ids = (query['ids'])?.split(',');
     final limit = int.tryParse(query['limit'] ?? '');
     final skip = int.tryParse(query['skip'] ?? '');
 
