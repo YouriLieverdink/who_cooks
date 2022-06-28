@@ -433,9 +433,9 @@ class NlIruoyWhocooksRecipesV0UnionsRecipeEvent extends Union2Impl<
         factory.second(recipeDeleted));
   }
 
-  static final Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
+  static const Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
           NlIruoyWhocooksRecipesV0ModelsRecipeDeleted> factory =
-      const Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
+      Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
           NlIruoyWhocooksRecipesV0ModelsRecipeDeleted>();
 
   dynamic toJson() {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../di.dart';
+import '../../../services/services.dart';
 import '../../pages.dart';
 
 class BasePage extends StatefulWidget {
@@ -14,37 +15,31 @@ class BasePage extends StatefulWidget {
 
 class _BasePageState extends State<BasePage> {
   ///
-  static final translations = $.get<Translations>();
-
-  static final tabs = [
-    TabData(
-      icon: Icons.list_alt,
-      title: translations.messages.pages.recipes,
-      widget: const RecipeIndexPage(),
-    ),
-    TabData(
-      icon: Icons.date_range,
-      title: translations.messages.pages.schedule,
-      widget: const ScheduleIndexPage(),
-    ),
+  static const tabs = [
+    RecipeIndexPage(),
+    ScheduleIndexPage(),
   ];
 
   var currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    final translations = context.read<Translations>();
+
     return Scaffold(
-      body: tabs[currentIndex].widget,
+      body: tabs[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
         items: [
-          for (var tab in tabs) ...[
-            BottomNavigationBarItem(
-              icon: Icon(tab.icon),
-              label: tab.title,
-            ),
-          ],
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.list_alt),
+            label: translations.messages.pages.recipes,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.date_range),
+            label: translations.messages.pages.schedule,
+          ),
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../di.dart';
+import '../../../../services/services.dart';
 import '../recipe_search.dart';
 
 class RecipeSearchPage extends StatelessWidget {
@@ -12,7 +12,6 @@ class RecipeSearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final translations = context.read<Translations>();
-    final theme = Theme.of(context);
 
     return BlocProvider(
       create: (_) => RecipeSearchBloc(

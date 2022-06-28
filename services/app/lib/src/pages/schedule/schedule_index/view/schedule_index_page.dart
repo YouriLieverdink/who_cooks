@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../di.dart';
+import '../../../../services/services.dart';
 
 class ScheduleIndexPage extends StatefulWidget {
   const ScheduleIndexPage({
@@ -14,8 +15,6 @@ class ScheduleIndexPage extends StatefulWidget {
 class _ScheduleIndexPageState extends State<ScheduleIndexPage>
     with SingleTickerProviderStateMixin {
   ///
-  static final translations = $.get<Translations>();
-
   late TabController controller;
 
   @override
@@ -27,6 +26,8 @@ class _ScheduleIndexPageState extends State<ScheduleIndexPage>
 
   @override
   Widget build(BuildContext context) {
+    final translations = context.read<Translations>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(

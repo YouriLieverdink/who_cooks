@@ -2,14 +2,11 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../di.dart';
+import '../../../../services/services.dart';
 import '../../../../state/state.dart';
 import '../recipe_add_edit.dart';
 
 class RecipeAddEditPage extends StatelessWidget {
-  ///
-  static final translations = $.get<Translations>();
-
   const RecipeAddEditPage({
     Key? key,
     this.id,
@@ -20,6 +17,8 @@ class RecipeAddEditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final translations = context.read<Translations>();
+
     return BlocConsumer<RecipesBloc, RecipesState>(
       listener: (context, state) {
         // Ensures we are not in an invalid state.
@@ -49,7 +48,7 @@ class RecipeAddEditPage extends StatelessWidget {
             create: (_) => RecipeAddEditCubit(
               recipe: recipe,
               recipesBloc: context.read(),
-              repository: $.get(),
+              repository: context.read(),
             ),
             child: const RecipeAddEditForm(),
           ),

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../di.dart';
+import '../../../../services/services.dart';
 import '../recipe_add_edit.dart';
 
 class DescriptionField extends StatelessWidget {
-  ///
-  static final translations = $.get<Translations>();
-
   const DescriptionField({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final translations = context.read<Translations>();
+
     return BlocBuilder<RecipeAddEditCubit, RecipeAddEditState>(
       buildWhen: (previous, current) {
         return previous.description != current.description;

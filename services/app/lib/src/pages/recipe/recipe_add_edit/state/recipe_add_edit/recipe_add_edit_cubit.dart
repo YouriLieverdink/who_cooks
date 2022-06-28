@@ -3,8 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 
-import '../../../../../di.dart';
 import '../../../../../generated/generated.dart';
+import '../../../../../services/services.dart';
 import '../../recipe_add_edit.dart';
 
 part 'recipe_add_edit_state.dart';

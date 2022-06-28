@@ -12,7 +12,7 @@ class RecipeRemoveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.read<ThemeData>();
 
     return BlocBuilder<RecipeRemoveCubit, RecipeRemoveState>(
       builder: (context, state) {

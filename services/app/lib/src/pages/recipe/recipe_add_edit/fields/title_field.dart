@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../di.dart';
+import '../../../../services/services.dart';
 import '../recipe_add_edit.dart';
 
 class TitleField extends StatelessWidget {
-  ///
-  static final translations = $.get<Translations>();
-
   const TitleField({
     Key? key,
   }) : super(key: key);
 
   String? _error(
-    TitleInputError? error,
-  ) {
+    TitleInputError? error, {
+    required Translations translations,
+  }) {
     switch (error) {
       case TitleInputError.empty:
         return translations.messages.validation.empty(
@@ -28,6 +26,8 @@ class TitleField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final translations = context.read<Translations>();
+
     return BlocBuilder<RecipeAddEditCubit, RecipeAddEditState>(
       buildWhen: (previous, current) {
         return previous.title != current.title;
@@ -41,7 +41,7 @@ class TitleField extends StatelessWidget {
             border: const OutlineInputBorder(),
             errorText: state.title.pure //
                 ? null
-                : _error(state.title.error),
+                : _error(state.title.error, translations: translations),
           ),
         );
       },

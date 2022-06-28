@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
-import '../../../../di.dart';
 import '../../../../generated/generated.dart';
+import '../../../../services/services.dart';
 import '../../../../state/state.dart';
 import '../../recipe.dart';
 
@@ -42,8 +42,8 @@ class RecipeShowPage extends StatelessWidget {
         return BlocProvider(
           create: (context) => RecipeRemoveCubit(
             recipe: recipe,
-            repository: $.get(),
-            recipesBloc: context.read<RecipesBloc>(),
+            repository: context.read(),
+            recipesBloc: context.read(),
           ),
           child: _RecipeShowView(recipe: recipe),
         );
@@ -53,9 +53,6 @@ class RecipeShowPage extends StatelessWidget {
 }
 
 class _RecipeShowView extends StatelessWidget {
-  ///
-  static final translations = $.get<Translations>();
-
   const _RecipeShowView({
     Key? key,
     required this.recipe,
@@ -65,7 +62,8 @@ class _RecipeShowView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.read<ThemeData>();
+    final translations = context.read<Translations>();
 
     return BlocListener<RecipeRemoveCubit, RecipeRemoveState>(
       listener: (context, state) {

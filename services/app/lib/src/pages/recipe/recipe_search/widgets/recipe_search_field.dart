@@ -11,7 +11,7 @@ class RecipeSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.read<ThemeData>();
 
     return TextFormField(
       autofocus: true,
