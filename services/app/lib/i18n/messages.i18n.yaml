@@ -6,12 +6,15 @@ buttons:
 pages:
   recipes: Recipes
   schedule: Schedule
+  search: Search
 
 hints:
   thisWeek: This week
   nextWeek: Next week
   add: Add
   edit: Edit
+  noResults: No results
+  noYet(String resource): "No $resource yet"
 
 resources:
   ingredient(int count): "${_plural(count, one: 'ingredient', many: 'ingredients')}"

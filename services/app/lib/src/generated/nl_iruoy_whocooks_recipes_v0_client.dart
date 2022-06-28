@@ -36,12 +36,13 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeResource {
   final String baseUrl;
 
   Future<List<NlIruoyWhocooksRecipesV0ModelsRecipe>> get(
-      {int limit = 100, int skip = 0}) async {
-    final r = await client.get(Uri.parse('$baseUrl/recipes').replace(
-        queryParameters: {
-          'limit': jsonEncode(limit),
-          'skip': jsonEncode(skip)
-        }));
+      {int limit = 100, int skip = 0, String? title}) async {
+    final r = await client
+        .get(Uri.parse('$baseUrl/recipes').replace(queryParameters: {
+      'limit': jsonEncode(limit),
+      'skip': jsonEncode(skip),
+      if (title != null) ...{'title': title}
+    }));
     final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 200:

@@ -55,6 +55,7 @@ class PagesMessages {
   const PagesMessages(this._parent);
   String get recipes => """Recipes""";
   String get schedule => """Schedule""";
+  String get search => """Search""";
 }
 
 class HintsMessages {
@@ -64,6 +65,8 @@ class HintsMessages {
   String get nextWeek => """Next week""";
   String get add => """Add""";
   String get edit => """Edit""";
+  String get noResults => """No results""";
+  String noYet(String resource) => """No $resource yet""";
 }
 
 class ResourcesMessages {
@@ -97,10 +100,12 @@ Map<String, String> get messagesMap => {
       """buttons.save""": """Save""",
       """pages.recipes""": """Recipes""",
       """pages.schedule""": """Schedule""",
+      """pages.search""": """Search""",
       """hints.thisWeek""": """This week""",
       """hints.nextWeek""": """Next week""",
       """hints.add""": """Add""",
       """hints.edit""": """Edit""",
+      """hints.noResults""": """No results""",
       """labels.title""": """Title""",
       """labels.description""": """Description""",
       """labels.photoUrl""": """Photo url""",

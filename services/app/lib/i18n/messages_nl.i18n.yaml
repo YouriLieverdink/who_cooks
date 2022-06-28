@@ -6,12 +6,15 @@ buttons:
 pages:
   recipes: Recepten
   schedule: Planning
+  search: Zoeken
 
 hints:
   thisWeek: Deze week
   nextWeek: Volgende week
   add: Toevoegen
   edit: Wijzigen
+  noResults: Geen resultaten
+  noYet(String resource): "Nog geen $resource"
 
 resources:
   ingredient(int count): "${_plural(count, one: 'ingrediënt', many: 'ingrediënten')}"

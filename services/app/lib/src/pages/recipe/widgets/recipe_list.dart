@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../generated/generated.dart';
-import '../../../pages.dart';
+import '../../../generated/generated.dart';
+import './recipe_tile.dart';
 
 class RecipeList extends StatelessWidget {
   const RecipeList({

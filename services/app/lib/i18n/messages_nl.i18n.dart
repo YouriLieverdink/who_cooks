@@ -56,6 +56,7 @@ class PagesMessagesNl extends PagesMessages {
   const PagesMessagesNl(this._parent) : super(_parent);
   String get recipes => """Recepten""";
   String get schedule => """Planning""";
+  String get search => """Zoeken""";
 }
 
 class HintsMessagesNl extends HintsMessages {
@@ -65,6 +66,8 @@ class HintsMessagesNl extends HintsMessages {
   String get nextWeek => """Volgende week""";
   String get add => """Toevoegen""";
   String get edit => """Wijzigen""";
+  String get noResults => """Geen resultaten""";
+  String noYet(String resource) => """Nog geen $resource""";
 }
 
 class ResourcesMessagesNl extends ResourcesMessages {
@@ -98,10 +101,12 @@ Map<String, String> get messagesNlMap => {
       """buttons.save""": """Opslaan""",
       """pages.recipes""": """Recepten""",
       """pages.schedule""": """Planning""",
+      """pages.search""": """Zoeken""",
       """hints.thisWeek""": """Deze week""",
       """hints.nextWeek""": """Volgende week""",
       """hints.add""": """Toevoegen""",
       """hints.edit""": """Wijzigen""",
+      """hints.noResults""": """Geen resultaten""",
       """labels.title""": """Titel""",
       """labels.description""": """Beschrijving""",
       """labels.photoUrl""": """Foto url""",

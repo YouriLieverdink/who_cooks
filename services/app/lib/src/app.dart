@@ -1,3 +1,4 @@
+import 'package:app/src/services/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,18 +13,31 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider(
-          create: (_) => RecipesBloc(repository: $.get()),
+        RepositoryProvider(
+          create: (_) => Repository.instance,
         ),
-        BlocProvider(
-          create: (_) => SchedulesBloc(repository: $.get()),
+        RepositoryProvider(
+          create: (_) => Translations.instance,
+        ),
+        RepositoryProvider(
+          create: (context) => Theme.of(context),
         ),
       ],
-      child: const MaterialApp(
-        title: 'Who cooks?',
-        onGenerateRoute: onGenerateRoute,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => RecipesBloc(repository: $.get()),
+          ),
+          BlocProvider(
+            create: (_) => SchedulesBloc(repository: $.get()),
+          ),
+        ],
+        child: const MaterialApp(
+          title: 'Who cooks?',
+          onGenerateRoute: onGenerateRoute,
+        ),
       ),
     );
   }

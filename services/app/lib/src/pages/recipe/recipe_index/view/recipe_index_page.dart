@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../di.dart';
+import '../../../../services/services.dart';
 import '../../../../state/state.dart';
-import '../../recipe.dart';
+import '../recipe_index.dart';
 
 class RecipeIndexPage extends StatefulWidget {
   const RecipeIndexPage({
@@ -15,9 +15,6 @@ class RecipeIndexPage extends StatefulWidget {
 }
 
 class _RecipeIndexPageState extends State<RecipeIndexPage> {
-  ///
-  static final translations = $.get<Translations>();
-
   @override
   void initState() {
     super.initState();
@@ -27,36 +24,26 @@ class _RecipeIndexPageState extends State<RecipeIndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final translations = context.read<Translations>();
+    final theme = context.read<ThemeData>();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          translations.messages.pages.recipes,
-        ),
+        title: Text(translations.messages.pages.recipes),
         centerTitle: false,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: theme.colorScheme.onPrimary,
+            ),
+            onPressed: () {
+              Navigator.of(context).pushNamed('/recipes/search');
+            },
+          ),
+        ],
       ),
-      body: BlocBuilder<RecipesBloc, RecipesState>(
-        builder: (context, state) {
-          if (state is RecipesLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          if (state is RecipesNotLoaded) {
-            return const Center(
-              child: Text('Er is een fout opgetreden'),
-            );
-          }
-
-          if (state is RecipesLoaded) {
-            return RecipeList(recipes: state.recipes);
-          }
-
-          return const SizedBox();
-        },
-      ),
+      body: const RecipeIndexPageBody(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.of(context).pushNamed(
