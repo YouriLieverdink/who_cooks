@@ -21,10 +21,9 @@ class App extends StatelessWidget {
           create: (_) => SchedulesBloc(repository: $.get()),
         ),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         title: 'Who cooks?',
         onGenerateRoute: onGenerateRoute,
-        theme: ThemeData.dark(),
       ),
     );
   }
