@@ -21,10 +21,15 @@ class NlIruoyWhocooksRecipeDao {
 
   NlIruoyWhocooksRecipeDao({
     required this.connect,
-  });
+  }) {
+    //
+    connect().then((c) => c //
+      ..ensureIndex('recipes', key: 'title'));
+  }
 
   Future<List<NlIruoyWhocooksRecipesV0ModelsRecipe>> get({
     List<String>? ids,
+    String? title,
     int? limit,
     int? skip,
   }) async {
@@ -40,10 +45,15 @@ class NlIruoyWhocooksRecipeDao {
         .modernFind(
           limit: limit,
           skip: skip == 0 ? null : skip,
-          selector: where.when(
-            ids != null,
-            (s) => s.oneFrom('_id', _ids!),
-          ),
+          selector: where
+              .when(
+                ids != null,
+                (s) => s.oneFrom('_id', _ids!),
+              )
+              .when(
+                title != null,
+                (s) => s.match('title', '.*$title.*', caseInsensitive: true),
+              ),
         );
 
     return data //

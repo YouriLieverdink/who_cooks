@@ -11,10 +11,11 @@ class ScheduleController {
     //
     final query = request.url.queryParameters;
 
+    final ids = (query['ids'] ?? '').split(',');
     final limit = int.tryParse(query['limit'] ?? '');
     final skip = int.tryParse(query['skip'] ?? '');
 
-    final data = await listSchedules(limit: limit, skip: skip);
+    final data = await listSchedules(ids: ids, limit: limit, skip: skip);
 
     return Response(200, body: jsonEncode(data));
   }

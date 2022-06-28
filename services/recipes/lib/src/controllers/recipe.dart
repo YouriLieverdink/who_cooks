@@ -11,10 +11,17 @@ class RecipeController {
     //
     final query = request.url.queryParameters;
 
+    final ids = (query['ids'] ?? '').split(',');
+    final title = query['title'];
     final limit = int.tryParse(query['limit'] ?? '');
     final skip = int.tryParse(query['skip'] ?? '');
 
-    final data = await listRecipes(limit: limit, skip: skip);
+    final data = await listRecipes(
+      ids: ids,
+      title: title,
+      limit: limit,
+      skip: skip,
+    );
 
     return Response(200, body: jsonEncode(data));
   }

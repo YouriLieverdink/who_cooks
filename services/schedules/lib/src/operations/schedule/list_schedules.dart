@@ -9,10 +9,12 @@ class CreateListSchedules {
   final NlIruoyWhocooksScheduleDao dao;
 
   Future<List<Schedule>> call({
+    List<String>? ids,
+    NlIruoyWhocooksRecipesV0ModelsRecipe? recipe,
     int? limit,
     int? skip,
   }) async {
     //
-    return dao.get(limit: limit, skip: skip);
+    return dao.get(ids: ids, recipe: recipe, limit: limit, skip: skip);
   }
 }
