@@ -41,6 +41,7 @@ class MessagesNl extends Messages {
   ResourcesMessagesNl get resources => ResourcesMessagesNl(this);
   LabelsMessagesNl get labels => LabelsMessagesNl(this);
   ValidationMessagesNl get validation => ValidationMessagesNl(this);
+  WeekdaysMessagesNl get weekdays => WeekdaysMessagesNl(this);
 }
 
 class ButtonsMessagesNl extends ButtonsMessages {
@@ -64,10 +65,10 @@ class HintsMessagesNl extends HintsMessages {
   const HintsMessagesNl(this._parent) : super(_parent);
   String get thisWeek => """Deze week""";
   String get nextWeek => """Volgende week""";
-  String get add => """Toevoegen""";
-  String get edit => """Wijzigen""";
+  String get edit => """ijzigen""";
   String get noResults => """Geen resultaten""";
   String noYet(String resource) => """Nog geen $resource""";
+  String get addRecipe => """Klik op 'wijzigen' om een recept toe te voegen""";
 }
 
 class ResourcesMessagesNl extends ResourcesMessages {
@@ -95,6 +96,18 @@ class ValidationMessagesNl extends ValidationMessages {
   String empty(String field) => """De $field is verplicht""";
 }
 
+class WeekdaysMessagesNl extends WeekdaysMessages {
+  final MessagesNl _parent;
+  const WeekdaysMessagesNl(this._parent) : super(_parent);
+  String get monday => """Maandag""";
+  String get tuesday => """Dinsdag""";
+  String get wednesday => """Woensdag""";
+  String get thursday => """Donderdag""";
+  String get friday => """Vrijdag""";
+  String get saturday => """Zaterdag""";
+  String get sunday => """Zondag""";
+}
+
 Map<String, String> get messagesNlMap => {
       """buttons.add""": """Toevoegen""",
       """buttons.edit""": """Wijzigen""",
@@ -104,10 +117,18 @@ Map<String, String> get messagesNlMap => {
       """pages.search""": """Zoeken""",
       """hints.thisWeek""": """Deze week""",
       """hints.nextWeek""": """Volgende week""",
-      """hints.add""": """Toevoegen""",
-      """hints.edit""": """Wijzigen""",
+      """hints.edit""": """ijzigen""",
       """hints.noResults""": """Geen resultaten""",
+      """hints.addRecipe""":
+          """Klik op 'wijzigen' om een recept toe te voegen""",
       """labels.title""": """Titel""",
       """labels.description""": """Beschrijving""",
       """labels.photoUrl""": """Foto url""",
+      """weekdays.monday""": """Maandag""",
+      """weekdays.tuesday""": """Dinsdag""",
+      """weekdays.wednesday""": """Woensdag""",
+      """weekdays.thursday""": """Donderdag""",
+      """weekdays.friday""": """Vrijdag""",
+      """weekdays.saturday""": """Zaterdag""",
+      """weekdays.sunday""": """Zondag""",
     };

@@ -1,7 +1,10 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../services/services.dart';
+import '../../../../state/state.dart';
+import '../../schedule.dart';
 
 class ScheduleIndexPage extends StatefulWidget {
   const ScheduleIndexPage({
@@ -43,12 +46,29 @@ class _ScheduleIndexPageState extends State<ScheduleIndexPage>
           ],
         ),
       ),
-      body: TabBarView(
-        controller: controller,
-        children: const [
-          SizedBox(),
-          SizedBox(),
-        ],
+      body: BlocBuilder<SchedulesBloc, SchedulesState>(
+        builder: (context, state) {
+          if (state is SchedulesLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (state is SchedulesLoaded) {
+            //
+            final id = state.schedules.first.id;
+
+            return TabBarView(
+              controller: controller,
+              children: [
+                ScheduleShowPage(id: id),
+                const SizedBox(),
+              ],
+            );
+          }
+
+          return const SizedBox();
+        },
       ),
     );
   }

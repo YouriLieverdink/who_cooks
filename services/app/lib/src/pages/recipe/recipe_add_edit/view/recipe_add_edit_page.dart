@@ -39,8 +39,8 @@ class RecipeAddEditPage extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               recipe != null //
-                  ? translations.messages.hints.edit
-                  : translations.messages.hints.add,
+                  ? translations.messages.buttons.edit
+                  : translations.messages.buttons.add,
             ),
             centerTitle: false,
           ),

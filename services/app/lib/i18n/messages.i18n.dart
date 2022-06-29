@@ -40,6 +40,7 @@ class Messages {
   ResourcesMessages get resources => ResourcesMessages(this);
   LabelsMessages get labels => LabelsMessages(this);
   ValidationMessages get validation => ValidationMessages(this);
+  WeekdaysMessages get weekdays => WeekdaysMessages(this);
 }
 
 class ButtonsMessages {
@@ -63,10 +64,9 @@ class HintsMessages {
   const HintsMessages(this._parent);
   String get thisWeek => """This week""";
   String get nextWeek => """Next week""";
-  String get add => """Add""";
-  String get edit => """Edit""";
   String get noResults => """No results""";
   String noYet(String resource) => """No $resource yet""";
+  String get addRecipe => """Click on 'edit' to add a recipe""";
 }
 
 class ResourcesMessages {
@@ -94,6 +94,18 @@ class ValidationMessages {
   String empty(String field) => """The $field is required""";
 }
 
+class WeekdaysMessages {
+  final Messages _parent;
+  const WeekdaysMessages(this._parent);
+  String get monday => """Monday""";
+  String get tuesday => """Tuesday""";
+  String get wednesday => """Wednesday""";
+  String get thursday => """Thursday""";
+  String get friday => """Friday""";
+  String get saturday => """Saturday""";
+  String get sunday => """Sunday""";
+}
+
 Map<String, String> get messagesMap => {
       """buttons.add""": """Add""",
       """buttons.edit""": """Edit""",
@@ -103,10 +115,16 @@ Map<String, String> get messagesMap => {
       """pages.search""": """Search""",
       """hints.thisWeek""": """This week""",
       """hints.nextWeek""": """Next week""",
-      """hints.add""": """Add""",
-      """hints.edit""": """Edit""",
       """hints.noResults""": """No results""",
+      """hints.addRecipe""": """Click on 'edit' to add a recipe""",
       """labels.title""": """Title""",
       """labels.description""": """Description""",
       """labels.photoUrl""": """Photo url""",
+      """weekdays.monday""": """Monday""",
+      """weekdays.tuesday""": """Tuesday""",
+      """weekdays.wednesday""": """Wednesday""",
+      """weekdays.thursday""": """Thursday""",
+      """weekdays.friday""": """Friday""",
+      """weekdays.saturday""": """Saturday""",
+      """weekdays.sunday""": """Sunday""",
     };

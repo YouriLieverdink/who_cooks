@@ -11,10 +11,9 @@ pages:
 hints:
   thisWeek: This week
   nextWeek: Next week
-  add: Add
-  edit: Edit
   noResults: No results
   noYet(String resource): "No $resource yet"
+  addRecipe: Click on 'edit' to add a recipe
 
 resources:
   ingredient(int count): "${_plural(count, one: 'ingredient', many: 'ingredients')}"
@@ -28,3 +27,12 @@ labels:
 
 validation:
   empty(String field): The $field is required
+
+weekdays:
+  monday: Monday
+  tuesday: Tuesday
+  wednesday: Wednesday
+  thursday: Thursday
+  friday: Friday
+  saturday: Saturday
+  sunday: Sunday

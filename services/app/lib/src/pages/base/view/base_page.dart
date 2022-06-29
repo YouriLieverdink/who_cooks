@@ -16,8 +16,8 @@ class BasePage extends StatefulWidget {
 class _BasePageState extends State<BasePage> {
   ///
   static const tabs = [
-    RecipeIndexPage(),
     ScheduleIndexPage(),
+    RecipeIndexPage(),
   ];
 
   var currentIndex = 0;
@@ -33,12 +33,12 @@ class _BasePageState extends State<BasePage> {
         onTap: (index) => setState(() => currentIndex = index),
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.list_alt),
-            label: translations.messages.pages.recipes,
-          ),
-          BottomNavigationBarItem(
             icon: const Icon(Icons.date_range),
             label: translations.messages.pages.schedule,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.list_alt),
+            label: translations.messages.pages.recipes,
           ),
         ],
       ),

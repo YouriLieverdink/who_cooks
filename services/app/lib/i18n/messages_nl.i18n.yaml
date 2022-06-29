@@ -11,10 +11,10 @@ pages:
 hints:
   thisWeek: Deze week
   nextWeek: Volgende week
-  add: Toevoegen
-  edit: Wijzigen
+  edit: ijzigen
   noResults: Geen resultaten
   noYet(String resource): "Nog geen $resource"
+  addRecipe: Klik op 'wijzigen' om een recept toe te voegen
 
 resources:
   ingredient(int count): "${_plural(count, one: 'ingrediënt', many: 'ingrediënten')}"
@@ -28,3 +28,12 @@ labels:
 
 validation:
   empty(String field): De $field is verplicht
+
+weekdays:
+  monday: Maandag
+  tuesday: Dinsdag
+  wednesday: Woensdag
+  thursday: Donderdag
+  friday: Vrijdag
+  saturday: Zaterdag
+  sunday: Zondag

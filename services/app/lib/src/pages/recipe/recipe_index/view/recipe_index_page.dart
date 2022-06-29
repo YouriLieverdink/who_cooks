@@ -2,25 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../services/services.dart';
-import '../../../../state/state.dart';
 import '../recipe_index.dart';
 
-class RecipeIndexPage extends StatefulWidget {
+class RecipeIndexPage extends StatelessWidget {
   const RecipeIndexPage({
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<RecipeIndexPage> createState() => _RecipeIndexPageState();
-}
-
-class _RecipeIndexPageState extends State<RecipeIndexPage> {
-  @override
-  void initState() {
-    super.initState();
-
-    context.read<RecipesBloc>().add(const LoadRecipes());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +38,7 @@ class _RecipeIndexPageState extends State<RecipeIndexPage> {
           );
         },
         icon: Icon(
-          Icons.edit,
+          Icons.add,
           color: theme.colorScheme.onSecondary,
         ),
         label: Text(

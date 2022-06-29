@@ -21,7 +21,7 @@ class PhotoUrlField extends StatelessWidget {
       builder: (context, state) {
         return BaseField(
           label: translations.messages.labels.photoUrl,
-          value: state.title.value,
+          value: state.photoUrl,
           onChanged: (value) {
             //
             context.read<RecipeAddEditCubit>().setPhotoUrl(value);

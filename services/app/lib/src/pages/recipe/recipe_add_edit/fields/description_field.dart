@@ -21,7 +21,7 @@ class DescriptionField extends StatelessWidget {
       builder: (context, state) {
         return BaseField(
           label: translations.messages.labels.description,
-          value: state.title.value,
+          value: state.description,
           isMultiline: true,
           onChanged: (value) {
             //

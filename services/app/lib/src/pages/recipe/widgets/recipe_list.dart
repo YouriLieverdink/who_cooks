@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../config/constants.dart';
 import '../../../generated/generated.dart';
-import './recipe_tile.dart';
+import '../../../widgets/widgets.dart';
 
 class RecipeList extends StatelessWidget {
   const RecipeList({
@@ -15,6 +16,9 @@ class RecipeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: const AlwaysScrollableScrollPhysics(),
+      padding: const EdgeInsets.only(
+        bottom: kPadding * 2.5,
+      ),
       itemCount: recipes.length,
       itemBuilder: (context, index) {
         final recipe = recipes[index];
