@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../services/services.dart';
+import '../../../../widgets/widgets.dart';
 import '../recipe_add_edit.dart';
 
 class DescriptionField extends StatelessWidget {
@@ -18,17 +19,14 @@ class DescriptionField extends StatelessWidget {
         return previous.description != current.description;
       },
       builder: (context, state) {
-        return TextFormField(
-          initialValue: state.description,
-          onChanged: context.read<RecipeAddEditCubit>().setDescription,
-          keyboardType: TextInputType.multiline,
-          decoration: InputDecoration(
-            label: Text(translations.messages.labels.description),
-            border: const OutlineInputBorder(),
-            alignLabelWithHint: true,
-          ),
-          minLines: 3,
-          maxLines: 5,
+        return BaseField(
+          label: translations.messages.labels.description,
+          value: state.title.value,
+          isMultiline: true,
+          onChanged: (value) {
+            //
+            context.read<RecipeAddEditCubit>().setDescription(value);
+          },
         );
       },
     );

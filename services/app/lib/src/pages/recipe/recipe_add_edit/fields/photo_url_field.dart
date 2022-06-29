@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../services/services.dart';
+import '../../../../widgets/widgets.dart';
 import '../recipe_add_edit.dart';
 
 class PhotoUrlField extends StatelessWidget {
@@ -18,14 +19,13 @@ class PhotoUrlField extends StatelessWidget {
         return previous.photoUrl != current.photoUrl;
       },
       builder: (context, state) {
-        return TextFormField(
-          initialValue: state.photoUrl,
-          onChanged: context.read<RecipeAddEditCubit>().setPhotoUrl,
-          decoration: InputDecoration(
-            label: Text(translations.messages.labels.photoUrl),
-            border: const OutlineInputBorder(),
-            alignLabelWithHint: true,
-          ),
+        return BaseField(
+          label: translations.messages.labels.photoUrl,
+          value: state.title.value,
+          onChanged: (value) {
+            //
+            context.read<RecipeAddEditCubit>().setPhotoUrl(value);
+          },
         );
       },
     );

@@ -24,7 +24,7 @@ class RecipeSearchPage extends StatelessWidget {
           bottom: AppBar(
             automaticallyImplyLeading: false,
             toolbarHeight: kToolbarHeight * 2,
-            title: const RecipeSearchField(),
+            title: const SearchField(),
           ),
         ),
         body: const RecipeSearchPageBody(),

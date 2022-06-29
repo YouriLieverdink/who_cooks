@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../services/services.dart';
+import '../../../../widgets/widgets.dart';
 import '../recipe_add_edit.dart';
 
 class TitleField extends StatelessWidget {
@@ -9,10 +10,11 @@ class TitleField extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  /// Determines the correct error text based on the [TitleInputError].
   String? _error(
-    TitleInputError? error, {
-    required Translations translations,
-  }) {
+    TitleInputError? error,
+    Translations translations,
+  ) {
     switch (error) {
       case TitleInputError.empty:
         return translations.messages.validation.empty(
@@ -33,16 +35,19 @@ class TitleField extends StatelessWidget {
         return previous.title != current.title;
       },
       builder: (context, state) {
-        return TextFormField(
-          initialValue: state.title.value,
-          onChanged: context.read<RecipeAddEditCubit>().setTitle,
-          decoration: InputDecoration(
-            label: Text(translations.messages.labels.title),
-            border: const OutlineInputBorder(),
-            errorText: state.title.pure //
-                ? null
-                : _error(state.title.error, translations: translations),
-          ),
+        //
+        final error = state.title.pure //
+            ? null
+            : state.title.error;
+
+        return BaseField(
+          label: translations.messages.labels.title,
+          value: state.title.value,
+          error: _error(error, translations),
+          onChanged: (value) {
+            //
+            context.read<RecipeAddEditCubit>().setTitle(value);
+          },
         );
       },
     );
