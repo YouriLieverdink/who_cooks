@@ -9,7 +9,7 @@ class CreateShowHealthcheck {
       await $.getAsync<Db>();
     } //
     catch (_) {
-      throw NlIruoyCommonV0ModelsError(
+      throw const NlIruoyCommonV0ModelsError(
         code: 'database',
         message: 'No connection could be established to the database.',
       );
@@ -19,7 +19,7 @@ class CreateShowHealthcheck {
       await $.getAsync<Queue>();
     } //
     catch (_) {
-      throw NlIruoyCommonV0ModelsError(
+      throw const NlIruoyCommonV0ModelsError(
         code: 'queue',
         message: 'No connection could be established to the queue.',
       );

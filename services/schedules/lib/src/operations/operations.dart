@@ -1,17 +1,16 @@
 import 'package:schedules/schedules.dart';
-
-import './healthcheck/show_healthcheck.dart';
-import './recipe/delete_recipe.dart';
-import 'recipe/update_recipe.dart';
-import './schedule/add_schedule.dart';
-import './schedule/edit_schedule.dart';
-import './schedule/list_schedules.dart';
-import './schedule/remove_schedule.dart';
-import './schedule/show_schedule.dart';
+import 'package:schedules/src/operations/healthcheck/show_healthcheck.dart';
+import 'package:schedules/src/operations/recipe/delete_recipe.dart';
+import 'package:schedules/src/operations/recipe/update_recipe.dart';
+import 'package:schedules/src/operations/schedule/add_schedule.dart';
+import 'package:schedules/src/operations/schedule/edit_schedule.dart';
+import 'package:schedules/src/operations/schedule/list_schedules.dart';
+import 'package:schedules/src/operations/schedule/remove_schedule.dart';
+import 'package:schedules/src/operations/schedule/show_schedule.dart';
 
 final dao = ScheduleDao();
 
-final showHealthcheck = CreateShowHealthcheck();
+const showHealthcheck = CreateShowHealthcheck();
 
 final deleteRecipe = CreateDeleteRecipe(dao);
 final updateRecipe = CreateUpdateRecipe(dao);

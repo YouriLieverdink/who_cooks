@@ -1,7 +1,6 @@
+import 'package:app/config/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../config/constants.dart';
 
 class BaseField extends StatelessWidget {
   const BaseField({

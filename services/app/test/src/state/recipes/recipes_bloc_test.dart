@@ -74,10 +74,12 @@ void main() {
     blocTest<RecipesBloc, RecipesState>(
       'emits RecipesNotLoaded with error on failure',
       setUp: () {
-        when(resource.get(
-          skip: anyNamed('skip'),
-          limit: anyNamed('limit'),
-        )).thenThrow(mockError);
+        when(
+          resource.get(
+            skip: anyNamed('skip'),
+            limit: anyNamed('limit'),
+          ),
+        ).thenThrow(mockError);
       },
       build: () => RecipesBloc(repository: repository),
       act: (bloc) => bloc.add(const LoadRecipes()),

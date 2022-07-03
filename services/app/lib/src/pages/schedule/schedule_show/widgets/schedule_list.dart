@@ -1,11 +1,10 @@
+import 'package:app/config/constants.dart';
+import 'package:app/src/generated/generated.dart';
+import 'package:app/src/services/services.dart';
+import 'package:app/src/utilities/utilities.dart';
+import 'package:app/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../config/constants.dart';
-import '../../../../generated/generated.dart';
-import '../../../../services/services.dart';
-import '../../../../utilities/utilities.dart';
-import '../../../../widgets/widgets.dart';
 
 class ScheduleList extends StatelessWidget {
   const ScheduleList({

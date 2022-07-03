@@ -1,8 +1,7 @@
+import 'package:app/src/pages/recipe/recipe_index/recipe_index.dart';
+import 'package:app/src/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../services/services.dart';
-import '../recipe_index.dart';
 
 class RecipeIndexPage extends StatelessWidget {
   const RecipeIndexPage({

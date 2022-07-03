@@ -1,8 +1,7 @@
+import 'package:app/src/pages/pages.dart';
+import 'package:app/src/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../services/services.dart';
-import '../../pages.dart';
 
 class BasePage extends StatefulWidget {
   const BasePage({
@@ -20,7 +19,7 @@ class _BasePageState extends State<BasePage> {
     RecipeIndexPage(),
   ];
 
-  var currentIndex = 0;
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {

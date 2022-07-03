@@ -1,8 +1,7 @@
+import 'package:app/config/constants.dart';
+import 'package:app/src/generated/generated.dart';
+import 'package:app/src/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../config/constants.dart';
-import '../../../generated/generated.dart';
-import '../../../widgets/widgets.dart';
 
 class RecipeList extends StatelessWidget {
   const RecipeList({

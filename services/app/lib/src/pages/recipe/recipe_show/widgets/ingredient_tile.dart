@@ -1,6 +1,5 @@
+import 'package:app/src/generated/generated.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../generated/generated.dart';
 
 class IngredientTile extends StatelessWidget {
   const IngredientTile({

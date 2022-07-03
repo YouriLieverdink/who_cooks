@@ -10,7 +10,8 @@ class One {
 class Two {
   const Two(this.title);
 
-  factory Two.fromJson(dynamic json) => Two('Hi!');
+  // ignore: avoid_unused_constructor_parameters
+  factory Two.fromJson(dynamic json) => const Two('Hi!');
 
   final String title;
 

@@ -1,8 +1,7 @@
+import 'package:app/src/services/services.dart';
+import 'package:app/src/state/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../state/state.dart';
-import '../services/services.dart';
 
 class Providers extends StatelessWidget {
   const Providers({

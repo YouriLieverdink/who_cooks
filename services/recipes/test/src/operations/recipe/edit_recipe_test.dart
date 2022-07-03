@@ -43,7 +43,7 @@ void main() {
     test(
       'throws when the recipe was not found',
       () {
-        when(dao.getById(id: id)).thenAnswer((_) => Future.value(null));
+        when(dao.getById(id: id)).thenAnswer((_) => Future.value());
 
         expect(
           editRecipe(recipeForm, id: id),
