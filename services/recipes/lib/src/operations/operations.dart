@@ -1,18 +1,18 @@
 import 'package:recipes/recipes.dart';
 
-import './healthcheck/show_healthcheck.dart';
-import './recipe/add_recipe.dart';
-import './recipe/edit_recipe.dart';
-import './recipe/list_recipes.dart';
-import './recipe/remove_recipe.dart';
-import './recipe/show_recipe.dart';
+export './healthcheck/show_healthcheck.dart';
+export './recipe/add_recipe.dart';
+export './recipe/edit_recipe.dart';
+export './recipe/list_recipes.dart';
+export './recipe/remove_recipe.dart';
+export './recipe/show_recipe.dart';
 
 final dao = RecipeDao();
 
-final showHealthcheck = CreateShowHealthcheck();
+final showHealthcheck = CreateShowHealthcheck($.getAsync, $.getAsync);
 
 final showRecipe = CreateShowRecipe(dao);
-final addRecipe = CreateAddRecipe(dao);
-final editRecipe = CreateEditRecipe(dao, showRecipe);
-final removeRecipe = CreateRemoveRecipe(dao, showRecipe);
+final addRecipe = CreateAddRecipe(dao, $.getAsync);
+final editRecipe = CreateEditRecipe(dao, showRecipe, $.getAsync);
+final removeRecipe = CreateRemoveRecipe(dao, showRecipe, $.getAsync);
 final listRecipes = CreateListRecipes(dao);

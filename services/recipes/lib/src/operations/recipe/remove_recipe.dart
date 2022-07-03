@@ -5,11 +5,14 @@ class CreateRemoveRecipe {
   const CreateRemoveRecipe(
     this.dao,
     this.showRecipe,
+    this.connectQueue,
   );
 
   final RecipeDao dao;
 
   final Future<Recipe> Function({required String id}) showRecipe;
+
+  final Future<Queue> Function() connectQueue;
 
   Future<void> call({
     required String id,
@@ -32,7 +35,7 @@ class CreateRemoveRecipe {
       recipe: recipe,
     );
 
-    final queue = await $.getAsync<Queue>();
+    final queue = await connectQueue();
     await queue.add(RecipeEvent.fromThird(event));
   }
 }

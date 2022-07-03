@@ -4,9 +4,12 @@ class CreateAddRecipe {
   //
   const CreateAddRecipe(
     this.dao,
+    this.connectQueue,
   );
 
   final RecipeDao dao;
+
+  final Future<Queue> Function() connectQueue;
 
   Future<Recipe> call(
     RecipeForm recipeForm,
@@ -29,7 +32,7 @@ class CreateAddRecipe {
       recipe: recipe,
     );
 
-    final queue = await $.getAsync<Queue>();
+    final queue = await connectQueue();
     await queue.add(RecipeEvent.fromFirst(event));
   }
 }
