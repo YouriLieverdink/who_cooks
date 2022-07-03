@@ -348,11 +348,11 @@ class NlIruoyWhocooksRecipesV0UnionsRecipeEvent extends Union3Impl<
         factory.third(recipeDeleted));
   }
 
-  static final Triplet<
+  static const Triplet<
           NlIruoyWhocooksRecipesV0ModelsRecipeInserted,
           NlIruoyWhocooksRecipesV0ModelsRecipeUpdated,
           NlIruoyWhocooksRecipesV0ModelsRecipeDeleted> factory =
-      const Triplet<
+      Triplet<
           NlIruoyWhocooksRecipesV0ModelsRecipeInserted,
           NlIruoyWhocooksRecipesV0ModelsRecipeUpdated,
           NlIruoyWhocooksRecipesV0ModelsRecipeDeleted>();

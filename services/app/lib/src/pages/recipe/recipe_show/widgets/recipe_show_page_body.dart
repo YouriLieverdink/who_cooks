@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../generated/generated.dart';
-import '../../../../services/services.dart';
-import '../../../../utilities/utilities.dart';
-import '../recipe_show.dart';
 
 class RecipeShowPageBody extends StatelessWidget {
   const RecipeShowPageBody({
@@ -18,7 +15,6 @@ class RecipeShowPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.read<ThemeData>();
-    final translations = context.read<Translations>();
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(kPadding),

@@ -116,7 +116,7 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeResource {
 
   Future<void> deleteById({required String id}) async {
     final r = await client.delete(Uri.parse('$baseUrl/recipes/$id'));
-    final json = jsonDecode(r.body);
+    // final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 204:
         return;
