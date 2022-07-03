@@ -35,48 +35,16 @@ jobs:
       - name: mono_repo self validate
         run: dart pub global run mono_repo generate --validate
   job_002:
-    name: "analyze_and_format; PKG: services/app; `dart format --output=none --set-exit-if-changed .`, `flutter analyze --fatal-infos .`"
+    name: "analyze_and_format; PKGS: packages/queue, services/recipes, services/schedules; `dart format --output=none --set-exit-if-changed .`, `dart analyze --fatal-infos .`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@4504faf7e9bcf8f3ed0bc863c4e1d21499ab8ef8
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/app;commands:format-analyze_0"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/queue-services/recipes-services/schedules;commands:format-analyze_0"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/app
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: subosito/flutter-action@2fb73e25c9488eb544b9b14b2ce00c4c2baf789e
-        with:
-          channel: stable
-      - id: checkout
-        uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
-      - id: services_app_pub_upgrade
-        name: services/app; flutter pub pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: services/app
-        run: flutter pub pub upgrade
-      - name: "services/app; dart format --output=none --set-exit-if-changed ."
-        if: "always() && steps.services_app_pub_upgrade.conclusion == 'success'"
-        working-directory: services/app
-        run: "dart format --output=none --set-exit-if-changed ."
-      - name: "services/app; flutter analyze --fatal-infos ."
-        if: "always() && steps.services_app_pub_upgrade.conclusion == 'success'"
-        working-directory: services/app
-        run: flutter analyze --fatal-infos .
-  job_003:
-    name: "analyze_and_format; PKGS: services/recipes, services/schedules; `dart format --output=none --set-exit-if-changed .`, `dart analyze --fatal-infos .`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@4504faf7e9bcf8f3ed0bc863c4e1d21499ab8ef8
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/recipes-services/schedules;commands:format-analyze_1"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/recipes-services/schedules
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/queue-services/recipes-services/schedules
             os:ubuntu-latest;pub-cache-hosted;sdk:stable
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
@@ -85,6 +53,19 @@ jobs:
           sdk: stable
       - id: checkout
         uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
+      - id: packages_queue_pub_upgrade
+        name: packages/queue; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/queue
+        run: dart pub upgrade
+      - name: "packages/queue; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.packages_queue_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/queue
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "packages/queue; dart analyze --fatal-infos ."
+        if: "always() && steps.packages_queue_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/queue
+        run: dart analyze --fatal-infos .
       - id: services_recipes_pub_upgrade
         name: services/recipes; dart pub upgrade
         if: "always() && steps.checkout.conclusion == 'success'"
@@ -111,7 +92,89 @@ jobs:
         if: "always() && steps.services_schedules_pub_upgrade.conclusion == 'success'"
         working-directory: services/schedules
         run: dart analyze --fatal-infos .
+  job_003:
+    name: "analyze_and_format; PKG: services/app; `dart format --output=none --set-exit-if-changed .`, `flutter analyze --fatal-infos .`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@4504faf7e9bcf8f3ed0bc863c4e1d21499ab8ef8
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/app;commands:format-analyze_1"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/app
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: subosito/flutter-action@2fb73e25c9488eb544b9b14b2ce00c4c2baf789e
+        with:
+          channel: stable
+      - id: checkout
+        uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
+      - id: services_app_pub_upgrade
+        name: services/app; flutter pub pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: services/app
+        run: flutter pub pub upgrade
+      - name: "services/app; dart format --output=none --set-exit-if-changed ."
+        if: "always() && steps.services_app_pub_upgrade.conclusion == 'success'"
+        working-directory: services/app
+        run: "dart format --output=none --set-exit-if-changed ."
+      - name: "services/app; flutter analyze --fatal-infos ."
+        if: "always() && steps.services_app_pub_upgrade.conclusion == 'success'"
+        working-directory: services/app
+        run: flutter analyze --fatal-infos .
   job_004:
+    name: "test; PKGS: packages/queue, services/recipes, services/schedules; `dart test`"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cache Pub hosted dependencies
+        uses: actions/cache@4504faf7e9bcf8f3ed0bc863c4e1d21499ab8ef8
+        with:
+          path: "~/.pub-cache/hosted"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/queue-services/recipes-services/schedules;commands:test_0"
+          restore-keys: |
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:packages/queue-services/recipes-services/schedules
+            os:ubuntu-latest;pub-cache-hosted;sdk:stable
+            os:ubuntu-latest;pub-cache-hosted
+            os:ubuntu-latest
+      - uses: dart-lang/setup-dart@6a218f2413a3e78e9087f638a238f6b40893203d
+        with:
+          sdk: stable
+      - id: checkout
+        uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
+      - id: packages_queue_pub_upgrade
+        name: packages/queue; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: packages/queue
+        run: dart pub upgrade
+      - name: packages/queue; dart test
+        if: "always() && steps.packages_queue_pub_upgrade.conclusion == 'success'"
+        working-directory: packages/queue
+        run: dart test
+      - id: services_recipes_pub_upgrade
+        name: services/recipes; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: services/recipes
+        run: dart pub upgrade
+      - name: services/recipes; dart test
+        if: "always() && steps.services_recipes_pub_upgrade.conclusion == 'success'"
+        working-directory: services/recipes
+        run: dart test
+      - id: services_schedules_pub_upgrade
+        name: services/schedules; dart pub upgrade
+        if: "always() && steps.checkout.conclusion == 'success'"
+        working-directory: services/schedules
+        run: dart pub upgrade
+      - name: services/schedules; dart test
+        if: "always() && steps.services_schedules_pub_upgrade.conclusion == 'success'"
+        working-directory: services/schedules
+        run: dart test
+    needs:
+      - job_001
+      - job_002
+      - job_003
+  job_005:
     name: "test; PKG: services/app; `flutter test`"
     runs-on: ubuntu-latest
     steps:
@@ -119,7 +182,7 @@ jobs:
         uses: actions/cache@4504faf7e9bcf8f3ed0bc863c4e1d21499ab8ef8
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/app;commands:test_0"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/app;commands:test_1"
           restore-keys: |
             os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/app
             os:ubuntu-latest;pub-cache-hosted;sdk:stable
@@ -139,47 +202,6 @@ jobs:
         if: "always() && steps.services_app_pub_upgrade.conclusion == 'success'"
         working-directory: services/app
         run: flutter test
-    needs:
-      - job_001
-      - job_002
-      - job_003
-  job_005:
-    name: "test; PKGS: services/recipes, services/schedules; `dart test`"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Pub hosted dependencies
-        uses: actions/cache@4504faf7e9bcf8f3ed0bc863c4e1d21499ab8ef8
-        with:
-          path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/recipes-services/schedules;commands:test_1"
-          restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable;packages:services/recipes-services/schedules
-            os:ubuntu-latest;pub-cache-hosted;sdk:stable
-            os:ubuntu-latest;pub-cache-hosted
-            os:ubuntu-latest
-      - uses: dart-lang/setup-dart@6a218f2413a3e78e9087f638a238f6b40893203d
-        with:
-          sdk: stable
-      - id: checkout
-        uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
-      - id: services_recipes_pub_upgrade
-        name: services/recipes; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: services/recipes
-        run: dart pub upgrade
-      - name: services/recipes; dart test
-        if: "always() && steps.services_recipes_pub_upgrade.conclusion == 'success'"
-        working-directory: services/recipes
-        run: dart test
-      - id: services_schedules_pub_upgrade
-        name: services/schedules; dart pub upgrade
-        if: "always() && steps.checkout.conclusion == 'success'"
-        working-directory: services/schedules
-        run: dart pub upgrade
-      - name: services/schedules; dart test
-        if: "always() && steps.services_schedules_pub_upgrade.conclusion == 'success'"
-        working-directory: services/schedules
-        run: dart test
     needs:
       - job_001
       - job_002
