@@ -102,7 +102,7 @@ class NlIruoyWhocooksSchedulesV0ModelsScheduleResource {
 
   Future<void> deleteById({required String id}) async {
     final r = await client.delete(Uri.parse('$baseUrl/schedules/$id'));
-    final json = jsonDecode(r.body);
+    // final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 204:
         return;
