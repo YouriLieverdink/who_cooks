@@ -55,7 +55,7 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeDao {
         await c.collection('recipes').modernFindOne(selector: where.id(_id));
     return data == null
         ? null
-        : NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(data);
+        : NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson({'id': id, ...data});
   }
 
   Future<NlIruoyWhocooksRecipesV0ModelsRecipe> updateById(

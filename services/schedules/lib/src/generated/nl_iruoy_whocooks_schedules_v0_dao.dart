@@ -65,7 +65,8 @@ class NlIruoyWhocooksSchedulesV0ModelsScheduleDao {
         await c.collection('schedules').modernFindOne(selector: where.id(_id));
     return data == null
         ? null
-        : NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson(data);
+        : NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson(
+            {'id': id, ...data});
   }
 
   Future<NlIruoyWhocooksSchedulesV0ModelsSchedule> updateById(
