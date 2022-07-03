@@ -30,7 +30,6 @@ class User {
 void main() {
   const one = One();
   const two = Two();
-  const user = User('Youri');
 
   group('Queue', () {
     late Queue events;
