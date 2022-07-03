@@ -39,7 +39,7 @@ void main() {
         .thenAnswer((_) => Future.value());
   });
 
-  group('AddRecipe', () {
+  group('EditRecipe', () {
     test(
       'throws when the recipe was not found',
       () {

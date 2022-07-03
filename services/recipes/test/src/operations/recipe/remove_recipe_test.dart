@@ -35,7 +35,7 @@ void main() {
         .thenAnswer((_) => Future.value());
   });
 
-  group('AddRecipe', () {
+  group('RemoveRecipe', () {
     test(
       'throws when the recipe was not found',
       () {
