@@ -9,8 +9,8 @@ const id = '62c19a04c6a1b8393595ccfc';
 final schedule = Schedule(
   id: id,
   date: DateTime(2022),
-  days: [],
-  recipes: [],
+  days: const [],
+  recipes: const [],
 );
 
 void main() {

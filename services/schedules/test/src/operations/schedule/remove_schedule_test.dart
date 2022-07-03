@@ -9,8 +9,8 @@ const id = '62c19a04c6a1b8393595ccfc';
 final schedule = Schedule(
   id: id,
   date: DateTime(2022),
-  days: [],
-  recipes: [],
+  days: const [],
+  recipes: const [],
 );
 
 void main() {
@@ -27,14 +27,14 @@ void main() {
         .thenAnswer((_) => Future.value(schedule));
 
     when(dao.deleteById(id: id)) //
-        .thenAnswer((_) => Future.value(schedule));
+        .thenAnswer((_) => Future.value());
   });
 
   group('RemoveSchedule', () {
     test(
       'throws when the schedule was not found',
       () {
-        when(dao.getById(id: id)).thenAnswer((_) => Future.value(null));
+        when(dao.getById(id: id)).thenAnswer((_) => Future.value());
 
         expect(
           removeSchedule(id: id),
