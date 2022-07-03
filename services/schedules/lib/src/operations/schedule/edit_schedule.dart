@@ -7,7 +7,7 @@ class CreateEditSchedule {
     this.showSchedule,
   );
 
-  final NlIruoyWhocooksScheduleDao dao;
+  final ScheduleDao dao;
 
   final Future<Schedule> Function({required String id}) showSchedule;
 

@@ -9,7 +9,7 @@ import './schedule/list_schedules.dart';
 import './schedule/remove_schedule.dart';
 import './schedule/show_schedule.dart';
 
-final dao = NlIruoyWhocooksScheduleDao(connect: $.getAsync);
+final dao = ScheduleDao();
 
 final showHealthcheck = CreateShowHealthcheck();
 

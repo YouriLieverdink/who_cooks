@@ -17,7 +17,7 @@ class NlIruoyCommonV0ModelsHealthcheckResource {
       case 200:
         return NlIruoyCommonV0ModelsHealthcheck.fromJson(json);
       case 422:
-        throw NlIruoyCommonV0ModelsError.fromJson(json);
+        throw Exception([r.statusCode, null]);
       default:
         throw Exception([
           r.statusCode,
@@ -36,12 +36,17 @@ class NlIruoyWhocooksSchedulesV0ModelsScheduleResource {
   final String baseUrl;
 
   Future<List<NlIruoyWhocooksSchedulesV0ModelsSchedule>> get(
-      {int limit = 100, int skip = 0}) async {
-    final r = await client.get(Uri.parse('$baseUrl/schedules').replace(
-        queryParameters: {
-          'limit': jsonEncode(limit),
-          'skip': jsonEncode(skip)
-        }));
+      {List<String>? ids,
+      String? recipe,
+      int limit = 100,
+      int skip = 0}) async {
+    final r = await client
+        .get(Uri.parse('$baseUrl/schedules').replace(queryParameters: {
+      'ids': jsonEncode(ids?.map((v) => v).toList()),
+      'recipe': jsonEncode(recipe),
+      'limit': jsonEncode(limit),
+      'skip': jsonEncode(skip)
+    }));
     final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 200:
@@ -65,7 +70,7 @@ class NlIruoyWhocooksSchedulesV0ModelsScheduleResource {
       case 201:
         return NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson(json);
       case 400:
-        throw NlIruoyCommonV0ModelsError.fromJson(json);
+        throw Exception([r.statusCode, null]);
       default:
         throw Exception([
           r.statusCode,
@@ -84,9 +89,9 @@ class NlIruoyWhocooksSchedulesV0ModelsScheduleResource {
       case 200:
         return NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson(json);
       case 400:
-        throw NlIruoyCommonV0ModelsError.fromJson(json);
+        throw Exception([r.statusCode, null]);
       case 404:
-        throw json;
+        throw Exception([r.statusCode, null]);
       default:
         throw Exception([
           r.statusCode,
@@ -100,9 +105,9 @@ class NlIruoyWhocooksSchedulesV0ModelsScheduleResource {
     final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 204:
-        return json;
+        return;
       case 404:
-        throw json;
+        throw Exception([r.statusCode, null]);
       default:
         throw Exception([
           r.statusCode,

@@ -17,7 +17,7 @@ class NlIruoyCommonV0ModelsHealthcheckResource {
       case 200:
         return NlIruoyCommonV0ModelsHealthcheck.fromJson(json);
       case 422:
-        throw NlIruoyCommonV0ModelsError.fromJson(json);
+        throw Exception([r.statusCode, null]);
       default:
         throw Exception([
           r.statusCode,
@@ -36,12 +36,13 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeResource {
   final String baseUrl;
 
   Future<List<NlIruoyWhocooksRecipesV0ModelsRecipe>> get(
-      {int limit = 100, int skip = 0, String? title}) async {
+      {List<String>? ids, String? title, int limit = 100, int skip = 0}) async {
     final r = await client
         .get(Uri.parse('$baseUrl/recipes').replace(queryParameters: {
+      'ids': jsonEncode(ids?.map((v) => v).toList()),
+      'title': jsonEncode(title),
       'limit': jsonEncode(limit),
-      'skip': jsonEncode(skip),
-      if (title != null) ...{'title': title}
+      'skip': jsonEncode(skip)
     }));
     final json = jsonDecode(r.body);
     switch (r.statusCode) {
@@ -66,7 +67,7 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeResource {
       case 201:
         return NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json);
       case 400:
-        throw NlIruoyCommonV0ModelsError.fromJson(json);
+        throw Exception([r.statusCode, null]);
       default:
         throw Exception([
           r.statusCode,
@@ -83,7 +84,7 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeResource {
       case 200:
         return NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json);
       case 404:
-        throw json;
+        throw Exception([r.statusCode, null]);
       default:
         throw Exception([
           r.statusCode,
@@ -102,9 +103,9 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeResource {
       case 200:
         return NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json);
       case 400:
-        throw NlIruoyCommonV0ModelsError.fromJson(json);
+        throw Exception([r.statusCode, null]);
       case 404:
-        throw json;
+        throw Exception([r.statusCode, null]);
       default:
         throw Exception([
           r.statusCode,
@@ -115,11 +116,12 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeResource {
 
   Future<void> deleteById({required String id}) async {
     final r = await client.delete(Uri.parse('$baseUrl/recipes/$id'));
+    final json = jsonDecode(r.body);
     switch (r.statusCode) {
       case 204:
         return;
       case 404:
-        throw Exception();
+        throw Exception([r.statusCode, null]);
       default:
         throw Exception([
           r.statusCode,

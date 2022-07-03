@@ -6,7 +6,7 @@ class CreateListRecipes {
     this.dao,
   );
 
-  final NlIruoyWhocooksRecipeDao dao;
+  final RecipeDao dao;
 
   Future<List<Recipe>> call({
     List<String>? ids,

@@ -57,7 +57,6 @@ class RecipeAddEditCubit extends Cubit<RecipeAddEditState> {
         title: state.title.value,
         description: state.description,
         photoUrl: state.photoUrl,
-        ingredients: const [],
       );
 
       if (_recipe != null) {

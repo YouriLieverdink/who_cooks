@@ -6,15 +6,14 @@ class CreateListSchedules {
     this.dao,
   );
 
-  final NlIruoyWhocooksScheduleDao dao;
+  final ScheduleDao dao;
 
   Future<List<Schedule>> call({
     List<String>? ids,
-    NlIruoyWhocooksRecipesV0ModelsRecipe? recipe,
     int? limit,
     int? skip,
   }) async {
     //
-    return dao.get(ids: ids, recipe: recipe, limit: limit, skip: skip);
+    return dao.get(ids: ids, limit: limit, skip: skip);
   }
 }

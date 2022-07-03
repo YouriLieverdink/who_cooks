@@ -6,7 +6,7 @@ class CreateAddRecipe {
     this.dao,
   );
 
-  final NlIruoyWhocooksRecipeDao dao;
+  final RecipeDao dao;
 
   Future<Recipe> call(
     RecipeForm recipeForm,

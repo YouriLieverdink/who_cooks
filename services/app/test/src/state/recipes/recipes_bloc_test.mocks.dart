@@ -107,14 +107,17 @@ class MockNlIruoyWhocooksRecipesV0ModelsRecipeResource extends _i1.Mock
           as String);
   @override
   _i7.Future<List<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>> get(
-          {int? limit = 100, int? skip = 0, String? title}) =>
+          {List<String>? ids,
+          String? title,
+          int? limit = 100,
+          int? skip = 0}) =>
       (super.noSuchMethod(
-              Invocation.method(
-                  #get, [], {#limit: limit, #skip: skip, #title: title}),
-              returnValue:
-                  Future<List<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>>.value(
-                      <_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>[]))
-          as _i7.Future<List<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>>);
+          Invocation.method(
+              #get, [], {#ids: ids, #title: title, #limit: limit, #skip: skip}),
+          returnValue:
+              Future<List<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>>.value(
+                  <_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>[])) as _i7
+          .Future<List<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe>>);
   @override
   _i7.Future<_i5.NlIruoyWhocooksRecipesV0ModelsRecipe> post(
           _i5.NlIruoyWhocooksRecipesV0ModelsRecipeForm? recipeForm) =>

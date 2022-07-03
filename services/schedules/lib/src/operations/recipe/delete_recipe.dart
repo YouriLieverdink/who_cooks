@@ -6,13 +6,13 @@ class CreateDeleteRecipe {
     this.dao,
   );
 
-  final NlIruoyWhocooksScheduleDao dao;
+  final ScheduleDao dao;
 
   Future<void> call(
     NlIruoyWhocooksRecipesV0ModelsRecipeDeleted event,
   ) async {
     //
-    final schedules = await dao.get(recipe: event.recipe);
+    final schedules = await dao.get(recipes: [event.recipe]);
 
     if (schedules.isEmpty) {
       // No schedules were found where the recipe should be removed.

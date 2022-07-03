@@ -6,7 +6,7 @@ class CreateShowSchedule {
     this.dao,
   );
 
-  final NlIruoyWhocooksScheduleDao dao;
+  final ScheduleDao dao;
 
   Future<Schedule> call({
     required String id,

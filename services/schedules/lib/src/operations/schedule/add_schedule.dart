@@ -6,7 +6,7 @@ class CreateAddSchedule {
     this.dao,
   );
 
-  final NlIruoyWhocooksScheduleDao dao;
+  final ScheduleDao dao;
 
   Future<Schedule> call(
     ScheduleForm scheduleForm,

@@ -50,19 +50,6 @@ class RecipeShowPageBody extends StatelessWidget {
             recipe.description ?? '...',
             style: theme.textTheme.bodyMedium,
           ),
-          if (recipe.ingredients.isNotEmpty) ...[
-            const SizedBox(height: kPadding),
-            Text(
-              capitalize(
-                translations.messages.resources.ingredient(3),
-              ),
-              style: theme.textTheme.bodyLarge,
-            ),
-            const Divider(height: kPadding),
-            for (var ingredient in recipe.ingredients) ...[
-              IngredientTile(ingredient: ingredient),
-            ],
-          ],
         ],
       ),
     );

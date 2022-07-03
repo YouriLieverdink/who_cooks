@@ -6,7 +6,7 @@ class CreateUpsertRecipe {
     this.dao,
   );
 
-  final NlIruoyWhocooksScheduleDao dao;
+  final ScheduleDao dao;
 
   Future<void> call(
     NlIruoyWhocooksRecipesV0ModelsRecipeUpserted event,
@@ -17,7 +17,7 @@ class CreateUpsertRecipe {
       return;
     }
 
-    final schedules = await dao.get(recipe: event.previous);
+    final schedules = await dao.get(recipes: [event.previous!]);
 
     if (schedules.isEmpty) {
       // No schedules were found where the recipe should be updated.

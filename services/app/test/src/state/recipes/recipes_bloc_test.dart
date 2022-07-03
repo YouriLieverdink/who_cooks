@@ -9,9 +9,9 @@ import 'package:mockito/mockito.dart';
 import './recipes_bloc_test.mocks.dart';
 
 const mockRecipes = [
-  Recipe(id: '1', title: 'Banana bread', ingredients: []),
-  Recipe(id: '2', title: 'Pasta carbonara', ingredients: []),
-  Recipe(id: '3', title: 'Turkey', ingredients: []),
+  Recipe(id: '1', title: 'Banana bread'),
+  Recipe(id: '2', title: 'Pasta carbonara'),
+  Recipe(id: '3', title: 'Turkey'),
 ];
 
 const mockError = NlIruoyCommonV0ModelsError(

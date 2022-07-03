@@ -21,9 +21,9 @@ class ScheduleList extends StatelessWidget {
   /// Returns `null` when no recipe is present for that day.
   Recipe? _recipe(Schedule schedule, int index) {
     //
-    final _index = schedule.days[index] == 0 //
-        ? null
-        : schedule.days.sublist(0, index).sum;
+    final _index = schedule.days[index] //
+        ? schedule.days.sublist(0, index).fold<int>(0, (p, c) => c ? p + 1 : p)
+        : null;
 
     return _index == null //
         ? null

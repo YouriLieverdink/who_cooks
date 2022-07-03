@@ -38,21 +38,14 @@ class NlIruoyWhocooksRecipesV0ModelsIngredient extends Equatable {
 
 class NlIruoyWhocooksRecipesV0ModelsRecipe extends Equatable {
   const NlIruoyWhocooksRecipesV0ModelsRecipe(
-      {required this.id,
-      this.photoUrl,
-      required this.title,
-      this.description,
-      required this.ingredients});
+      {required this.id, this.photoUrl, required this.title, this.description});
 
   factory NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(dynamic json) {
     return NlIruoyWhocooksRecipesV0ModelsRecipe(
         id: (json['id'] as String),
         photoUrl: (json['photo_url'] as String?),
         title: (json['title'] as String),
-        description: (json['description'] as String?),
-        ingredients: (json['ingredients'] as List)
-            .map((v) => NlIruoyWhocooksRecipesV0ModelsIngredient.fromJson(v))
-            .toList());
+        description: (json['description'] as String?));
   }
 
   final String id;
@@ -63,35 +56,27 @@ class NlIruoyWhocooksRecipesV0ModelsRecipe extends Equatable {
 
   final String? description;
 
-  final List<NlIruoyWhocooksRecipesV0ModelsIngredient> ingredients;
-
   dynamic toJson() {
     return {
       'id': id,
       'photo_url': photoUrl,
       'title': title,
-      'description': description,
-      'ingredients': ingredients.map((v) => v.toJson()).toList()
+      'description': description
     };
   }
 
   @override
   List<Object?> get props {
-    return [id, photoUrl, title, description, ingredients];
+    return [id, photoUrl, title, description];
   }
 
   NlIruoyWhocooksRecipesV0ModelsRecipe copyWith(
-      {String? id,
-      String? photoUrl,
-      String? title,
-      String? description,
-      List<NlIruoyWhocooksRecipesV0ModelsIngredient>? ingredients}) {
+      {String? id, String? photoUrl, String? title, String? description}) {
     return NlIruoyWhocooksRecipesV0ModelsRecipe(
         id: id ?? this.id,
         photoUrl: photoUrl ?? this.photoUrl,
         title: title ?? this.title,
-        description: description ?? this.description,
-        ingredients: ingredients ?? this.ingredients);
+        description: description ?? this.description);
   }
 }
 
@@ -138,19 +123,13 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeDeleted extends Equatable {
 
 class NlIruoyWhocooksRecipesV0ModelsRecipeForm extends Equatable {
   const NlIruoyWhocooksRecipesV0ModelsRecipeForm(
-      {this.photoUrl,
-      required this.title,
-      this.description,
-      required this.ingredients});
+      {this.photoUrl, required this.title, this.description});
 
   factory NlIruoyWhocooksRecipesV0ModelsRecipeForm.fromJson(dynamic json) {
     return NlIruoyWhocooksRecipesV0ModelsRecipeForm(
         photoUrl: (json['photo_url'] as String?),
         title: (json['title'] as String),
-        description: (json['description'] as String?),
-        ingredients: (json['ingredients'] as List)
-            .map((v) => NlIruoyWhocooksRecipesV0ModelsIngredient.fromJson(v))
-            .toList());
+        description: (json['description'] as String?));
   }
 
   final String? photoUrl;
@@ -159,32 +138,21 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeForm extends Equatable {
 
   final String? description;
 
-  final List<NlIruoyWhocooksRecipesV0ModelsIngredient> ingredients;
-
   dynamic toJson() {
-    return {
-      'photo_url': photoUrl,
-      'title': title,
-      'description': description,
-      'ingredients': ingredients.map((v) => v.toJson()).toList()
-    };
+    return {'photo_url': photoUrl, 'title': title, 'description': description};
   }
 
   @override
   List<Object?> get props {
-    return [photoUrl, title, description, ingredients];
+    return [photoUrl, title, description];
   }
 
   NlIruoyWhocooksRecipesV0ModelsRecipeForm copyWith(
-      {String? photoUrl,
-      String? title,
-      String? description,
-      List<NlIruoyWhocooksRecipesV0ModelsIngredient>? ingredients}) {
+      {String? photoUrl, String? title, String? description}) {
     return NlIruoyWhocooksRecipesV0ModelsRecipeForm(
         photoUrl: photoUrl ?? this.photoUrl,
         title: title ?? this.title,
-        description: description ?? this.description,
-        ingredients: ingredients ?? this.ingredients);
+        description: description ?? this.description);
   }
 }
 
@@ -338,9 +306,9 @@ class NlIruoyWhocooksRecipesV0UnionsRecipeEvent extends Union2Impl<
         factory.second(recipeDeleted));
   }
 
-  static const Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
+  static final Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
           NlIruoyWhocooksRecipesV0ModelsRecipeDeleted> factory =
-      Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
+      const Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
           NlIruoyWhocooksRecipesV0ModelsRecipeDeleted>();
 
   dynamic toJson() {

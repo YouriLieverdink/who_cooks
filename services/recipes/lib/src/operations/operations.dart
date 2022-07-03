@@ -7,7 +7,7 @@ import './recipe/list_recipes.dart';
 import './recipe/remove_recipe.dart';
 import './recipe/show_recipe.dart';
 
-final dao = NlIruoyWhocooksRecipeDao(connect: $.getAsync);
+final dao = RecipeDao();
 
 final showHealthcheck = CreateShowHealthcheck();
 

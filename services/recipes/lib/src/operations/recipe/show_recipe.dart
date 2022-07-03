@@ -6,7 +6,7 @@ class CreateShowRecipe {
     this.dao,
   );
 
-  final NlIruoyWhocooksRecipeDao dao;
+  final RecipeDao dao;
 
   Future<Recipe> call({
     required String id,

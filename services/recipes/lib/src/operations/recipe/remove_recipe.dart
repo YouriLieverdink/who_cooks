@@ -7,7 +7,7 @@ class CreateRemoveRecipe {
     this.showRecipe,
   );
 
-  final NlIruoyWhocooksRecipeDao dao;
+  final RecipeDao dao;
 
   final Future<Recipe> Function({required String id}) showRecipe;
 
