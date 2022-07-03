@@ -1,6 +1,5 @@
+import 'package:app/src/generated/generated.dart';
 import 'package:http/http.dart';
-
-import '../../generated/generated.dart';
 
 class Repository {
   /// The base url of the backend services.
@@ -18,7 +17,7 @@ class Repository {
   final NlIruoyWhocooksSchedulesV0Client schedules;
 
   /// Initialises and returns an instance of `this`.
-  static Repository get instance {
+  factory Repository.instance() {
     final client = Client();
 
     return Repository(

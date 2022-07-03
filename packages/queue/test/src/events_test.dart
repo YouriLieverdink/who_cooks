@@ -8,7 +8,8 @@ class One {
 class Two {
   const Two();
 
-  factory Two.fromJson(dynamic json) => Two();
+  // ignore: avoid_unused_constructor_parameters
+  factory Two.fromJson(dynamic json) => const Two();
 
   dynamic toJson() => {};
 }
@@ -17,7 +18,7 @@ class User {
   const User(this.name);
 
   factory User.fromJson(dynamic json) {
-    return User(json['name'] as String);
+    return User((json as Map)['name'] as String);
   }
 
   final String name;

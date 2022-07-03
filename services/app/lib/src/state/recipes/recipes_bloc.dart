@@ -1,8 +1,7 @@
+import 'package:app/src/generated/generated.dart';
+import 'package:app/src/services/services.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
-import '../../generated/generated.dart';
-import '../../services/services.dart';
 
 part 'recipes_event.dart';
 part 'recipes_state.dart';
@@ -39,7 +38,7 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     emit(RecipesNotLoaded(error: error));
   }
 
-  void _onLoadRecipes(
+  Future<void> _onLoadRecipes(
     LoadRecipes event,
     Emitter<RecipesState> emit,
   ) async {

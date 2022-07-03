@@ -1,10 +1,5 @@
 include: package:lint/analysis_options.yaml
 
-analyzer:
-  exclude:
-    - lib/src/generated/**
-    - lib/i18n/**
-
 linter:
   rules:
     avoid_classes_with_only_static_members: false

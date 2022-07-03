@@ -1,7 +1,6 @@
+import 'package:app/src/pages/pages.dart';
+import 'package:app/src/utilities/utilities.dart';
 import 'package:flutter/material.dart';
-
-import './pages/pages.dart';
-import './utilities/utilities.dart';
 
 Route<dynamic> onGenerateRoute(
   RouteSettings settings,
@@ -11,10 +10,10 @@ Route<dynamic> onGenerateRoute(
       return withFadeTransition(const BasePage());
 
     case '/recipes/show':
-      final id = settings.arguments as String;
+      final id = settings.arguments as String?;
 
       return MaterialPageRoute(
-        builder: (_) => RecipeShowPage(id: id),
+        builder: (_) => RecipeShowPage(id: id!),
       );
 
     case '/recipes/add-edit':

@@ -2,8 +2,8 @@ import 'package:app/src/state/recipes/recipes_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  const skip = 0;
-  const limit = 100;
+  const skip = 5;
+  const limit = 10;
 
   group(
     'RecipesEvent',

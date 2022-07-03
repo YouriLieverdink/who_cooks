@@ -15,7 +15,7 @@ bool hasToJson<T>() {
 
   return mirror //
       .declarations
-      .containsKey(Symbol('toJson'));
+      .containsKey(const Symbol('toJson'));
 }
 
 T? fromJson<T>(
@@ -25,9 +25,9 @@ T? fromJson<T>(
   try {
     final mirror = reflectClass(T);
 
-    final result = mirror.newInstance(Symbol('fromJson'), [value]);
+    final result = mirror.newInstance(const Symbol('fromJson'), [value]);
 
-    return result.reflectee;
+    return result.reflectee as T;
   } //
   catch (_) {
     return null;
@@ -41,9 +41,9 @@ Map<String, dynamic>? toJson<T>(
   try {
     final mirror = reflect(value);
 
-    final result = mirror.invoke(Symbol('toJson'), []);
+    final result = mirror.invoke(const Symbol('toJson'), []);
 
-    return result.reflectee;
+    return result.reflectee as Map<String, dynamic>;
   } //
   catch (_) {
     return null;

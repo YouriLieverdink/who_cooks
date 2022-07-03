@@ -1,12 +1,12 @@
+import 'package:app/src/pages/schedule/schedule_show/schedule_show.dart';
+import 'package:app/src/state/state.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../state/state.dart';
-import '../schedule_show.dart';
-
 class Conditional extends StatelessWidget {
   const Conditional(
+    // ignore: avoid_positional_boolean_parameters
     this.value, {
     Key? key,
     required this.isTrue,

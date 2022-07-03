@@ -1,9 +1,8 @@
+import 'package:app/config/constants.dart';
+import 'package:app/src/pages/recipe/recipe.dart';
+import 'package:app/src/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../config/constants.dart';
-import '../../../../services/services.dart';
-import '../../recipe.dart';
 
 class RecipeSearchPageBody extends StatelessWidget {
   const RecipeSearchPageBody({

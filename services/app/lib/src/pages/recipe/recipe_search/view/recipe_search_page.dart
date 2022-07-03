@@ -1,8 +1,7 @@
+import 'package:app/src/pages/recipe/recipe_search/recipe_search.dart';
+import 'package:app/src/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../services/services.dart';
-import '../recipe_search.dart';
 
 class RecipeSearchPage extends StatelessWidget {
   const RecipeSearchPage({

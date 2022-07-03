@@ -1,9 +1,8 @@
+import 'package:app/src/generated/generated.dart';
+import 'package:app/src/services/services.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
-
-import '../../../../../generated/generated.dart';
-import '../../../../../services/services.dart';
 
 part 'recipe_search_event.dart';
 part 'recipe_search_state.dart';

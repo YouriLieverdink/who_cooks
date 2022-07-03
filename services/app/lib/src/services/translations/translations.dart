@@ -12,7 +12,7 @@ class Translations {
   });
 
   /// Initialises and returns an instance of `this`.
-  static Translations get instance {
+  factory Translations.instance() {
     //
     final locale = Platform.localeName.substring(0, 2);
 

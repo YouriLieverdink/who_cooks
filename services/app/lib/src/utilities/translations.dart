@@ -1,4 +1,4 @@
-import '../services/services.dart';
+import 'package:app/src/services/services.dart';
 
 /// Returns a list [String]s containing the days of the week.
 List<String> weekdays(

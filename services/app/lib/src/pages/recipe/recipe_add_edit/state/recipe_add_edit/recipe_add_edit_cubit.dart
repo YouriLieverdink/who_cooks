@@ -1,11 +1,10 @@
+import 'package:app/src/generated/generated.dart';
+import 'package:app/src/pages/recipe/recipe_add_edit/recipe_add_edit.dart';
+import 'package:app/src/services/services.dart';
 import 'package:app/src/state/state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-
-import '../../../../../generated/generated.dart';
-import '../../../../../services/services.dart';
-import '../../recipe_add_edit.dart';
 
 part 'recipe_add_edit_state.dart';
 
@@ -20,11 +19,13 @@ class RecipeAddEditCubit extends Cubit<RecipeAddEditState> {
         super(const RecipeAddEditState()) {
     // When a recipe was provided, set the state with it.
     if (recipe != null) {
-      emit(RecipeAddEditState(
-        title: TitleInput.dirty(value: recipe.title),
-        description: recipe.description,
-        photoUrl: recipe.photoUrl,
-      ));
+      emit(
+        RecipeAddEditState(
+          title: TitleInput.dirty(value: recipe.title),
+          description: recipe.description,
+          photoUrl: recipe.photoUrl,
+        ),
+      );
     }
   }
 
@@ -47,7 +48,7 @@ class RecipeAddEditCubit extends Cubit<RecipeAddEditState> {
     emit(state.copyWith(photoUrl: value));
   }
 
-  void submit() async {
+  Future<void> submit() async {
     if (!state.status.isValid) return;
 
     emit(state.copyWith(submission: FormzStatus.submissionInProgress));

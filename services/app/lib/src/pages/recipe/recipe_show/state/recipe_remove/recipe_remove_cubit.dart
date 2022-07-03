@@ -1,10 +1,9 @@
+import 'package:app/src/generated/generated.dart';
+import 'package:app/src/services/services.dart';
+import 'package:app/src/state/state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-
-import '../../../../../generated/generated.dart';
-import '../../../../../services/services.dart';
-import '../../../../../state/state.dart';
 
 part 'recipe_remove_state.dart';
 
@@ -21,25 +20,31 @@ class RecipeRemoveCubit extends Cubit<RecipeRemoveState> {
 
   final RecipesBloc recipesBloc;
 
-  void submit() async {
+  Future<void> submit() async {
     //
-    emit(state.copyWith(
-      submission: FormzStatus.submissionInProgress,
-    ));
+    emit(
+      state.copyWith(
+        submission: FormzStatus.submissionInProgress,
+      ),
+    );
 
     try {
       await repository.recipes.recipes.deleteById(id: state.id);
 
       recipesBloc.add(RemoveRecipe(recipe: recipe));
 
-      emit(state.copyWith(
-        submission: FormzStatus.submissionSuccess,
-      ));
+      emit(
+        state.copyWith(
+          submission: FormzStatus.submissionSuccess,
+        ),
+      );
     } //
     catch (_) {
-      emit(state.copyWith(
-        submission: FormzStatus.submissionFailure,
-      ));
+      emit(
+        state.copyWith(
+          submission: FormzStatus.submissionFailure,
+        ),
+      );
     }
   }
 }

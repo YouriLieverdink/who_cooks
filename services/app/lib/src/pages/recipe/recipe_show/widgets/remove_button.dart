@@ -1,9 +1,8 @@
+import 'package:app/config/constants.dart';
+import 'package:app/src/pages/recipe/recipe_show/recipe_show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-
-import '../../../../../config/constants.dart';
-import '../recipe_show.dart';
 
 class RecipeRemoveButton extends StatelessWidget {
   const RecipeRemoveButton({

@@ -29,17 +29,17 @@ void main() {
         .thenAnswer((_) => Future.value(recipe));
 
     when(dao.deleteById(id: id)) //
-        .thenAnswer((_) => Future.value(recipe));
+        .thenAnswer((_) => Future.value());
 
     when(queue.add(anything)) //
         .thenAnswer((_) => Future.value());
   });
 
-  group('AddRecipe', () {
+  group('RemoveRecipe', () {
     test(
       'throws when the recipe was not found',
       () {
-        when(dao.getById(id: id)).thenAnswer((_) => Future.value(null));
+        when(dao.getById(id: id)).thenAnswer((_) => Future.value());
 
         expect(
           removeRecipe(id: id),

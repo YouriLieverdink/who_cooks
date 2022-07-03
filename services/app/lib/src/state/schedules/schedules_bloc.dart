@@ -1,8 +1,7 @@
+import 'package:app/src/generated/generated.dart';
+import 'package:app/src/services/services.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
-import '../../generated/generated.dart';
-import '../../services/services.dart';
 
 part 'schedules_event.dart';
 part 'schedules_state.dart';
@@ -36,7 +35,7 @@ class SchedulesBloc extends Bloc<SchedulesEvent, SchedulesState> {
     emit(SchedulesNotLoaded(error: error));
   }
 
-  void _onLoadSchedules(
+  Future<void> _onLoadSchedules(
     LoadSchedules event,
     Emitter<SchedulesState> emit,
   ) async {

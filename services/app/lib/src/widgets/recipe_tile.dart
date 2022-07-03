@@ -1,6 +1,5 @@
+import 'package:app/src/generated/generated.dart';
 import 'package:flutter/material.dart';
-
-import '../generated/generated.dart';
 
 class RecipeTile extends StatelessWidget {
   const RecipeTile({
