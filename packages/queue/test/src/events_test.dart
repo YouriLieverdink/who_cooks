@@ -100,49 +100,5 @@ void main() {
         );
       },
     );
-
-    group(
-      'on & add',
-      () {
-        test(
-          'handles one listener',
-          () async {
-            var calls = 0;
-
-            await events.on((User _) => calls++);
-
-            await events.add(user);
-
-            // Receiving the event takes some time.
-            await Future.delayed(const Duration(milliseconds: 100));
-
-            expect(
-              calls,
-              equals(1),
-            );
-          },
-        );
-
-        test(
-          'handles multiple listeners',
-          () async {
-            var calls = 0;
-
-            await events.on((User _) => calls++);
-            await events.on((User _) => calls++);
-
-            await events.add(user);
-
-            // Receiving the event takes some time.
-            await Future.delayed(const Duration(milliseconds: 100));
-
-            expect(
-              calls,
-              equals(2),
-            );
-          },
-        );
-      },
-    );
   });
 }
