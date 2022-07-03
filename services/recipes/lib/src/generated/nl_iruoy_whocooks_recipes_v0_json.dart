@@ -156,56 +156,85 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeForm extends Equatable {
   }
 }
 
-class NlIruoyWhocooksRecipesV0ModelsRecipeUpserted extends Equatable {
-  const NlIruoyWhocooksRecipesV0ModelsRecipeUpserted(
-      {required this.id,
-      required this.timestamp,
-      this.previous,
-      required this.current});
+class NlIruoyWhocooksRecipesV0ModelsRecipeInserted extends Equatable {
+  const NlIruoyWhocooksRecipesV0ModelsRecipeInserted(
+      {required this.id, required this.timestamp, required this.recipe});
 
-  factory NlIruoyWhocooksRecipesV0ModelsRecipeUpserted.fromJson(dynamic json) {
-    return NlIruoyWhocooksRecipesV0ModelsRecipeUpserted(
+  factory NlIruoyWhocooksRecipesV0ModelsRecipeInserted.fromJson(dynamic json) {
+    return NlIruoyWhocooksRecipesV0ModelsRecipeInserted(
         id: (json['id'] as String),
         timestamp: DateTime.parse(json['timestamp']),
-        previous: json['previous'] == null
-            ? null
-            : NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json['previous']),
-        current:
-            NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json['current']));
+        recipe: NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json['recipe']));
   }
 
   final String id;
 
   final DateTime timestamp;
 
-  final NlIruoyWhocooksRecipesV0ModelsRecipe? previous;
-
-  final NlIruoyWhocooksRecipesV0ModelsRecipe current;
+  final NlIruoyWhocooksRecipesV0ModelsRecipe recipe;
 
   dynamic toJson() {
     return {
       'id': id,
       'timestamp': timestamp.toIso8601String(),
-      'previous': previous?.toJson(),
-      'current': current.toJson()
+      'recipe': recipe.toJson()
     };
   }
 
   @override
   List<Object?> get props {
-    return [id, timestamp, previous, current];
+    return [id, timestamp, recipe];
   }
 
-  NlIruoyWhocooksRecipesV0ModelsRecipeUpserted copyWith(
+  NlIruoyWhocooksRecipesV0ModelsRecipeInserted copyWith(
       {String? id,
       DateTime? timestamp,
-      NlIruoyWhocooksRecipesV0ModelsRecipe? previous,
-      NlIruoyWhocooksRecipesV0ModelsRecipe? current}) {
-    return NlIruoyWhocooksRecipesV0ModelsRecipeUpserted(
+      NlIruoyWhocooksRecipesV0ModelsRecipe? recipe}) {
+    return NlIruoyWhocooksRecipesV0ModelsRecipeInserted(
         id: id ?? this.id,
         timestamp: timestamp ?? this.timestamp,
-        previous: previous ?? this.previous,
-        current: current ?? this.current);
+        recipe: recipe ?? this.recipe);
+  }
+}
+
+class NlIruoyWhocooksRecipesV0ModelsRecipeUpdated extends Equatable {
+  const NlIruoyWhocooksRecipesV0ModelsRecipeUpdated(
+      {required this.id, required this.timestamp, required this.recipe});
+
+  factory NlIruoyWhocooksRecipesV0ModelsRecipeUpdated.fromJson(dynamic json) {
+    return NlIruoyWhocooksRecipesV0ModelsRecipeUpdated(
+        id: (json['id'] as String),
+        timestamp: DateTime.parse(json['timestamp']),
+        recipe: NlIruoyWhocooksRecipesV0ModelsRecipe.fromJson(json['recipe']));
+  }
+
+  final String id;
+
+  final DateTime timestamp;
+
+  final NlIruoyWhocooksRecipesV0ModelsRecipe recipe;
+
+  dynamic toJson() {
+    return {
+      'id': id,
+      'timestamp': timestamp.toIso8601String(),
+      'recipe': recipe.toJson()
+    };
+  }
+
+  @override
+  List<Object?> get props {
+    return [id, timestamp, recipe];
+  }
+
+  NlIruoyWhocooksRecipesV0ModelsRecipeUpdated copyWith(
+      {String? id,
+      DateTime? timestamp,
+      NlIruoyWhocooksRecipesV0ModelsRecipe? recipe}) {
+    return NlIruoyWhocooksRecipesV0ModelsRecipeUpdated(
+        id: id ?? this.id,
+        timestamp: timestamp ?? this.timestamp,
+        recipe: recipe ?? this.recipe);
   }
 }
 
@@ -265,11 +294,14 @@ class NlIruoyCommonV0ModelsHealthcheck extends Equatable {
   }
 }
 
-class NlIruoyWhocooksRecipesV0UnionsRecipeEvent extends Union2Impl<
-    NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
+class NlIruoyWhocooksRecipesV0UnionsRecipeEvent extends Union3Impl<
+    NlIruoyWhocooksRecipesV0ModelsRecipeInserted,
+    NlIruoyWhocooksRecipesV0ModelsRecipeUpdated,
     NlIruoyWhocooksRecipesV0ModelsRecipeDeleted> {
   NlIruoyWhocooksRecipesV0UnionsRecipeEvent._(
-      Union2<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
+      Union3<
+              NlIruoyWhocooksRecipesV0ModelsRecipeInserted,
+              NlIruoyWhocooksRecipesV0ModelsRecipeUpdated,
               NlIruoyWhocooksRecipesV0ModelsRecipeDeleted>
           union)
       : super(union);
@@ -278,44 +310,60 @@ class NlIruoyWhocooksRecipesV0UnionsRecipeEvent extends Union2Impl<
     final discriminator = (json as Map).keys.first;
 
     switch (discriminator) {
-      case 'recipe_upserted':
+      case 'recipe_inserted':
         return NlIruoyWhocooksRecipesV0UnionsRecipeEvent._(factory.first(
-            NlIruoyWhocooksRecipesV0ModelsRecipeUpserted.fromJson(
-                json['recipe_upserted'])));
-      case 'recipe_deleted':
+            NlIruoyWhocooksRecipesV0ModelsRecipeInserted.fromJson(
+                json['recipe_inserted'])));
+      case 'recipe_updated':
         return NlIruoyWhocooksRecipesV0UnionsRecipeEvent._(factory.second(
+            NlIruoyWhocooksRecipesV0ModelsRecipeUpdated.fromJson(
+                json['recipe_updated'])));
+      case 'recipe_deleted':
+        return NlIruoyWhocooksRecipesV0UnionsRecipeEvent._(factory.third(
             NlIruoyWhocooksRecipesV0ModelsRecipeDeleted.fromJson(
                 json['recipe_deleted'])));
       default:
         throw Exception([
           discriminator,
-          'Unsupported type: $discriminator, expected: recipe_upserted, recipe_deleted.'
+          'Unsupported type: $discriminator, expected: recipe_inserted, recipe_updated, recipe_deleted.'
         ]);
     }
   }
 
   factory NlIruoyWhocooksRecipesV0UnionsRecipeEvent.fromFirst(
-      NlIruoyWhocooksRecipesV0ModelsRecipeUpserted recipeUpserted) {
+      NlIruoyWhocooksRecipesV0ModelsRecipeInserted recipeInserted) {
     return NlIruoyWhocooksRecipesV0UnionsRecipeEvent._(
-        factory.first(recipeUpserted));
+        factory.first(recipeInserted));
   }
 
   factory NlIruoyWhocooksRecipesV0UnionsRecipeEvent.fromSecond(
-      NlIruoyWhocooksRecipesV0ModelsRecipeDeleted recipeDeleted) {
+      NlIruoyWhocooksRecipesV0ModelsRecipeUpdated recipeUpdated) {
     return NlIruoyWhocooksRecipesV0UnionsRecipeEvent._(
-        factory.second(recipeDeleted));
+        factory.second(recipeUpdated));
   }
 
-  static final Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
+  factory NlIruoyWhocooksRecipesV0UnionsRecipeEvent.fromThird(
+      NlIruoyWhocooksRecipesV0ModelsRecipeDeleted recipeDeleted) {
+    return NlIruoyWhocooksRecipesV0UnionsRecipeEvent._(
+        factory.third(recipeDeleted));
+  }
+
+  static final Triplet<
+          NlIruoyWhocooksRecipesV0ModelsRecipeInserted,
+          NlIruoyWhocooksRecipesV0ModelsRecipeUpdated,
           NlIruoyWhocooksRecipesV0ModelsRecipeDeleted> factory =
-      const Doublet<NlIruoyWhocooksRecipesV0ModelsRecipeUpserted,
+      const Triplet<
+          NlIruoyWhocooksRecipesV0ModelsRecipeInserted,
+          NlIruoyWhocooksRecipesV0ModelsRecipeUpdated,
           NlIruoyWhocooksRecipesV0ModelsRecipeDeleted>();
 
   dynamic toJson() {
     return join((first) {
-      return {'recipe_upserted': first.toJson()};
+      return {'recipe_inserted': first.toJson()};
     }, (second) {
-      return {'recipe_deleted': second.toJson()};
+      return {'recipe_updated': second.toJson()};
+    }, (third) {
+      return {'recipe_deleted': third.toJson()};
     });
   }
 }
@@ -324,5 +372,6 @@ typedef Ingredient = NlIruoyWhocooksRecipesV0ModelsIngredient;
 typedef Recipe = NlIruoyWhocooksRecipesV0ModelsRecipe;
 typedef RecipeDeleted = NlIruoyWhocooksRecipesV0ModelsRecipeDeleted;
 typedef RecipeForm = NlIruoyWhocooksRecipesV0ModelsRecipeForm;
-typedef RecipeUpserted = NlIruoyWhocooksRecipesV0ModelsRecipeUpserted;
+typedef RecipeInserted = NlIruoyWhocooksRecipesV0ModelsRecipeInserted;
+typedef RecipeUpdated = NlIruoyWhocooksRecipesV0ModelsRecipeUpdated;
 typedef RecipeEvent = NlIruoyWhocooksRecipesV0UnionsRecipeEvent;

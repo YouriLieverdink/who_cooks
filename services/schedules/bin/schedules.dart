@@ -9,6 +9,6 @@ void main() async {
   final queue = await $.getAsync<Queue>();
 
   queue.on<NlIruoyWhocooksRecipesV0UnionsRecipeEvent>(
-    (event) => event.continued(upsertRecipe, deleteRecipe),
+    (event) => event.continued((_) => null, updateRecipe, deleteRecipe),
   );
 }

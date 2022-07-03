@@ -33,6 +33,6 @@ class CreateRemoveRecipe {
     );
 
     final queue = await $.getAsync<Queue>();
-    await queue.add(RecipeEvent.fromSecond(event));
+    await queue.add(RecipeEvent.fromThird(event));
   }
 }

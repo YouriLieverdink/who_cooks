@@ -1,23 +1,18 @@
 import 'package:schedules/schedules.dart';
 
-class CreateUpsertRecipe {
+class CreateUpdateRecipe {
   //
-  const CreateUpsertRecipe(
+  const CreateUpdateRecipe(
     this.dao,
   );
 
   final ScheduleDao dao;
 
   Future<void> call(
-    NlIruoyWhocooksRecipesV0ModelsRecipeUpserted event,
+    NlIruoyWhocooksRecipesV0ModelsRecipeUpdated event,
   ) async {
     //
-    if (event.previous == null) {
-      // The recipe was added, no need to walk through the schedules.
-      return;
-    }
-
-    final schedules = await dao.get(recipes: [event.previous!]);
+    final schedules = await dao.get(recipes: [event.recipe]);
 
     if (schedules.isEmpty) {
       // No schedules were found where the recipe should be updated.
@@ -28,7 +23,7 @@ class CreateUpsertRecipe {
       ...schedules.map((schedule) {
         //
         final recipes = schedule.recipes //
-            .map((v) => v.id == event.previous!.id ? event.current : v)
+            .map((v) => v.id == event.recipe.id ? event.recipe : v)
             .toList();
 
         final form = ScheduleForm(

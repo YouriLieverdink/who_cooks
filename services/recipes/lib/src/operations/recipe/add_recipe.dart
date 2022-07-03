@@ -23,10 +23,10 @@ class CreateAddRecipe {
     Recipe recipe,
   ) async {
     //
-    final event = RecipeUpserted(
+    final event = RecipeInserted(
       id: ObjectId().$oid,
       timestamp: DateTime.now(),
-      current: recipe,
+      recipe: recipe,
     );
 
     final queue = await $.getAsync<Queue>();

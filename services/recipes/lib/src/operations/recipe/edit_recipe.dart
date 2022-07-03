@@ -16,28 +16,26 @@ class CreateEditRecipe {
     required String id,
   }) async {
     //
-    final existing = await showRecipe(id: id);
+    await showRecipe(id: id);
 
     final data = await dao.updateById(recipeForm, id: id);
 
-    await _publish(existing, data);
+    await _publish(data);
 
     return data;
   }
 
   Future<void> _publish(
-    Recipe previous,
-    Recipe current,
+    Recipe recipe,
   ) async {
     //
-    final event = RecipeUpserted(
+    final event = RecipeUpdated(
       id: ObjectId().$oid,
       timestamp: DateTime.now(),
-      previous: previous,
-      current: current,
+      recipe: recipe,
     );
 
     final queue = await $.getAsync<Queue>();
-    await queue.add(RecipeEvent.fromFirst(event));
+    await queue.add(RecipeEvent.fromSecond(event));
   }
 }

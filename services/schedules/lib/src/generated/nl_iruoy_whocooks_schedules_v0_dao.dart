@@ -38,8 +38,8 @@ class NlIruoyWhocooksSchedulesV0ModelsScheduleDao {
             .when(date != null, (s) => s.eq('date', date?.toIso8601String()))
             .when(
                 recipes != null,
-                (s) => s.oneFrom('recipes',
-                    recipes?.map((v) => v.toJson()).toList() ?? [])));
+                (s) => s.oneFrom(
+                    'recipes.id', recipes?.map((v) => v.id).toList() ?? [])));
     return data
         .map((v) => {...v, 'id': (v['_id'] as ObjectId).$oid})
         .map((v) => NlIruoyWhocooksSchedulesV0ModelsSchedule.fromJson(v))
