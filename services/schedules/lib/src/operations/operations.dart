@@ -1,17 +1,17 @@
 import 'package:schedules/schedules.dart';
 
-import './healthcheck/show_healthcheck.dart';
-import './recipe/delete_recipe.dart';
-import 'recipe/update_recipe.dart';
-import './schedule/add_schedule.dart';
-import './schedule/edit_schedule.dart';
-import './schedule/list_schedules.dart';
-import './schedule/remove_schedule.dart';
-import './schedule/show_schedule.dart';
+export './healthcheck/show_healthcheck.dart';
+export './recipe/delete_recipe.dart';
+export './recipe/update_recipe.dart';
+export './schedule/add_schedule.dart';
+export './schedule/edit_schedule.dart';
+export './schedule/list_schedules.dart';
+export './schedule/remove_schedule.dart';
+export './schedule/show_schedule.dart';
 
 final dao = ScheduleDao();
 
-final showHealthcheck = CreateShowHealthcheck();
+final showHealthcheck = CreateShowHealthcheck($.getAsync, $.getAsync);
 
 final deleteRecipe = CreateDeleteRecipe(dao);
 final updateRecipe = CreateUpdateRecipe(dao);

@@ -2,11 +2,18 @@ import 'package:schedules/schedules.dart';
 
 class CreateShowHealthcheck {
   //
-  const CreateShowHealthcheck();
+  const CreateShowHealthcheck(
+    this.connectDb,
+    this.connectQueue,
+  );
+
+  final Future<Db> Function() connectDb;
+
+  final Future<Queue> Function() connectQueue;
 
   Future<NlIruoyCommonV0ModelsHealthcheck> call() async {
     try {
-      await $.getAsync<Db>();
+      await connectDb();
     } //
     catch (_) {
       throw NlIruoyCommonV0ModelsError(
@@ -16,7 +23,7 @@ class CreateShowHealthcheck {
     }
 
     try {
-      await $.getAsync<Queue>();
+      await connectQueue();
     } //
     catch (_) {
       throw NlIruoyCommonV0ModelsError(
