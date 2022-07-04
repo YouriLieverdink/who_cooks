@@ -1,3 +1,4 @@
+import 'package:app/src/generated/generated.dart';
 import 'package:app/src/pages/recipe/recipe_add_edit/recipe_add_edit.dart';
 import 'package:app/src/services/services.dart';
 import 'package:app/src/state/state.dart';
@@ -5,7 +6,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RecipeAddEditPage extends StatelessWidget {
+class RecipeAddEditPage extends StatefulWidget {
   const RecipeAddEditPage({
     Key? key,
     this.id,
@@ -15,24 +16,33 @@ class RecipeAddEditPage extends StatelessWidget {
   final String? id;
 
   @override
+  State<RecipeAddEditPage> createState() => _RecipeAddEditPageState();
+}
+
+class _RecipeAddEditPageState extends State<RecipeAddEditPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.id != null) {
+      context.read<RecipesBloc>().add(ShowRecipe(id: widget.id!));
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final translations = context.read<Translations>();
 
-    return BlocConsumer<RecipesBloc, RecipesState>(
-      listener: (context, state) {
-        // Ensures we are not in an invalid state.
-        if (state is! RecipesLoaded) {
-          Navigator.pop(context);
-        }
-      },
+    return BlocBuilder<RecipesBloc, RecipesState>(
       builder: (context, state) {
-        if (state is! RecipesLoaded) {
-          return const SizedBox();
-        }
+        //
+        Recipe? recipe;
 
-        final recipe = state.recipes //
-            .where((v) => v.id == id)
-            .firstOrNull;
+        if (state is RecipesLoaded) {
+          recipe = state.recipes //
+              .where((v) => v.id == widget.id)
+              .firstOrNull;
+        }
 
         return Scaffold(
           appBar: AppBar(

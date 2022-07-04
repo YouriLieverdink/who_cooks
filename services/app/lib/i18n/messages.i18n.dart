@@ -67,6 +67,7 @@ class HintsMessages {
   String get noResults => """No results""";
   String noYet(String resource) => """No $resource yet""";
   String get addRecipe => """Click on 'edit' to add a recipe""";
+  String get notFound => """Not found""";
 }
 
 class ResourcesMessages {
@@ -117,6 +118,7 @@ Map<String, String> get messagesMap => {
       """hints.nextWeek""": """Next week""",
       """hints.noResults""": """No results""",
       """hints.addRecipe""": """Click on 'edit' to add a recipe""",
+      """hints.notFound""": """Not found""",
       """labels.title""": """Title""",
       """labels.description""": """Description""",
       """labels.photoUrl""": """Photo url""",

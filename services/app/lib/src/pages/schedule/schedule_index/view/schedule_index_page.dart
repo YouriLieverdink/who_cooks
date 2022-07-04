@@ -23,6 +23,7 @@ class _ScheduleIndexPageState extends State<ScheduleIndexPage>
     super.initState();
 
     controller = TabController(length: 2, vsync: this);
+    context.read<SchedulesBloc>().add(const LoadSchedules());
   }
 
   @override

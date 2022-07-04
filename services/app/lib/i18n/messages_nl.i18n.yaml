@@ -15,6 +15,7 @@ hints:
   noResults: Geen resultaten
   noYet(String resource): "Nog geen $resource"
   addRecipe: Klik op 'wijzigen' om een recept toe te voegen
+  notFound: Niet gevonden
 
 resources:
   ingredient(int count): "${_plural(count, one: 'ingrediënt', many: 'ingrediënten')}"

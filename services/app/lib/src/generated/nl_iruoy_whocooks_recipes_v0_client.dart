@@ -40,10 +40,10 @@ class NlIruoyWhocooksRecipesV0ModelsRecipeResource {
     final r = await client
         .get(Uri.parse('$baseUrl/recipes').replace(queryParameters: {
       if (ids != null) ...{
-        'ids': jsonEncode(ids.map((v) => v).toList()),
+        'ids': ids.map((v) => v).toList().join(','),
       },
       if (title != null) ...{
-        'title': jsonEncode(title),
+        'title': title,
       },
       'limit': jsonEncode(limit),
       'skip': jsonEncode(skip)

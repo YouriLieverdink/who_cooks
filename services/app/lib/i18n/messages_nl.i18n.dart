@@ -69,6 +69,7 @@ class HintsMessagesNl extends HintsMessages {
   String get noResults => """Geen resultaten""";
   String noYet(String resource) => """Nog geen $resource""";
   String get addRecipe => """Klik op 'wijzigen' om een recept toe te voegen""";
+  String get notFound => """Niet gevonden""";
 }
 
 class ResourcesMessagesNl extends ResourcesMessages {
@@ -121,6 +122,7 @@ Map<String, String> get messagesNlMap => {
       """hints.noResults""": """Geen resultaten""",
       """hints.addRecipe""":
           """Klik op 'wijzigen' om een recept toe te voegen""",
+      """hints.notFound""": """Niet gevonden""",
       """labels.title""": """Titel""",
       """labels.description""": """Beschrijving""",
       """labels.photoUrl""": """Foto url""",

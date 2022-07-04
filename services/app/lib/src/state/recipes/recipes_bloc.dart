@@ -1,6 +1,7 @@
 import 'package:app/src/generated/generated.dart';
 import 'package:app/src/services/services.dart';
 import 'package:bloc/bloc.dart';
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 
 part 'recipes_event.dart';
@@ -15,6 +16,7 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
   }) : super(const RecipesInitial()) {
     on<_Failure>(_onFailure);
     on<LoadRecipes>(_onLoadRecipes);
+    on<ShowRecipe>(_onShowRecipe);
     on<AddRecipe>(_onAddRecipe);
     on<EditRecipe>(_onEditRecipe);
     on<RemoveRecipe>(_onRemoveRecipe);
@@ -54,6 +56,37 @@ class RecipesBloc extends Bloc<RecipesEvent, RecipesState> {
     } //
     catch (e) {
       add(_Failure(error: e));
+    }
+  }
+
+  Future<void> _onShowRecipe(
+    ShowRecipe event,
+    Emitter<RecipesState> emit,
+  ) async {
+    final _state = state;
+
+    if (_state is RecipesLoaded) {
+      // We only attempt to retrieve the recipe when we don't have it already.
+      final exists = _state.recipes //
+          .where((r) => r.id == event.id)
+          .isNotEmpty;
+
+      if (!exists) {
+        emit(const RecipesLoading());
+
+        final recipes = await repository.recipes.recipes.get(
+          ids: [event.id],
+        );
+
+        emit(RecipesLoaded(recipes: [..._state.recipes, ...recipes]));
+      } //
+    } //
+    else {
+      final recipes = await repository.recipes.recipes.get(
+        ids: [event.id],
+      );
+
+      emit(RecipesLoaded(recipes: recipes));
     }
   }
 

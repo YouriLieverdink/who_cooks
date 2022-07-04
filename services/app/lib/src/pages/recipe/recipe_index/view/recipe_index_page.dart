@@ -1,12 +1,25 @@
 import 'package:app/src/pages/recipe/recipe_index/recipe_index.dart';
 import 'package:app/src/services/services.dart';
+import 'package:app/src/state/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RecipeIndexPage extends StatelessWidget {
+class RecipeIndexPage extends StatefulWidget {
   const RecipeIndexPage({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<RecipeIndexPage> createState() => _RecipeIndexPageState();
+}
+
+class _RecipeIndexPageState extends State<RecipeIndexPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<RecipesBloc>().add(const LoadRecipes());
+  }
 
   @override
   Widget build(BuildContext context) {

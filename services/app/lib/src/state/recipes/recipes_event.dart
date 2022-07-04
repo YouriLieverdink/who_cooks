@@ -32,6 +32,17 @@ class LoadRecipes extends RecipesEvent {
   List<Object?> get props => [skip, limit];
 }
 
+class ShowRecipe extends RecipesEvent {
+  const ShowRecipe({
+    required this.id,
+  });
+
+  final String id;
+
+  @override
+  List<Object> get props => [id];
+}
+
 class AddRecipe extends RecipesEvent {
   const AddRecipe({
     required this.recipe,

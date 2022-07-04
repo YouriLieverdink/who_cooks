@@ -30,14 +30,12 @@ class Providers extends StatelessWidget {
           BlocProvider(
             create: (context) => RecipesBloc(
               repository: context.read(),
-            )..add(const LoadRecipes()),
-            lazy: false,
+            ),
           ),
           BlocProvider(
             create: (context) => SchedulesBloc(
               repository: context.read(),
-            )..add(const LoadSchedules()),
-            lazy: false,
+            ),
           ),
         ],
         child: child,

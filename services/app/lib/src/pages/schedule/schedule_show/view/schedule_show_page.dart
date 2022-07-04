@@ -1,33 +1,9 @@
 import 'package:app/src/pages/schedule/schedule_show/schedule_show.dart';
 import 'package:app/src/state/state.dart';
+import 'package:app/src/widgets/widgets.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-class Conditional extends StatelessWidget {
-  const Conditional(
-    // ignore: avoid_positional_boolean_parameters
-    this.value, {
-    Key? key,
-    required this.isTrue,
-    this.isFalse,
-  }) : super(key: key);
-
-  final bool value;
-
-  final Widget Function(BuildContext) isTrue;
-
-  final Widget Function(BuildContext)? isFalse;
-
-  @override
-  Widget build(BuildContext context) {
-    return value //
-        ? isTrue(context)
-        : isFalse != null
-            ? isFalse!(context)
-            : const SizedBox();
-  }
-}
 
 class ScheduleShowPage extends StatelessWidget {
   const ScheduleShowPage({

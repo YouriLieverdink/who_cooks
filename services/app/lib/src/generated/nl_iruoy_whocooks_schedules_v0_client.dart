@@ -43,10 +43,10 @@ class NlIruoyWhocooksSchedulesV0ModelsScheduleResource {
     final r = await client
         .get(Uri.parse('$baseUrl/schedules').replace(queryParameters: {
       if (ids != null) ...{
-        'ids': jsonEncode(ids.map((v) => v).toList()),
+        'ids': ids.map((v) => v).toList().join(','),
       },
       if (recipe != null) ...{
-        'recipe': jsonEncode(recipe),
+        'recipe': recipe,
       },
       'limit': jsonEncode(limit),
       'skip': jsonEncode(skip)
