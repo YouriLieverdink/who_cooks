@@ -1,7 +1,6 @@
 import 'package:app/src/generated/generated.dart';
 import 'package:app/src/services/services.dart';
 import 'package:bloc/bloc.dart';
-import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 
 part 'recipes_event.dart';

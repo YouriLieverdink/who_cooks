@@ -1,4 +1,3 @@
-import 'package:app/config/constants.dart';
 import 'package:app/src/pages/recipe/recipe.dart';
 import 'package:app/src/services/services.dart';
 import 'package:app/src/state/state.dart';
@@ -14,7 +13,6 @@ class RecipeIndexPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final translations = context.read<Translations>();
-    final theme = context.read<ThemeData>();
 
     return BlocBuilder<RecipesBloc, RecipesState>(
       builder: (context, state) {
