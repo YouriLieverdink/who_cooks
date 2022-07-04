@@ -42,8 +42,12 @@ class NlIruoyWhocooksSchedulesV0ModelsScheduleResource {
       int skip = 0}) async {
     final r = await client
         .get(Uri.parse('$baseUrl/schedules').replace(queryParameters: {
-      'ids': jsonEncode(ids?.map((v) => v).toList()),
-      'recipe': jsonEncode(recipe),
+      if (ids != null) ...{
+        'ids': jsonEncode(ids.map((v) => v).toList()),
+      },
+      if (recipe != null) ...{
+        'recipe': jsonEncode(recipe),
+      },
       'limit': jsonEncode(limit),
       'skip': jsonEncode(skip)
     }));

@@ -16,10 +16,10 @@ class Providers extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-          create: (context) => Repository.instance,
+          create: (context) => Repository.instance(),
         ),
         RepositoryProvider(
-          create: (context) => Translations.instance,
+          create: (context) => Translations.instance(),
         ),
         RepositoryProvider(
           create: (context) => Theme.of(context),
